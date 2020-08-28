@@ -111,7 +111,7 @@ class AdminController extends AbstractController
 
             $this->addFlash('success', 'Le multiplicateur a bien été ajouté');
 
-            return $this->redirectToRoute('admin_home');
+            return $this->redirect('/admin/room/'. $currentRoom->getId());
         }
 
         return $this->render('admin/adminRoom.html.twig',[
@@ -141,7 +141,8 @@ class AdminController extends AbstractController
 
             $this->addFlash('success', 'La salle a bien été ajoutée');
 
-            return $this->redirectToRoute('admin_home');
+
+            return $this->redirect('/admin/room/'. $room->getId());
         }
 
         return $this->render('admin/adminAddRoomIndex.html.twig',[
