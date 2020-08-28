@@ -74,6 +74,7 @@ class AdminController extends AbstractController
      */
     public function adminDeleteMultiplicator($id, Request $request, Multiplicator $multiplicator, EntityManagerInterface $manager)
     {
+        $room = $multiplicator->getRoom();
 
         $manager->remove($multiplicator);
         $manager->flush();
@@ -82,7 +83,8 @@ class AdminController extends AbstractController
         $this->addFlash('success', 'Le multiplicateur a bien été suprimé');
 
 
-        return $this->redirectToRoute('admin_home');
+        return $this->redirect('/admin/room/'. $room->getId()
+    );
 
     }
 

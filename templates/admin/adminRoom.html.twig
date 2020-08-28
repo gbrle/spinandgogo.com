@@ -13,6 +13,21 @@
 <body>
 
 
+<!-- Message Success -->
+{% for message in app.session.flashbag.get('success') %}
+    <div class="modal fade bignoode" tabindex="-1" role="dialog" id="confirmBackground">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <h2 class="text-dark">{{ message }}</h2>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Valider</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endfor %}
+<!-- End Message Success -->
 
 <div class="wrapper d-flex align-items-stretch">
     <nav id="sidebar">
@@ -94,6 +109,11 @@
 <script src="/assets/admin/js/popper.js"></script>
 <script src="/assets/admin/js/bootstrap.min.js"></script>
 <script src="/assets/admin/js/main.js"></script>
+<script>
+    $(window).on('load',function(){
+        $('#confirmBackground').modal('show');
+    });
+</script>
 
 </body>
 </html>
