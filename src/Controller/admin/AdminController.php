@@ -24,7 +24,9 @@ class AdminController extends AbstractController
      */
     public function index()
     {
-        return $this->render('admin/index.html.twig');
+        return $this->render('admin/index.html.twig',[
+            'rooms' => $this->roomService->getAllRooms(),
+        ]);
     }
 
     /**
@@ -32,7 +34,9 @@ class AdminController extends AbstractController
      */
     public function adminUsers()
     {
-        return $this->render('admin/adminUsers.html.twig');
+        return $this->render('admin/adminUsers.html.twig',[
+            'rooms' => $this->roomService->getAllRooms(),
+        ]);
     }
 
     /**
@@ -40,7 +44,9 @@ class AdminController extends AbstractController
      */
     public function adminNewsLetter()
     {
-        return $this->render('admin/adminNewsletter.html.twig');
+        return $this->render('admin/adminNewsletter.html.twig', [
+            'rooms' => $this->roomService->getAllRooms(),
+        ]);
     }
 
     /**
