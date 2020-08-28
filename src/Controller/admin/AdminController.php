@@ -60,6 +60,8 @@ class AdminController extends AbstractController
             $manager->persist($room);
             $manager->flush();
 
+            $this->addFlash('success', 'La salle a bien été ajoutée');
+
             return $this->redirectToRoute('admin_home');
         }
 
