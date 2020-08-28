@@ -44,7 +44,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     -webkit-box-pack: end;
 }
 div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.active .page-link:focus {
-    background-color: #4285f4;
+    background-color: #ffc107;
 }
 div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item .page-link:focus {
     -webkit-box-shadow: none;
