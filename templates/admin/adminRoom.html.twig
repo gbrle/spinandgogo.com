@@ -92,20 +92,21 @@
 
         <!-- Buy In Of Room -->
         <h5 class="mb-4 mb-5 border border-dark rounded text-center p-3">Buy In de la salle :
-            {% for multiplicator in multiplicators %}
+            {% for buyInRoom in buyInsRoom %}
                 <div class="dropdown d-inline-block">
                     <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        X{{ multiplicator.value }}
+                        {{ buyInRoom.value }}€
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="{{ path('admin_delete_multiplicator', { 'id' : multiplicator.id }) }}"><i class="fa fa-trash-o text-danger" aria-hidden="true"></i> Supprimer</a>
+                        <a class="dropdown-item" href="{{ path('admin_delete_BuyIn', { 'id' : buyInRoom.id }) }}"><i class="fa fa-trash-o text-danger" aria-hidden="true"></i> Supprimer</a>
                     </div>
                 </div>
             {% endfor %}
         </h5>
         <!-- End Buy In Of Room -->
 
-        <div class="border border-dark rounded text-center p-3">
+        <!-- Create Multiplicator Of Room -->
+        <div class="border border-dark rounded text-center p-3 mb-4">
             <h5 class="mb-4">Ajouter un multiplicateur :</h5>
             <div>
                 {{ form_start(formMultiplicator) }}
@@ -114,6 +115,21 @@
                 {{ form_end(formMultiplicator) }}
             </div>
         </div>
+        <!-- End Create Multiplicator Of Room -->
+
+        <!-- Create Buy In Of Room -->
+        <div class="border border-dark rounded text-center p-3">
+            <h5 class="mb-4">Ajouter un buy in :</h5>
+            <div>
+                {{ form_start(formBuyIn) }}
+                {{ form_row(formBuyIn.value) }}
+                <button class="btn btn-warning" type="submit">Créer</button>
+                {{ form_end(formBuyIn) }}
+            </div>
+        </div>
+        <!-- End Create Buy In Of Room -->
+
+
     </div>
 
 

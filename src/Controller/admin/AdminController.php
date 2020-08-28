@@ -2,8 +2,10 @@
 
 namespace App\Controller\admin;
 
+use App\Entity\BuyIn;
 use App\Entity\Multiplicator;
 use App\Entity\Room;
+use App\Form\BuyInType;
 use App\Form\MultiplicatorType;
 use App\Form\RoomType;
 use App\Repository\RoomRepository;
@@ -85,7 +87,24 @@ class AdminController extends AbstractController
 
         return $this->redirect('/admin/room/'. $room->getId()
     );
+    }
 
+    /**
+     * @Route("/admin/deleteBuyIn/{id}", name="admin_delete_BuyIn")
+     */
+    public function adminDeleteBuyIn($id, Request $request, BuyIn $buyIn, EntityManagerInterface $manager)
+    {
+        $room = $buyIn->getRoom();
+
+        $manager->remove($buyIn);
+        $manager->flush();
+
+
+        $this->addFlash('success', 'Le buy in a bien été suprimé');
+
+
+        return $this->redirect('/admin/room/'. $room->getId()
+        );
     }
 
     /**
@@ -113,12 +132,38 @@ class AdminController extends AbstractController
 
             return $this->redirect('/admin/room/'. $currentRoom->getId());
         }
+        // End New
+
+        // Form New Buy In
+        $buyInsRoom = $currentRoom->getBuyIn();
+
+        $buyIn = new BuyIn();
+        $buyIn->setRoom($currentRoom);
+        $formBuyIn = $this->createForm(BuyInType::class, $buyIn);
+
+        $formBuyIn->handleRequest($request);
+        if ($formBuyIn->isSubmitted() && $formBuyIn->isValid()) {
+
+            $buyIn = $formBuyIn->getData();
+
+            $manager->persist($buyIn);
+            $manager->flush();
+
+            $this->addFlash('success', 'Le Buy In a bien été ajouté');
+
+            return $this->redirect('/admin/room/'. $currentRoom->getId());
+        }
+        // End New Buy In
+
+
 
         return $this->render('admin/adminRoom.html.twig',[
             'allRooms' => $this->roomService->getAllRooms(),
             'room' => $currentRoom,
             'multiplicators' => $multicatorsRoom,
+            'buyInsRoom' => $buyInsRoom,
             'formMultiplicator' => $formMultiplicator->createView(),
+            'formBuyIn' => $formBuyIn->createView(),
         ]);
     }
 
