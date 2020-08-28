@@ -28,9 +28,9 @@
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-gamepad" aria-hidden="true"></i> Salles Poker</a>
                     <ul class="collapse show list-unstyled" id="pageSubmenu">
-                        {% for room in rooms %}
+                        {% for currentRoom in allRooms %}
                             <li>
-                                <a href="#">{{ room.name }}</a>
+                                <a href="{{ path('admin_room', { 'id' : currentRoom.id }) }}">{{ currentRoom.name }}</a>
                             </li>
                         {% endfor %}
 
@@ -57,16 +57,17 @@
             <span class="sr-only">Toggle Menu</span>
         </button>
 
-        <h2 class="mb-4 mt-5">Ajouter une salle de poker</h2>
+        <div class="border border-dark rounded text-center p-3">
+            <h2 class="mb-4 mt-5">Ajouter une salle de poker</h2>
 
-        <div>
-            {{ form_start(formRoom) }}
-            {{ form_row(formRoom.name) }}
-            {{ form_row(formRoom.nameSpinAndGo) }}
-            <button class="btn btn-warning" type="submit">Créer</button>
-            {{ form_end(formRoom) }}
+            <div>
+                {{ form_start(formRoom) }}
+                {{ form_row(formRoom.name) }}
+                {{ form_row(formRoom.nameSpinAndGo) }}
+                <button class="btn btn-warning" type="submit">Créer</button>
+                {{ form_end(formRoom) }}
+            </div>
         </div>
-
     </div>
 </div>
 

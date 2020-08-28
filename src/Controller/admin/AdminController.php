@@ -2,8 +2,11 @@
 
 namespace App\Controller\admin;
 
+use App\Entity\Multiplicator;
 use App\Entity\Room;
+use App\Form\MultiplicatorType;
 use App\Form\RoomType;
+use App\Repository\RoomRepository;
 use App\Service\RoomService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,7 +28,7 @@ class AdminController extends AbstractController
     public function index()
     {
         return $this->render('admin/index.html.twig',[
-            'rooms' => $this->roomService->getAllRooms(),
+            'allRooms' => $this->roomService->getAllRooms(),
         ]);
     }
 
@@ -35,7 +38,7 @@ class AdminController extends AbstractController
     public function adminUsers()
     {
         return $this->render('admin/adminUsers.html.twig',[
-            'rooms' => $this->roomService->getAllRooms(),
+            'allRooms' => $this->roomService->getAllRooms(),
         ]);
     }
 
@@ -45,7 +48,41 @@ class AdminController extends AbstractController
     public function adminNewsLetter()
     {
         return $this->render('admin/adminNewsletter.html.twig', [
-            'rooms' => $this->roomService->getAllRooms(),
+            'allRooms' => $this->roomService->getAllRooms(),
+        ]);
+    }
+
+    /**
+     * @Route("/admin/room/{id}", name="admin_room")
+     */
+    public function adminRoom($id, Request $request, RoomRepository $roomRepository, EntityManagerInterface $manager)
+    {
+        $currentRoom = $roomRepository->find($id);
+        $multicatorsRoom = $currentRoom->getMultiplicators();
+
+        // Form New Multiplicator
+        $multiplicator = new Multiplicator();
+        $multiplicator->setRoom($currentRoom);
+        $formMultiplicator = $this->createForm(MultiplicatorType::class, $multiplicator);
+
+        $formMultiplicator->handleRequest($request);
+        if ($formMultiplicator->isSubmitted() && $formMultiplicator->isValid()) {
+
+            $multiplicator = $formMultiplicator->getData();
+
+            $manager->persist($multiplicator);
+            $manager->flush();
+
+            $this->addFlash('success', 'Le multiplicateur a bien été ajouté');
+
+            return $this->redirectToRoute('admin_home');
+        }
+
+        return $this->render('admin/adminRoom.html.twig',[
+            'allRooms' => $this->roomService->getAllRooms(),
+            'room' => $currentRoom,
+            'multiplicators' => $multicatorsRoom,
+            'formMultiplicator' => $formMultiplicator->createView(),
         ]);
     }
 
@@ -73,7 +110,7 @@ class AdminController extends AbstractController
 
         return $this->render('admin/adminAddRoomIndex.html.twig',[
             'formRoom' => $formRoom->createView(),
-            'rooms' => $this->roomService->getAllRooms(),
+            'allRooms' => $this->roomService->getAllRooms(),
         ]);
     }
 }

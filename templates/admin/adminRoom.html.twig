@@ -11,28 +11,15 @@
     <title>SpinAndGoGo.com - Admin</title>
 </head>
 <body>
-<!-- Message Success -->
-{% for message in app.session.flashbag.get('success') %}
-    <div class="modal fade bignoode" tabindex="-1" role="dialog" id="confirmBackground">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body text-center">
-                    <h2 class="text-dark">{{ message }}</h2>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Valider</button>
-                </div>
 
-            </div>
-        </div>
-    </div>
-{% endfor %}
-<!-- End Message Success -->
+
 
 <div class="wrapper d-flex align-items-stretch">
     <nav id="sidebar">
         <div class="p-4 pt-5 position-fixed" style="width: 300px !important;">
 
             <ul class="list-unstyled components mb-5 mt-5">
-                <li class="active">
+                <li>
                     <a href="{{ path('admin_home') }}" aria-expanded="false"><i class="fa fa-home" aria-hidden="true"></i> Acceuil</a>
                 </li>
                 <li>
@@ -40,12 +27,13 @@
                 </li>
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-gamepad" aria-hidden="true"></i> Salles Poker</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <ul class="collapse show list-unstyled" id="pageSubmenu">
                         {% for currentRoom in allRooms %}
-                            <li>
+                            <li {% if currentRoom.id == room.id %}class="active"{% endif %}>
                                 <a href="{{ path('admin_room', { 'id' : currentRoom.id }) }}">{{ currentRoom.name }}</a>
                             </li>
                         {% endfor %}
+
                         <li>
                             <a href="{{ path('admin_add_room_index') }}"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter une salle</a>
                         </li>
@@ -63,14 +51,41 @@
 
     <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 position-relative">
+
         <button type="button" id="sidebarCollapse" class="btn btn-transparent" style="position: fixed; left: 10px; top: 8px">
             <i class="fa fa-bars text-warning col-form-label-lg"></i>
             <span class="sr-only">Toggle Menu</span>
         </button>
 
-        <h2 class="mb-4 mt-5">Vous êtes sur l'administration de SpinAndGoGo.com</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <h2 class="mb-4 mt-5 border border-dark rounded text-center p-3">Administration de la salle <span class="text-warning">{{ room.name }}</span></h2>
+        <h5 class="mb-4 mt-5 border border-dark rounded text-center p-3">Multiplicateurs de la salle :
+            {% for multiplicator in multiplicators %}
+            <div class="dropdown d-inline-block">
+                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    X{{ multiplicator.value }}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">{{ multiplicator.value }}</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+            {% endfor %}
+        </h5>
+        <div class="border border-dark rounded text-center p-3">
+            <h5 class="mb-4 mt-5">Ajouter un multiplicateur :</h5>
+            <div>
+                {{ form_start(formMultiplicator) }}
+                {{ form_row(formMultiplicator.value) }}
+                <button class="btn btn-warning" type="submit">Créer</button>
+                {{ form_end(formMultiplicator) }}
+            </div>
+        </div>
+
+            <div>
+
+        </div>
+
     </div>
 </div>
 
@@ -80,11 +95,6 @@
 <script src="/assets/admin/js/popper.js"></script>
 <script src="/assets/admin/js/bootstrap.min.js"></script>
 <script src="/assets/admin/js/main.js"></script>
-<script>
-    $(window).on('load',function(){
-        $('#confirmBackground').modal('show');
-    });
-</script>
 
 </body>
 </html>
