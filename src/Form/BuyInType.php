@@ -4,7 +4,7 @@ namespace App\Form;
 
 use App\Entity\BuyIn;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,7 +13,7 @@ class BuyInType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('value', IntegerType::class, [
+            ->add('value', NumberType::class, [
                 'label' => 'Valeur du buy in'
             ])
         ;
