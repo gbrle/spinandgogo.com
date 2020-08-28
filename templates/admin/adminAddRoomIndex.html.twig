@@ -28,9 +28,12 @@
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-gamepad" aria-hidden="true"></i> Salles Poker</a>
                     <ul class="collapse show list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="#">Page 1</a>
-                        </li>
+                        {% for room in rooms %}
+                            <li>
+                                <a href="#">{{ room.name }}</a>
+                            </li>
+                        {% endfor %}
+
                         <li class="active">
                             <a href="{{ path('admin_add_room_index') }}"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter une salle</a>
                         </li>
@@ -54,9 +57,16 @@
             <span class="sr-only">Toggle Menu</span>
         </button>
 
-        <h2 class="mb-4 mt-5">Vous êtes sur l'administration de SpinAndGoGo.com</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <h2 class="mb-4 mt-5">Ajouter une salle de poker</h2>
+
+        <div>
+            {{ form_start(formRoom) }}
+            {{ form_row(formRoom.name) }}
+            {{ form_row(formRoom.nameSpinAndGo) }}
+            <button class="btn btn-warning" type="submit">Créer</button>
+            {{ form_end(formRoom) }}
+        </div>
+
     </div>
 </div>
 

@@ -2,11 +2,23 @@
 
 namespace App\Controller\admin;
 
+use App\Entity\Room;
+use App\Form\RoomType;
+use App\Service\RoomService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
 {
+    private $roomService;
+
+    public function __construct(RoomService $roomService)
+    {
+        $this->roomService = $roomService;
+    }
+
     /**
      * @Route("/admin", name="admin_home")
      */
@@ -34,8 +46,26 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/addRoomIndex", name="admin_add_room_index")
      */
-    public function adminAddRoom()
+    public function adminAddRoom(Request $request, EntityManagerInterface $manager)
     {
-        return $this->render('admin/adminAddRoomIndex.html.twig');
+
+        $room = new Room();
+        $formRoom = $this->createForm(RoomType::class, $room);
+
+        $formRoom->handleRequest($request);
+        if ($formRoom->isSubmitted() && $formRoom->isValid()) {
+
+            $room = $formRoom->getData();
+
+            $manager->persist($room);
+            $manager->flush();
+
+            return $this->redirectToRoute('admin_home');
+        }
+
+        return $this->render('admin/adminAddRoomIndex.html.twig',[
+            'formRoom' => $formRoom->createView(),
+            'rooms' => $this->roomService->getAllRooms(),
+        ]);
     }
 }
