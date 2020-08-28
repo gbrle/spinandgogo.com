@@ -41,9 +41,16 @@ class Room
      */
     private $multiplicators;
 
+    /**
+     * @ORM\OneToMany(targetEntity=BuyIn::class, mappedBy="room", orphanRemoval=true)
+     */
+    private $buyIn;
+
+
     public function __construct()
     {
         $this->multiplicators = new ArrayCollection();
+        $this->buyIn = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -110,4 +117,36 @@ class Room
     {
         return $this->getName();
     }
+
+    /**
+     * @return Collection|BuyIn[]
+     */
+    public function getBuyIn(): Collection
+    {
+        return $this->buyIn;
+    }
+
+    public function addBuyIn(BuyIn $buyIn): self
+    {
+        if (!$this->buyIn->contains($buyIn)) {
+            $this->buyIn[] = $buyIn;
+            $buyIn->setRoom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBuyIn(BuyIn $buyIn): self
+    {
+        if ($this->buyIn->contains($buyIn)) {
+            $this->buyIn->removeElement($buyIn);
+            // set the owning side to null (unless already changed)
+            if ($buyIn->getRoom() === $this) {
+                $buyIn->setRoom(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
