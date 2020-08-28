@@ -22,7 +22,6 @@
                     <h2 class="text-dark">{{ message }}</h2>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Valider</button>
                 </div>
-
             </div>
         </div>
     </div>
@@ -72,9 +71,12 @@
             <i class="fa fa-bars text-warning col-form-label-lg"></i>
             <span class="sr-only">Toggle Menu</span>
         </button>
-        <h2 class="mb-4 mt-5 border border-dark rounded text-center p-3">Administration de la salle <span class="text-warning">{{ room.name }}</span>
-        </h2>
-        <h5 class="mb-4 mt-5 border border-dark rounded text-center p-3">Multiplicateurs de la salle :
+
+        <h2 class="mb-4 mt-5 border border-dark rounded text-center p-3">Administration de la salle <span class="text-warning">{{ room.name }}</span></h2>
+
+
+        <!-- Multiplicator Of Room -->
+        <h5 class="mt-5 border border-dark rounded text-center p-3">Multiplicateurs de la salle :
             {% for multiplicator in multiplicators %}
             <div class="dropdown d-inline-block">
                 <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -86,6 +88,23 @@
             </div>
             {% endfor %}
         </h5>
+        <!-- End Multiplicator Of Room -->
+
+        <!-- Buy In Of Room -->
+        <h5 class="mb-4 mb-5 border border-dark rounded text-center p-3">Buy In de la salle :
+            {% for multiplicator in multiplicators %}
+                <div class="dropdown d-inline-block">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        X{{ multiplicator.value }}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{{ path('admin_delete_multiplicator', { 'id' : multiplicator.id }) }}"><i class="fa fa-trash-o text-danger" aria-hidden="true"></i> Supprimer</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </h5>
+        <!-- End Buy In Of Room -->
+
         <div class="border border-dark rounded text-center p-3">
             <h5 class="mb-4">Ajouter un multiplicateur :</h5>
             <div>
@@ -95,13 +114,7 @@
                 {{ form_end(formMultiplicator) }}
             </div>
         </div>
-
-            <div>
-
-        </div>
-
     </div>
-</div>
 
 
 
