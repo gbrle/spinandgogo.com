@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/admin/css/style.css">
 
-    <title>SpinAndGoGo.com - Admin</title>
+    <title>SpinAndGoGo.com - Admin - Ajouter une salle</title>
 </head>
 <body>
 
@@ -19,7 +19,7 @@
         <div class="p-4 pt-5 position-fixed" style="width: 300px !important;">
 
             <ul class="list-unstyled components mb-5 mt-5">
-                <li class="active">
+                <li>
                     <a href="{{ path('admin_home') }}" aria-expanded="false"><i class="fa fa-home" aria-hidden="true"></i> Acceuil</a>
                 </li>
                 <li>
@@ -27,11 +27,11 @@
                 </li>
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-gamepad" aria-hidden="true"></i> Salles Poker</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <ul class="collapse show list-unstyled" id="pageSubmenu">
                         <li>
                             <a href="#">Page 1</a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="{{ path('admin_add_room_index') }}"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter une salle</a>
                         </li>
                     </ul>
