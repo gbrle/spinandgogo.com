@@ -52,6 +52,40 @@ class AdminController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/admin/deleteRoom/{id}", name="admin_delete_room")
+     */
+    public function adminDeleteRoom($id, Request $request, Room $room, EntityManagerInterface $manager)
+    {
+        $manager->remove($room);
+        $manager->flush();
+
+
+        $this->addFlash('success', 'La salle a bien été suprimée');
+
+
+        return $this->redirectToRoute('admin_home');
+
+    }
+
+    /**
+     * @Route("/admin/deleteMultiplicator/{id}", name="admin_delete_multiplicator")
+     */
+    public function adminDeleteMultiplicator($id, Request $request, Multiplicator $multiplicator, EntityManagerInterface $manager)
+    {
+
+        $manager->remove($multiplicator);
+        $manager->flush();
+
+
+        $this->addFlash('success', 'Le multiplicateur a bien été suprimé');
+
+
+        return $this->redirectToRoute('admin_home');
+
+    }
+
     /**
      * @Route("/admin/room/{id}", name="admin_room")
      */

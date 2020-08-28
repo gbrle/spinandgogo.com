@@ -51,13 +51,14 @@
 
     <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 position-relative">
+        <a href="{{ path('admin_delete_room', { 'id' : room.id }) }}"><span class="float-right mt-3"><i class="fa fa-trash-o text-danger text-xl-right display-4" aria-hidden="true"></i></span></a>
 
         <button type="button" id="sidebarCollapse" class="btn btn-transparent" style="position: fixed; left: 10px; top: 8px">
             <i class="fa fa-bars text-warning col-form-label-lg"></i>
             <span class="sr-only">Toggle Menu</span>
         </button>
-
-        <h2 class="mb-4 mt-5 border border-dark rounded text-center p-3">Administration de la salle <span class="text-warning">{{ room.name }}</span></h2>
+        <h2 class="mb-4 mt-5 border border-dark rounded text-center p-3">Administration de la salle <span class="text-warning">{{ room.name }}</span>
+        </h2>
         <h5 class="mb-4 mt-5 border border-dark rounded text-center p-3">Multiplicateurs de la salle :
             {% for multiplicator in multiplicators %}
             <div class="dropdown d-inline-block">
@@ -65,9 +66,7 @@
                     X{{ multiplicator.value }}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">{{ multiplicator.value }}</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="{{ path('admin_delete_multiplicator', { 'id' : multiplicator.id }) }}"><i class="fa fa-trash-o text-danger" aria-hidden="true"></i> Supprimer</a>
                 </div>
             </div>
             {% endfor %}
