@@ -46,6 +46,11 @@ class Room
      */
     private $buyIn;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $logo;
+
 
     public function __construct()
     {
@@ -145,6 +150,18 @@ class Room
                 $buyIn->setRoom(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(string $logo): self
+    {
+        $this->logo = $logo;
 
         return $this;
     }
