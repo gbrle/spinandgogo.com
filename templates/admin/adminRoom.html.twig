@@ -64,7 +64,7 @@
     </nav>
 
     <!-- Page Content  -->
-    <div id="content" class="p-4 p-md-5 position-relative">
+    <div id="content" class="p-4 p-md-5 position-relative" style="background-repeat: no-repeat; background-image: url('/assets/logosRooms/{{ room.logo }}')">
         <a href="{{ path('admin_delete_room', { 'id' : room.id }) }}"><span class="float-right mt-3"><i class="fa fa-trash-o text-danger text-xl-right display-4" aria-hidden="true"></i></span></a>
 
         <button type="button" id="sidebarCollapse" class="btn btn-transparent" style="position: fixed; left: 10px; top: 8px">
@@ -72,7 +72,7 @@
             <span class="sr-only">Toggle Menu</span>
         </button>
 
-        <h2 class="mb-4 mt-5 border border-dark rounded text-center p-3">Administration de la salle <span class="text-warning">{{ room.name }}</span></h2>
+        <h2 style="background: rgba(0, 0, 0, 0.8)" class="mb-4 mt-5 border border-dark rounded text-center p-3 text-light">Administration de la salle <span class="text-warning">{{ room.name }}</span></h2>
 
 
         <!-- Multiplicator Of Room -->
