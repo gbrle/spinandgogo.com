@@ -64,6 +64,7 @@
                 {{ form_start(formRoom) }}
                 {{ form_row(formRoom.name) }}
                 {{ form_row(formRoom.nameSpinAndGo) }}
+                {{ form_row(formRoom.logo) }}
                 <button class="btn btn-warning" type="submit">Créer</button>
                 {{ form_end(formRoom) }}
             </div>
@@ -74,6 +75,13 @@
 
 
 <script src="/assets/admin/js/jquery.min.js"></script>
+<script rel="script">
+    document.getElementById("room_logo").required = true;
+    $('.custom-file-input').on('change',function(){
+        var fileName = $(this).val().replace(/\\/g, '/').replace(/.*\//, '');
+        $(".custom-file-label").text(fileName);
+    });
+</script>
 <script src="/assets/admin/js/popper.js"></script>
 <script src="/assets/admin/js/bootstrap.min.js"></script>
 <script src="/assets/admin/js/main.js"></script>

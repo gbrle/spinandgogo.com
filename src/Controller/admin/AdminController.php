@@ -60,9 +60,15 @@ class AdminController extends AbstractController
      */
     public function adminDeleteRoom($id, Request $request, Room $room, EntityManagerInterface $manager)
     {
-        $manager->remove($room);
-        $manager->flush();
 
+
+        if(file_exists($this->getTargetDir(). '/' . $room->getLogo())) {
+            unlink($this->getTargetDir() . '/' .$room->getLogo());
+
+            $manager->remove($room);
+            $manager->flush();
+        }
+        
 
         $this->addFlash('success', 'La salle a bien été suprimée');
 
@@ -179,6 +185,22 @@ class AdminController extends AbstractController
         $formRoom->handleRequest($request);
         if ($formRoom->isSubmitted() && $formRoom->isValid()) {
 
+
+            $image = $formRoom->get('logo')->getData();
+
+
+            $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+            // this is needed to safely include the file name as part of the URL
+            $safeFilename = mt_rand(1, 9999999999);;
+            $newFilename = $safeFilename.'.'.$image->guessExtension();
+
+            $image->move(
+                $this->getParameter('uploads_logo_dir'),
+                $newFilename
+            );
+
+            $room->setLogo($newFilename);
+
             $room = $formRoom->getData();
 
             $manager->persist($room);
@@ -194,5 +216,9 @@ class AdminController extends AbstractController
             'formRoom' => $formRoom->createView(),
             'allRooms' => $this->roomService->getAllRooms(),
         ]);
+    }
+
+    private function getTargetDir(){
+        return $this->getParameter('uploads_logo_dir');
     }
 }
