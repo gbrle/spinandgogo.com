@@ -1,0 +1,39 @@
+{% block body %}
+    <div>
+        <div>
+            <div class="col-12">
+                <h1 class="tittlePage mt-5 mb-5 animated bounceInLeft display-3"><span class="text-danger">I</span>nscription</h1>
+            </div>
+
+
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.firstname, { 'label': 'Prénom' }) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.lastname, { 'label': 'Nom' }) }}
+                </div>
+                <div class="col-12">
+                    {{ form_row(form.email) }}
+                </div>
+
+
+                <div class="col-md-6">
+                    {{ form_row(form.password, { 'label': 'Mot de passe' }) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.confirm_password, { 'label': 'Confirmation du mot de passe' }) }}
+                </div>
+
+            </div>
+            <button type="submit" class="btn btn-danger btn-lg float-md-right mt-4 mb-4">Inscription</button>
+
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
