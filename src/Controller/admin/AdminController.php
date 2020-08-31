@@ -9,6 +9,7 @@ use App\Form\BuyInType;
 use App\Form\MultiplicatorType;
 use App\Form\RoomType;
 use App\Repository\RoomRepository;
+use App\Repository\UserRepository;
 use App\Service\RoomService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,10 +38,13 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/users", name="admin_users")
      */
-    public function adminUsers()
+    public function adminUsers(UserRepository $userRepository)
     {
+        $users = $userRepository->findAll();
+
         return $this->render('admin/adminUsers.html.twig',[
             'allRooms' => $this->roomService->getAllRooms(),
+            'users' => $users,
         ]);
     }
 
