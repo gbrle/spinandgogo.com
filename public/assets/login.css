@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html,body{
-    background-image: url('https://thumbs.dreamstime.com/b/blue-poker-pattern-playing-card-symbols-simple-pfoto-background-131825567.jpg');
+    background-image: url('https://images2.alphacoders.com/201/thumb-1920-201750.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
@@ -12,6 +12,7 @@ html,body{
 
 .container{
     height: 100%;
+    width: 50%;
     align-content: center;
 }
 
@@ -85,4 +86,19 @@ input:focus{
 
 .links a{
     margin-left: 4px;
+}
+
+@media (max-width: 768px)
+{
+    .container{
+        min-width: 100%;
+        width: 100% !important;
+    }
+}
+
+@media (min-width: 576px)
+{
+    .container{
+        width: 61% !important;
+    }
 }
