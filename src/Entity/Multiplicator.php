@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MultiplicatorRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,10 +25,20 @@ class Multiplicator
     private $value;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Room::class, inversedBy="multiplicators")
+     * @ORM\ManyToOne(targetEntity=BuyIn::class, inversedBy="multiplicators")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $room;
+    private $buyIn;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Rank::class, mappedBy="multiplicator", orphanRemoval=true)
+     */
+    private $ranks;
+
+    public function __construct()
+    {
+        $this->ranks = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -45,14 +57,45 @@ class Multiplicator
         return $this;
     }
 
-    public function getRoom(): ?Room
+    public function getBuyIn(): ?BuyIn
     {
-        return $this->room;
+        return $this->buyIn;
     }
 
-    public function setRoom(?Room $room): self
+    public function setBuyIn(?BuyIn $buyIn): self
     {
-        $this->room = $room;
+        $this->buyIn = $buyIn;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Rank[]
+     */
+    public function getRanks(): Collection
+    {
+        return $this->ranks;
+    }
+
+    public function addRank(Rank $rank): self
+    {
+        if (!$this->ranks->contains($rank)) {
+            $this->ranks[] = $rank;
+            $rank->setMultiplicator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRank(Rank $rank): self
+    {
+        if ($this->ranks->contains($rank)) {
+            $this->ranks->removeElement($rank);
+            // set the owning side to null (unless already changed)
+            if ($rank->getMultiplicator() === $this) {
+                $rank->setMultiplicator(null);
+            }
+        }
 
         return $this;
     }

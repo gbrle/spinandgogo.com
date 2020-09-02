@@ -14,6 +14,7 @@ use App\Service\RoomService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
@@ -81,23 +82,6 @@ class AdminController extends AbstractController
 
     }
 
-    /**
-     * @Route("/admin/deleteMultiplicator/{id}", name="admin_delete_multiplicator")
-     */
-    public function adminDeleteMultiplicator($id, Request $request, Multiplicator $multiplicator, EntityManagerInterface $manager)
-    {
-        $room = $multiplicator->getRoom();
-
-        $manager->remove($multiplicator);
-        $manager->flush();
-
-
-        $this->addFlash('success', 'Le multiplicateur a bien été suprimé');
-
-
-        return $this->redirect('/admin/room/'. $room->getId()
-    );
-    }
 
     /**
      * @Route("/admin/deleteBuyIn/{id}", name="admin_delete_BuyIn")
@@ -120,33 +104,15 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/room/{id}", name="admin_room")
      */
-    public function adminRoom($id, Request $request, RoomRepository $roomRepository, EntityManagerInterface $manager)
+    public function adminRoom($id, Request $request, RoomRepository $roomRepository, EntityManagerInterface $manager, Session $session)
     {
         $currentRoom = $roomRepository->find($id);
-        $multicatorsRoom = $currentRoom->getMultiplicators();
 
-        // Form New Multiplicator
-        $multiplicator = new Multiplicator();
-        $multiplicator->setRoom($currentRoom);
-        $formMultiplicator = $this->createForm(MultiplicatorType::class, $multiplicator);
-
-        $formMultiplicator->handleRequest($request);
-        if ($formMultiplicator->isSubmitted() && $formMultiplicator->isValid()) {
-
-            $multiplicator = $formMultiplicator->getData();
-
-            $manager->persist($multiplicator);
-            $manager->flush();
-
-            $this->addFlash('success', 'Le multiplicateur a bien été ajouté');
-
-            return $this->redirect('/admin/room/'. $currentRoom->getId());
-        }
-        // End New
-
-        // Form New Buy In
         $buyInsRoom = $currentRoom->getBuyIn();
 
+        $session->set('rooms', $buyInsRoom);
+
+        // Form New Buy In
         $buyIn = new BuyIn();
         $buyIn->setRoom($currentRoom);
         $formBuyIn = $this->createForm(BuyInType::class, $buyIn);
@@ -165,15 +131,33 @@ class AdminController extends AbstractController
         }
         // End New Buy In
 
+        // Form New Multiplicator
+
+        $multiplicator = new Multiplicator();
+        $formMultiplicator = $this->createForm(MultiplicatorType::class, $multiplicator);
+
+        $formMultiplicator->handleRequest($request);
+        if ($formMultiplicator->isSubmitted() && $formMultiplicator->isValid()) {
+
+            $multiplicator = $formMultiplicator->getData();
+
+            $manager->persist($multiplicator);
+            $manager->flush();
+
+            $this->addFlash('success', 'Le multiplicateur a bien été ajouté');
+
+            return $this->redirect('/admin/room/'. $currentRoom->getId());
+        }
+        // End New Multiplicator
+
 
 
         return $this->render('admin/adminRoom.html.twig',[
             'allRooms' => $this->roomService->getAllRooms(),
             'room' => $currentRoom,
-            'multiplicators' => $multicatorsRoom,
             'buyInsRoom' => $buyInsRoom,
-            'formMultiplicator' => $formMultiplicator->createView(),
             'formBuyIn' => $formBuyIn->createView(),
+            'formMultiplicator' => $formMultiplicator->createView(),
         ]);
     }
 
