@@ -7,13 +7,12 @@ html,body{
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    height: 100%;
+
     font-family: 'Numans', sans-serif;
 }
 @media screen and (max-width: 768px)
 {
     .card{
-
         width: 100% !important;
     }
 }
@@ -21,8 +20,11 @@ html,body{
 @media screen and (max-width: 576px)
 {
     .card{
-
         width: 100% !important;
+    }
+    .container{
+        margin-top: 50px;
+        align-content: center;
     }
 }
 .container{
