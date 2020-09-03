@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\RankRepository;
+use App\Repository\RankedRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=RankRepository::class)
+ * @ORM\Entity(repositoryClass=RankedRepository::class)
  */
-class Rank
+class Ranked
 {
     /**
      * @ORM\Id
@@ -28,7 +28,7 @@ class Rank
     private $price;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Multiplicator::class, inversedBy="ranks")
+     * @ORM\ManyToOne(targetEntity=Multiplicator::class, inversedBy="rankeds")
      * @ORM\JoinColumn(nullable=false)
      */
     private $multiplicator;

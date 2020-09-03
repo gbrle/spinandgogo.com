@@ -31,7 +31,7 @@ class Multiplicator
     private $buyIn;
 
     /**
-     * @ORM\OneToMany(targetEntity=Rank::class, mappedBy="multiplicator", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Ranked::class, mappedBy="multiplicator", orphanRemoval=true)
      */
     private $ranks;
 
@@ -70,30 +70,30 @@ class Multiplicator
     }
 
     /**
-     * @return Collection|Rank[]
+     * @return Collection|Ranked[]
      */
-    public function getRanks(): Collection
+    public function getRankeds(): Collection
     {
-        return $this->ranks;
+        return $this->rankeds;
     }
 
-    public function addRank(Rank $rank): self
+    public function addRanked(Ranked $ranked): self
     {
-        if (!$this->ranks->contains($rank)) {
-            $this->ranks[] = $rank;
-            $rank->setMultiplicator($this);
+        if (!$this->rankeds->contains($ranked)) {
+            $this->rankeds[] = $ranked;
+            $ranked->setMultiplicator($this);
         }
 
         return $this;
     }
 
-    public function removeRank(Rank $rank): self
+    public function removeRanked(Ranked $ranked): self
     {
-        if ($this->ranks->contains($rank)) {
-            $this->ranks->removeElement($rank);
+        if ($this->ranks->contains($ranked)) {
+            $this->ranks->removeElement($ranked);
             // set the owning side to null (unless already changed)
-            if ($rank->getMultiplicator() === $this) {
-                $rank->setMultiplicator(null);
+            if ($ranked->getMultiplicator() === $this) {
+                $ranked->setMultiplicator(null);
             }
         }
 
