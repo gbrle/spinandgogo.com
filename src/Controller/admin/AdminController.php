@@ -8,6 +8,7 @@ use App\Entity\Room;
 use App\Form\BuyInType;
 use App\Form\MultiplicatorType;
 use App\Form\RoomType;
+use App\Repository\BuyInRepository;
 use App\Repository\RoomRepository;
 use App\Repository\UserRepository;
 use App\Service\RoomService;
@@ -16,6 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class AdminController extends AbstractController
 {
@@ -131,25 +133,6 @@ class AdminController extends AbstractController
         }
         // End New Buy In
 
-        // Form New Multiplicator
-
-        $multiplicator = new Multiplicator();
-        $formMultiplicator = $this->createForm(MultiplicatorType::class, $multiplicator);
-
-        $formMultiplicator->handleRequest($request);
-        if ($formMultiplicator->isSubmitted() && $formMultiplicator->isValid()) {
-
-            $multiplicator = $formMultiplicator->getData();
-
-            $manager->persist($multiplicator);
-            $manager->flush();
-
-            $this->addFlash('success', 'Le multiplicateur a bien été ajouté');
-
-            return $this->redirect('/admin/room/'. $currentRoom->getId());
-        }
-        // End New Multiplicator
-
 
 
         return $this->render('admin/adminRoom.html.twig',[
@@ -157,7 +140,6 @@ class AdminController extends AbstractController
             'room' => $currentRoom,
             'buyInsRoom' => $buyInsRoom,
             'formBuyIn' => $formBuyIn->createView(),
-            'formMultiplicator' => $formMultiplicator->createView(),
         ]);
     }
 
@@ -205,6 +187,30 @@ class AdminController extends AbstractController
             'allRooms' => $this->roomService->getAllRooms(),
         ]);
     }
+
+    /**
+     * @Route("/admin/addMultiplicatorForOneBuyIn/{id}", name="add_multiplicator_for_one_buy_in")
+     */
+    public function adminAddMultiplicatorForOneBuyIn($id, Request $request, BuyInRepository $buyInRepository, EntityManagerInterface $manager)
+    {
+        $buyIn = $buyInRepository->find($id);
+        $multiplicatorValue = $request->getContent();
+
+        $multiplicator = new Multiplicator();
+        $multiplicator->setBuyIn($buyIn);
+        $multiplicator->setValue($multiplicatorValue);
+
+        $manager->persist($multiplicator);
+        $manager->flush();
+
+
+
+        $this->addFlash('success', 'Le multiplicateur a bien été ajouté');
+
+
+        return $this->json($buyIn->getRoom()->getId());
+    }
+
 
     private function getTargetDir(){
         return $this->getParameter('uploads_logo_dir');

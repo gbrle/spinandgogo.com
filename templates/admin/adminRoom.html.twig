@@ -15,7 +15,7 @@
 
 <!-- Message Success -->
 {% for message in app.session.flashbag.get('success') %}
-    <div class="modal fade bignoode" tabindex="-1" role="dialog" id="confirmBackground">
+    <div class="modal fade" tabindex="-1" role="dialog" id="confirmBackground">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body text-center">
@@ -83,7 +83,30 @@
                         {{ buyInRoom.value }}€
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a data-toggle="modal" data-target="#modal{{ buyInRoom.id }}" class="dropdown-item" href="#"><i class="fa fa-trash-o text-danger" aria-hidden="true"></i> Ajouter un multiplicateur</a>
                         <a class="dropdown-item" href="{{ path('admin_delete_BuyIn', { 'id' : buyInRoom.id }) }}"><i class="fa fa-trash-o text-danger" aria-hidden="true"></i> Supprimer</a>
+                    </div>
+                </div>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="modal{{ buyInRoom.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Ajouter un multiplicateur pour le buy in : <span class="text-warning">{{ buyInRoom.value }}</span> €</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input id="multiplicatorInput{{ buyInRoom.id }}" class="form-control" type="number" placeholder="Exemple : 1">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                <button onclick="addMultiplicator({{ buyInRoom.id }})" type="button" class="btn btn-primary">Valider</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             {% endfor %}
@@ -103,18 +126,6 @@
         </div>
         <!-- End Create Buy In Of Room -->
 
-        <!-- Create Buy In Of Room -->
-        <div class="border border-dark rounded text-center p-3">
-            <h5 class="mb-4">Ajouter un multiplicateur :</h5>
-            <div>
-                {{ form_start(formMultiplicator) }}
-                {{ form_row(formMultiplicator.value) }}
-                {{ form_row(formMultiplicator.buy_in) }}
-                <button class="btn btn-warning" type="submit">Créer</button>
-                {{ form_end(formMultiplicator) }}
-            </div>
-        </div>
-        <!-- End Create Buy In Of Room -->
 
 
     </div>
@@ -125,7 +136,9 @@
 <script src="/assets/admin/js/popper.js"></script>
 <script src="/assets/admin/js/bootstrap.min.js"></script>
 <script src="/assets/admin/js/main.js"></script>
-<script>
+    <script src="/assets/ajax.js"></script>
+    <script src="/assets/admin/js/logicsBack.js"></script>
+    <script>
     $(window).on('load',function(){
         $('#confirmBackground').modal('show');
     });
