@@ -86,7 +86,8 @@
                         <div class="bg-secondary text-light pt-3 pb-3 m-2 rounded">
                             <p>Multiplicateurs</p>
                             {% for multiplicator in buyInRoom.multiplicators %}
-                                <button data-toggle="modal" data-target="#modalMultiplicator{{ multiplicator.id }}" type="button" class="btn btn-outline-light mb-2">X {{ multiplicator.value }}</button>
+                                <button data-toggle="modal" data-target="#modalMultiplicator{{ multiplicator.id }}" type="button" class="btn btn-outline-light mb-2 dropdown-item">X {{ multiplicator.value }}</button>
+
                             {% endfor %}
                         </div>
                         <a data-toggle="modal" data-target="#modal{{ buyInRoom.id }}" class="dropdown-item" href="#"><i class="fa fa-plus text-primary" aria-hidden="true"></i> Ajouter un multiplicateur</a>
@@ -115,6 +116,38 @@
                         </div>
                     </div>
                 </div>
+
+                {%  for ranked in buyInRoom.multiplicators %}
+                    <!-- Modal Add Ranked -->
+                    <div class="modal fade" id="modalMultiplicator{{ ranked.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">
+                                        {{ room.name }} /
+                                        {{ buyInRoom.value }}€ /
+                                        X{{ ranked.value }}
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h3 class="mb-4">Entrer le gain du spin and go</h3>
+                                    {% for position in ranked.rankeds %}price
+                                        <p>Place : {{ position.position }}</p>
+                                        <input id="rankedInput{{ position.id }}" class="form-control" type="number" placeholder="{{ position.price }}">
+                                    {% endfor %}
+                                    </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                    <button onclick="addMultiplicator({{ buyInRoom.id }})" type="button" class="btn btn-primary">Valider</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Modal Add Ranked -->
+                    {% endfor %}
                 <!-- End Modal Add Multiplicator -->
             {% endfor %}
         </h5>
@@ -142,9 +175,9 @@
 <script src="/assets/admin/js/popper.js"></script>
 <script src="/assets/admin/js/bootstrap.min.js"></script>
 <script src="/assets/admin/js/main.js"></script>
-    <script src="/assets/ajax.js"></script>
-    <script src="/assets/admin/js/logicsBack.js"></script>
-    <script>
+<script src="/assets/ajax.js"></script>
+<script src="/assets/admin/js/logicsBack.js"></script>
+<script>
     $(window).on('load',function(){
         $('#confirmBackground').modal('show');
     });
