@@ -80,21 +80,27 @@
             {% for buyInRoom in buyInsRoom %}
                 <div class="dropdown d-inline-block">
                     <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ buyInRoom.value }}€
+                        {{ buyInRoom.value }} €
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a data-toggle="modal" data-target="#modal{{ buyInRoom.id }}" class="dropdown-item" href="#"><i class="fa fa-trash-o text-danger" aria-hidden="true"></i> Ajouter un multiplicateur</a>
+                    <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
+                        <div class="bg-secondary text-light pt-3 pb-3 m-2 rounded">
+                            <p>Multiplicateurs</p>
+                            {% for multiplicator in buyInRoom.multiplicators %}
+                                <button data-toggle="modal" data-target="#modalMultiplicator{{ multiplicator.id }}" type="button" class="btn btn-outline-light mb-2">X {{ multiplicator.value }}</button>
+                            {% endfor %}
+                        </div>
+                        <a data-toggle="modal" data-target="#modal{{ buyInRoom.id }}" class="dropdown-item" href="#"><i class="fa fa-plus text-primary" aria-hidden="true"></i> Ajouter un multiplicateur</a>
                         <a class="dropdown-item" href="{{ path('admin_delete_BuyIn', { 'id' : buyInRoom.id }) }}"><i class="fa fa-trash-o text-danger" aria-hidden="true"></i> Supprimer</a>
                     </div>
                 </div>
 
 
-                <!-- Modal -->
+                <!-- Modal Add Multiplicator-->
                 <div class="modal fade" id="modal{{ buyInRoom.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Ajouter un multiplicateur pour le buy in : <span class="text-warning">{{ buyInRoom.value }}</span> €</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Ajouter un multiplicateur pour le buy in : <span class="text-primary">{{ buyInRoom.value }}</span> €</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -109,9 +115,9 @@
                         </div>
                     </div>
                 </div>
+                <!-- End Modal Add Multiplicator -->
             {% endfor %}
         </h5>
-        <!-- End Buy In Of Room -->
 
 
         <!-- Create Buy In Of Room -->

@@ -8257,9 +8257,10 @@ a[data-toggle="collapse"] {
   position: relative; }
 
 .dropdown-toggle::after {
+  margin-right: 3px;
   display: block;
   position: absolute;
-  top: 50%;
+  top: 20%;
   right: 0;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);

@@ -4,6 +4,7 @@ namespace App\Controller\admin;
 
 use App\Entity\BuyIn;
 use App\Entity\Multiplicator;
+use App\Entity\Ranked;
 use App\Entity\Room;
 use App\Form\BuyInType;
 use App\Form\MultiplicatorType;
@@ -200,6 +201,18 @@ class AdminController extends AbstractController
         $multiplicator->setValue($multiplicatorValue);
 
         $manager->persist($multiplicator);
+
+        // I add 3 rankeds with value "0"
+        for ($i=1; $i<4; $i++) {
+
+            $ranked = new Ranked();
+            $ranked->setMultiplicator($multiplicator);
+            $ranked->setPosition($i);
+            $ranked->setPrice(0);
+
+            $manager->persist($ranked);
+        }
+
         $manager->flush();
 
 
