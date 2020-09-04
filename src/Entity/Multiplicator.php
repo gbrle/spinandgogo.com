@@ -33,11 +33,11 @@ class Multiplicator
     /**
      * @ORM\OneToMany(targetEntity=Ranked::class, mappedBy="multiplicator", orphanRemoval=true)
      */
-    private $ranks;
+    private $rankeds;
 
     public function __construct()
     {
-        $this->ranks = new ArrayCollection();
+        $this->rankeds = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -89,8 +89,8 @@ class Multiplicator
 
     public function removeRanked(Ranked $ranked): self
     {
-        if ($this->ranks->contains($ranked)) {
-            $this->ranks->removeElement($ranked);
+        if ($this->rankeds->contains($ranked)) {
+            $this->rankeds->removeElement($ranked);
             // set the owning side to null (unless already changed)
             if ($ranked->getMultiplicator() === $this) {
                 $ranked->setMultiplicator(null);
