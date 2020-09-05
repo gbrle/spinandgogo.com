@@ -10,6 +10,7 @@ use App\Form\BuyInType;
 use App\Form\MultiplicatorType;
 use App\Form\RoomType;
 use App\Repository\BuyInRepository;
+use App\Repository\RankedRepository;
 use App\Repository\RoomRepository;
 use App\Repository\UserRepository;
 use App\Service\RoomService;
@@ -221,6 +222,40 @@ class AdminController extends AbstractController
 
 
         return $this->json($buyIn->getRoom()->getId());
+    }
+
+
+    /**
+     * @Route("/admin/addPrice", name="add_price")
+     */
+    public function adminAddPrice(Request $request, RankedRepository $rankedRepository, EntityManagerInterface $manager)
+    {
+
+        $rankedValue = json_decode($request->getContent());
+
+        $ranked1 = $rankedRepository->findOneBy(['id' => $rankedValue[0]]);
+        $ranked2 = $rankedRepository->findOneBy(['id' => $rankedValue[0]+1]);
+        $ranked3 = $rankedRepository->findOneBy(['id' => $rankedValue[0]+2]);
+
+
+
+
+        $ranked1->setPrice($rankedValue[1]);
+        $ranked2->setPrice($rankedValue[2]);
+        $ranked3->setPrice($rankedValue[3]);
+
+        $manager->persist($ranked1);
+        $manager->persist($ranked2);
+        $manager->persist($ranked3);
+
+        $manager->flush();
+
+
+
+        $this->addFlash('success', 'Les prix ont bien été ajoutés');
+
+
+        return $this->json($rankedValue[0]);
     }
 
 

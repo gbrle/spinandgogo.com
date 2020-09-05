@@ -74,7 +74,8 @@
 
         <h2 style="background: rgba(0, 0, 0, 0.8)" class="mb-4 mt-5 border border-dark rounded text-center p-3 text-light">Administration de la salle <span class="text-warning">{{ room.name }}</span></h2>
 
-
+        <!-- Variable for InputPrice incrément -->
+        {% set foo = 0 %}
         <!-- Buy In Of Room -->
         <h5 class="mb-4 mb-5 border border-dark rounded text-center p-3">Buy In de la salle :
             {% for buyInRoom in buyInsRoom %}
@@ -134,14 +135,14 @@
                                 </div>
                                 <div class="modal-body">
                                     <h3 class="mb-4">Entrer le gain du spin and go</h3>
-                                    {% for position in ranked.rankeds %}price
-                                        <p>Place : {{ position.position }}</p>
-                                        <input id="rankedInput{{ position.id }}" class="form-control" type="number" placeholder="{{ position.price }}">
+                                    {% for position in ranked.rankeds %}
+                                        <p class="mt-2">Place : {{ position.position }}</p>
+                                        <input id="rankedInput{{ position.id }}" class="form-control" type="number" value="{{ position.price }}">
                                     {% endfor %}
                                     </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                    <button onclick="addMultiplicator({{ buyInRoom.id }})" type="button" class="btn btn-primary">Valider</button>
+                                    <button onclick="addPrice({{ ranked.id }}, {{ ranked.rankeds[0].id }}, {{ room.id }} )" type="button" class="btn btn-primary">Valider</button>
                                 </div>
                             </div>
                         </div>
@@ -169,7 +170,7 @@
 
     </div>
 
-
+</div>
 
 <script src="/assets/admin/js/jquery.min.js"></script>
 <script src="/assets/admin/js/popper.js"></script>
