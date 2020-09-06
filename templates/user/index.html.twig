@@ -20,6 +20,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <title>Dashboard - Midone - Tailwind HTML Admin Template</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="/assets/user/css/app.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
     <!-- END: CSS Assets-->
 </head>
 <!-- END: Head -->
@@ -141,13 +142,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <li>
             <a href="top-menu-dashboard.html" class="top-menu top-menu--active">
                 <div class="top-menu__icon"> <i data-feather="home"></i> </div>
-                <div class="top-menu__title"> Dashboard </div>
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;" class="top-menu">
-                <div class="top-menu__icon"> <i data-feather="box"></i> </div>
-                <div class="top-menu__title"> Menu Layout <i data-feather="chevron-down" class="top-menu__sub-icon"></i> </div>
+                <div class="top-menu__title"> Acceuil </div>
             </a>
         </li>
         <li>
@@ -177,27 +172,23 @@ License: You must have a valid license purchased only from themeforest(the above
         <li>
             <a href="javascript:;" class="top-menu">
                 <div class="top-menu__icon"> <i data-feather="hard-drive"></i> </div>
-                <div class="top-menu__title"> Widgets <i data-feather="chevron-down" class="top-menu__sub-icon"></i> </div>
+                <div class="top-menu__title"> Mes parties <i data-feather="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
                 <li>
                     <a href="top-menu-chart.html" class="top-menu">
                         <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="top-menu__title"> Chart </div>
+                        <div class="top-menu__title"> Toutes les salles </div>
                     </a>
                 </li>
+                {% for room in rooms %}
                 <li>
-                    <a href="top-menu-slider.html" class="top-menu">
+                    <a href="top-menu-chart.html" class="top-menu">
                         <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="top-menu__title"> Slider </div>
+                        <div class="top-menu__title"> {{ room.name }} </div>
                     </a>
                 </li>
-                <li>
-                    <a href="top-menu-image-zoom.html" class="top-menu">
-                        <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="top-menu__title"> Image Zoom </div>
-                    </a>
-                </li>
+                {% endfor %}
             </ul>
         </li>
     </ul>
@@ -219,7 +210,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="flex justify-content-center">
                                     <i data-feather="plus" class="report-box__icon text-theme-10"></i>
                                 </div>
-                                <div class="text-3xl font-bold leading-8 mt-6 text-center">Ajouter une partie</div>
+                                <div class="text-3xl font-bold leading-8 mt-6 text-center mb-6">Ajouter une partie</div>
                             </div>
                         </div>
                     </div>
@@ -242,7 +233,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="flex flex-col xl:flex-row xl:items-center">
                         <div class="flex">
                             <div>
-                                <div class="text-theme-20 dark:text-gray-300 text-lg xl:text-xl font-bold">Profit : 15 €</div>
+                                <div class="float-left text-theme-20 dark:text-gray-300 text-lg xl:text-xl font-bold">Profit : 15 €</div>
                             </div>
                         </div>
                         <div class="dropdown relative xl:ml-auto mt-5 xl:mt-0">
@@ -255,7 +246,8 @@ License: You must have a valid license purchased only from themeforest(the above
                         <canvas id="report-line-chart" height="160" class="mt-6"></canvas>
                     </div>
                     <div>
-                        <div class="mt-3 text-right text-theme-20 dark:text-gray-300 text-lg xl:text-xl font-bold">Nbre de parties : 15</div>
+                        <div class="mt-3 float-left text-theme-20 dark:text-gray-300 text-lg xl:text-xl font-bold">ROI : 12%</div>
+                        <div class="mt-3 float-right text-theme-20 dark:text-gray-300 text-lg xl:text-xl font-bold">Nb de parties : 15444</div>
                     </div>
                 </div>
             </div>
