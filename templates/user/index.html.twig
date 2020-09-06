@@ -35,66 +35,32 @@ License: You must have a valid license purchased only from themeforest(the above
     </div>
     <ul class="border-t border-theme-24 py-5 hidden">
         <li>
-            <a href="index.html" class="menu menu--active">
+            <a href="{{ path('user_home') }}" class="menu menu--active">
                 <div class="menu__icon"> <i data-feather="home"></i> </div>
-                <div class="menu__title"> Dashboard </div>
+                <div class="menu__title"> Acceuil </div>
             </a>
         </li>
         <li>
             <a href="javascript:;" class="menu">
                 <div class="menu__icon"> <i data-feather="box"></i> </div>
-                <div class="menu__title"> Menu Layout <i data-feather="chevron-down" class="menu__sub-icon"></i> </div>
+                <div class="menu__title"> Mes parties <i data-feather="chevron-down" class="menu__sub-icon"></i> </div>
             </a>
             <ul class="">
                 <li>
-                    <a href="index.html" class="menu">
+                    <a href="{{ path('user_all_games') }}" class="menu">
                         <div class="menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="menu__title"> Side Menu </div>
+                        <div class="menu__title"> Toutes les salles </div>
                     </a>
                 </li>
-                <li>
-                    <a href="simple-menu-dashboard.html" class="menu">
-                        <div class="menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="menu__title"> Simple Menu </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="top-menu-dashboard.html" class="menu">
-                        <div class="menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="menu__title"> Top Menu </div>
-                    </a>
-                </li>
+                {% for room in rooms %}
+                    <li>
+                        <a href="simple-menu-dashboard.html" class="menu">
+                            <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="menu__title"> {{ room.name }} </div>
+                        </a>
+                    </li>
+                {% endfor %}
             </ul>
-        </li>
-        <li>
-            <a href="side-menu-inbox.html" class="menu">
-                <div class="menu__icon"> <i data-feather="inbox"></i> </div>
-                <div class="menu__title"> Inbox </div>
-            </a>
-        </li>
-        <li>
-            <a href="side-menu-file-manager.html" class="menu">
-                <div class="menu__icon"> <i data-feather="hard-drive"></i> </div>
-                <div class="menu__title"> File Manager </div>
-            </a>
-        </li>
-        <li>
-            <a href="side-menu-point-of-sale.html" class="menu">
-                <div class="menu__icon"> <i data-feather="credit-card"></i> </div>
-                <div class="menu__title"> Point of Sale </div>
-            </a>
-        </li>
-        <li>
-            <a href="side-menu-chat.html" class="menu">
-                <div class="menu__icon"> <i data-feather="message-square"></i> </div>
-                <div class="menu__title"> Chat </div>
-            </a>
-        </li>
-        <li>
-            <a href="side-menu-post.html" class="menu">
-                <div class="menu__icon"> <i data-feather="file-text"></i> </div>
-                <div class="menu__title"> Post </div>
-            </a>
         </li>
     </ul>
 </div>
@@ -140,33 +106,9 @@ License: You must have a valid license purchased only from themeforest(the above
 <nav class="top-nav">
     <ul>
         <li>
-            <a href="top-menu-dashboard.html" class="top-menu top-menu--active">
+            <a href="{{ path('user_home') }}" class="top-menu top-menu--active">
                 <div class="top-menu__icon"> <i data-feather="home"></i> </div>
                 <div class="top-menu__title"> Acceuil </div>
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;" class="top-menu">
-                <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
-                <div class="top-menu__title"> Apps </div>
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;" class="top-menu">
-                <div class="top-menu__icon"> <i data-feather="layout"></i> </div>
-                <div class="top-menu__title"> Pages </div>
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;" class="top-menu">
-                <div class="top-menu__icon"> <i data-feather="inbox"></i> </div>
-                <div class="top-menu__title"> Components </div>
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;" class="top-menu">
-                <div class="top-menu__icon"> <i data-feather="sidebar"></i> </div>
-                <div class="top-menu__title"> Forms </div>
             </a>
         </li>
         <li>
@@ -176,18 +118,18 @@ License: You must have a valid license purchased only from themeforest(the above
             </a>
             <ul class="">
                 <li>
-                    <a href="top-menu-chart.html" class="top-menu">
+                    <a href="{{ path('user_all_games') }}" class="top-menu">
                         <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
                         <div class="top-menu__title"> Toutes les salles </div>
                     </a>
                 </li>
                 {% for room in rooms %}
-                <li>
-                    <a href="top-menu-chart.html" class="top-menu">
-                        <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="top-menu__title"> {{ room.name }} </div>
-                    </a>
-                </li>
+                    <li>
+                        <a href="top-menu-chart.html" class="top-menu">
+                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="top-menu__title"> {{ room.name }} </div>
+                        </a>
+                    </li>
                 {% endfor %}
             </ul>
         </li>
@@ -206,11 +148,19 @@ License: You must have a valid license purchased only from themeforest(the above
 
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <div class="report-box zoom-in">
-                            <div class="box p-5">
+                            <div class="box p-5" id="blockAddGame">
                                 <div class="flex justify-content-center">
                                     <i data-feather="plus" class="report-box__icon text-theme-10"></i>
+                                    <div id="directiveAddGame" class="text-3xl font-bold leading-8">Ajouter une partie</div>
                                 </div>
-                                <div class="text-3xl font-bold leading-8 mt-6 text-center mb-6">Ajouter une partie</div>
+                                <hr class="mt-5 mb-5">
+                                <div id="contentAddGame" class="text-center">
+                                    {% for room in rooms %}
+                                        <div class="bg-danger pl-2 pr-2" id="aaa">
+                                            {{ room.name }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -247,7 +197,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                     <div>
                         <div class="mt-3 float-left text-theme-20 dark:text-gray-300 text-lg xl:text-xl font-bold">ROI : 12%</div>
-                        <div class="mt-3 float-right text-theme-20 dark:text-gray-300 text-lg xl:text-xl font-bold">Nb de parties : 15444</div>
+                        <div class="mt-3 float-right text-theme-20 dark:text-gray-300 text-lg xl:text-xl font-bold">Nb de parties : {{ games|length }}</div>
                     </div>
                 </div>
             </div>
@@ -350,8 +300,8 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END: Content -->
 <!-- BEGIN: JS Assets-->
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=["your-google-map-api"]&libraries=places"></script>
 <script src="/assets/user/js/app.js"></script>
+<script src="/assets/user/js/addGame.js"></script>
 <!-- END: JS Assets-->
 </body>
 </html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<!--
+Template Name: Midone - HTML Admin Dashboard Template
+Author: Left4code
+Website: http://www.left4code.com/
+Contact: muhammadrizki@left4code.com
+Purchase: https://themeforest.net/user/left4code/portfolio
+Renew Support: https://themeforest.net/user/left4code/portfolio
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<html lang="en">
+<!-- BEGIN: Head -->
+<head>
+    <meta charset="utf-8">
+    <link href="/assets/user/images/logo.svg" rel="shortcut icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Midone admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Midone admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="LEFT4CODE">
+    <title>Dashboard - Midone - Tailwind HTML Admin Template</title>
+    <!-- BEGIN: CSS Assets-->
+    <link rel="stylesheet" href="/assets/user/css/app.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <!-- END: CSS Assets-->
+</head>
+<!-- END: Head -->
+<body class="app">
+<!-- BEGIN: Mobile Menu -->
+<div class="mobile-menu md:hidden">
+    <div class="mobile-menu-bar">
+        <a href="" class="flex mr-auto">
+            <img alt="Midone Tailwind HTML Admin Template" class="w-6" src="/assets/user/images/logo.svg">
+        </a>
+        <a href="javascript:;" id="mobile-menu-toggler"> <i data-feather="bar-chart-2" class="w-8 h-8 text-white transform -rotate-90"></i> </a>
+    </div>
+    <ul class="border-t border-theme-24 py-5 hidden">
+        <li>
+            <a href="{{ path('user_home') }}" class="menu menu--active">
+                <div class="menu__icon"> <i data-feather="home"></i> </div>
+                <div class="menu__title"> Acceuil </div>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:;" class="menu">
+                <div class="menu__icon"> <i data-feather="box"></i> </div>
+                <div class="menu__title"> Mes parties <i data-feather="chevron-down" class="menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="{{ path('user_all_games') }}" class="menu">
+                        <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="menu__title"> Toutes les salles </div>
+                    </a>
+                </li>
+                {% for room in rooms %}
+                <li>
+                    <a href="simple-menu-dashboard.html" class="menu">
+                        <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="menu__title"> {{ room.name }} </div>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+</div>
+<!-- END: Mobile Menu -->
+<!-- BEGIN: Top Bar -->
+<div class="border-b border-theme-24 -mt-10 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 pt-3 md:pt-0 mb-10">
+    <div class="top-bar-boxed flex items-center">
+        <!-- BEGIN: Logo -->
+        <a href="" class="-intro-x hidden md:flex">
+            <img alt="Midone Tailwind HTML Admin Template" class="w-6" src="/assets/user/images/logo.svg">
+            <span class="text-white text-lg ml-3"> SpinAnd<span class="font-medium">GoGo</span>.fr </span>
+        </a>
+        <!-- END: Logo -->
+        <!-- BEGIN: Breadcrumb -->
+        <div class="-intro-x breadcrumb breadcrumb--light mr-auto">
+            <span class="text-white text-lg ml-3"> Bienvenue <span class="font-medium">{{ app.user.firstname }}</span> </span>
+        </div>
+        <!-- END: Breadcrumb -->
+
+        <!-- BEGIN: Account Menu -->
+        <div class="intro-x dropdown w-8 h-8 relative">
+            <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in scale-110">
+                <i data-feather="user" style="color: white"></i>
+            </div>
+            <div class="dropdown-box mt-10 absolute w-56 top-0 right-0 z-20">
+                <div class="dropdown-box__content box bg-theme-38 dark:bg-dark-6 text-white">
+                    <div class="p-4 border-b border-theme-40 dark:border-dark-3">
+                        <div class="font-medium">{{ app.user.lastname }} {{ app.user.firstname }}</div>
+                        <div class="text-xs text-theme-41 dark:text-gray-600">Statut : Utilisateur</div>
+                    </div>
+                    <div class="p-2">
+                        <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="user" class="w-4 h-4 mr-2"></i> Mon compte </a>
+                        <a href="/logout" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Déconnexion </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END: Account Menu -->
+    </div>
+</div>
+<!-- END: Top Bar -->
+<!-- BEGIN: Top Menu -->
+<nav class="top-nav">
+    <ul>
+        <li>
+            <a href="{{ path('user_home') }}" class="top-menu">
+                <div class="top-menu__icon"> <i data-feather="home"></i> </div>
+                <div class="top-menu__title"> Acceuil </div>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:;" class="top-menu top-menu--active">
+                <div class="top-menu__icon"> <i data-feather="hard-drive"></i> </div>
+                <div class="top-menu__title"> Mes parties <i data-feather="chevron-down" class="top-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="{{ path('user_all_games') }}" class="top-menu">
+                        <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="top-menu__title"> Toutes les salles </div>
+                    </a>
+                </li>
+                {% for room in rooms %}
+                <li>
+                    <a href="top-menu-chart.html" class="top-menu">
+                        <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="top-menu__title"> {{ room.name }} </div>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+</nav>
+<!-- END: Top Menu -->
+<!-- BEGIN: Content -->
+<div class="content">
+    <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
+
+            <!-- BEGIN: Weekly Top Products -->
+            <div class="col-span-12 mt-6">
+                <div class="intro-y block sm:flex items-center h-10">
+                    <h2 class="text-lg font-medium truncate mr-5">
+                        Toutes mes parties
+                    </h2>
+                </div>
+                <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
+                    <table class="table table-report sm:mt-2">
+                        <thead>
+                        <tr>
+                            <th class="whitespace-no-wrap">PRODUCT NAME</th>
+                            <th class="text-center whitespace-no-wrap">STOCK</th>
+                            <th class="text-center whitespace-no-wrap">STATUS</th>
+                            <th class="text-center whitespace-no-wrap">ACTIONS</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="intro-x">
+                            <td>
+                                <a href="" class="font-medium whitespace-no-wrap">Nike Tanjun</a>
+                                <div class="text-gray-600 text-xs whitespace-no-wrap">Sport &amp; Outdoor</div>
+                            </td>
+                            <td class="text-center">62</td>
+                            <td class="w-40">
+                                <div class="flex items-center justify-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> Active </div>
+                            </td>
+                            <td class="table-report__action w-56">
+                                <div class="flex justify-center items-center">
+                                    <a class="flex items-center mr-3" href=""> <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
+                                    <a class="flex items-center text-theme-6" href=""> <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="intro-x">
+                            <td>
+                                <a href="" class="font-medium whitespace-no-wrap">Nikon Z6</a>
+                                <div class="text-gray-600 text-xs whitespace-no-wrap">Photography</div>
+                            </td>
+                            <td class="text-center">180</td>
+                            <td class="w-40">
+                                <div class="flex items-center justify-center text-theme-6"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> Inactive </div>
+                            </td>
+                            <td class="table-report__action w-56">
+                                <div class="flex justify-center items-center">
+                                    <a class="flex items-center mr-3" href=""> <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
+                                    <a class="flex items-center text-theme-6" href=""> <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button class="button w-24 mr-1 mb-2 border text-gray-700 dark:bg-dark-5 dark:text-gray-300 float-right">Voir tout</button>
+            </div>
+            <!-- END: Weekly Top Products -->
+        </div>
+    </div>
+</div>
+<!-- END: Content -->
+<!-- BEGIN: JS Assets-->
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+<script src="/assets/user/js/app.js"></script>
+<!-- END: JS Assets-->
+</body>
+</html>
