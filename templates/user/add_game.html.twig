@@ -20,6 +20,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <title>Dashboard - Midone - Tailwind HTML Admin Template</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="/assets/user/css/app.css" />
+    <link rel="stylesheet" href="/assets/user/css/cardAddRoom.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
     <!-- END: CSS Assets-->
 </head>
@@ -59,12 +60,12 @@ License: You must have a valid license purchased only from themeforest(the above
                     </a>
                 </li>
                 {% for room in rooms %}
-                <li>
-                    <a href="simple-menu-dashboard.html" class="menu">
-                        <div class="menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="menu__title"> {{ room.name }} </div>
-                    </a>
-                </li>
+                    <li>
+                        <a href="simple-menu-dashboard.html" class="menu">
+                            <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="menu__title"> {{ room.name }} </div>
+                        </a>
+                    </li>
                 {% endfor %}
             </ul>
         </li>
@@ -118,13 +119,13 @@ License: You must have a valid license purchased only from themeforest(the above
             </a>
         </li>
         <li>
-            <a href="{{ path('user_add_game') }}" class="top-menu">
+            <a href="{{ path('user_add_game') }}" class="top-menu top-menu--active">
                 <div class="top-menu__icon"> <i data-feather="home"></i> </div>
                 <div class="top-menu__title"> Ajouter une partie </div>
             </a>
         </li>
         <li>
-            <a href="javascript:;" class="top-menu top-menu--active">
+            <a href="javascript:;" class="top-menu">
                 <div class="top-menu__icon"> <i data-feather="hard-drive"></i> </div>
                 <div class="top-menu__title"> Mes parties <i data-feather="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
@@ -136,12 +137,12 @@ License: You must have a valid license purchased only from themeforest(the above
                     </a>
                 </li>
                 {% for room in rooms %}
-                <li>
-                    <a href="top-menu-chart.html" class="top-menu">
-                        <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="top-menu__title"> {{ room.name }} </div>
-                    </a>
-                </li>
+                    <li>
+                        <a href="top-menu-chart.html" class="top-menu">
+                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="top-menu__title"> {{ room.name }} </div>
+                        </a>
+                    </li>
                 {% endfor %}
             </ul>
         </li>
@@ -149,66 +150,58 @@ License: You must have a valid license purchased only from themeforest(the above
 </nav>
 <!-- END: Top Menu -->
 <!-- BEGIN: Content -->
-<div class="content">
+<div class="content" style="min-height: 10vh">
+
     <div class="grid grid-cols-12 gap-6">
         <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
+            <!-- BEGIN: General Report -->
+            <div class="col-span-12 mt-8">
+                <div class="grid grid-cols-12 gap-6 mt-5">
 
-            <!-- BEGIN: Weekly Top Products -->
-            <div class="col-span-12 mt-6">
-                <div class="intro-y block sm:flex items-center h-10">
-                    <h2 class="text-lg font-medium truncate mr-5">
-                        Toutes mes parties
-                    </h2>
-                </div>
-                <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
-                    <table class="table table-report sm:mt-2">
-                        <thead>
-                        <tr>
-                            <th class="whitespace-no-wrap">PRODUCT NAME</th>
-                            <th class="text-center whitespace-no-wrap">STOCK</th>
-                            <th class="text-center whitespace-no-wrap">STATUS</th>
-                            <th class="text-center whitespace-no-wrap">ACTIONS</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="intro-x">
-                            <td>
-                                <a href="" class="font-medium whitespace-no-wrap">Nike Tanjun</a>
-                                <div class="text-gray-600 text-xs whitespace-no-wrap">Sport &amp; Outdoor</div>
-                            </td>
-                            <td class="text-center">62</td>
-                            <td class="w-40">
-                                <div class="flex items-center justify-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> Active </div>
-                            </td>
-                            <td class="table-report__action w-56">
-                                <div class="flex justify-center items-center">
-                                    <a class="flex items-center mr-3" href=""> <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
-                                    <a class="flex items-center text-theme-6" href=""> <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
+                    <div class="col-span-12 sm:col-span-3 xl:col-span-4 intro-y"></div>
+                    <!-- ADD A GAME >>>>>> -->
+                    <div id="blockAddGame" class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y animate__animated">
+                       <div class="report-box zoom-in">
+                            <div class="box p-5">
+                                <div class="text-center">
+                                    <div id="directiveAddGame" class="text-3xl font-bold leading-8">Ajouter une partie<i class="float-right" data-feather="mouse-pointer"></i></div>
                                 </div>
-                            </td>
-                        </tr>
-                        <tr class="intro-x">
-                            <td>
-                                <a href="" class="font-medium whitespace-no-wrap">Nikon Z6</a>
-                                <div class="text-gray-600 text-xs whitespace-no-wrap">Photography</div>
-                            </td>
-                            <td class="text-center">180</td>
-                            <td class="w-40">
-                                <div class="flex items-center justify-center text-theme-6"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> Inactive </div>
-                            </td>
-                            <td class="table-report__action w-56">
-                                <div class="flex justify-center items-center">
-                                    <a class="flex items-center mr-3" href=""> <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
-                                    <a class="flex items-center text-theme-6" href=""> <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ROOMS ???? -->
+                    <div id="blockAddGameRoom" class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y animate__animated" style="display: none">
+                        <div class="report-box zoom-in">
+                            <div class="box p-5">
+                                <div class="text-center">
+                                    <div id="directiveAddGame" class="text-3xl font-bold leading-8">Sur quelle salle ?</div>
                                 </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="blockRooms" class="col-span-12 intro-y animate__animated" style="display: none">
+                            <div class="center d-flex flex-wrap">
+                                {% for room in rooms %}
+                                <div class="property-card ml-1 mr-1">
+                                    <a onclick="addRoom({{ room.id }})" href="#">
+                                        <div class="property-image" style="background-image:url('/assets/logosRooms/{{ room.logo }}');">
+                                        </div></a>
+                                    <div class="property-description">
+                                        <h5> {{ room.name}} </h5>
+                                        <p>{{ room.nameSpinAndGo }}</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                    </div>
+
+
+                    <div class="col-span-12 sm:col-span-3 xl:col-span-4"></div>
+
                 </div>
-                <button class="button w-24 mr-1 mb-2 border text-gray-700 dark:bg-dark-5 dark:text-gray-300 float-right">Voir tout</button>
+
             </div>
-            <!-- END: Weekly Top Products -->
+            <!-- END: General Report -->
         </div>
     </div>
 </div>
@@ -216,6 +209,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN: JS Assets-->
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 <script src="/assets/user/js/app.js"></script>
+<script src="/assets/user/js/addGame.js"></script>
 <!-- END: JS Assets-->
 </body>
 </html>

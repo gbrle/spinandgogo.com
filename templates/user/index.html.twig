@@ -41,6 +41,12 @@ License: You must have a valid license purchased only from themeforest(the above
             </a>
         </li>
         <li>
+            <a href="{{ path('user_add_game') }}" class="menu">
+                <div class="menu__icon"> <i data-feather="home"></i> </div>
+                <div class="menu__title"> Ajouter une partie </div>
+            </a>
+        </li>
+        <li>
             <a href="javascript:;" class="menu">
                 <div class="menu__icon"> <i data-feather="box"></i> </div>
                 <div class="menu__title"> Mes parties <i data-feather="chevron-down" class="menu__sub-icon"></i> </div>
@@ -112,6 +118,12 @@ License: You must have a valid license purchased only from themeforest(the above
             </a>
         </li>
         <li>
+            <a href="{{ path('user_add_game') }}" class="top-menu">
+                <div class="top-menu__icon"> <i data-feather="home"></i> </div>
+                <div class="top-menu__title"> Ajouter une partie </div>
+            </a>
+        </li>
+        <li>
             <a href="javascript:;" class="top-menu">
                 <div class="top-menu__icon"> <i data-feather="hard-drive"></i> </div>
                 <div class="top-menu__title"> Mes parties <i data-feather="chevron-down" class="top-menu__sub-icon"></i> </div>
@@ -140,43 +152,13 @@ License: You must have a valid license purchased only from themeforest(the above
 <div class="content">
     <div class="grid grid-cols-12 gap-6">
         <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
-            <!-- BEGIN: General Report -->
-            <div class="col-span-12 mt-8">
-                <div class="grid grid-cols-12 gap-6 mt-5">
-
-                    <div class="col-span-12 sm:col-span-3 xl:col-span-4 intro-y"></div>
-
-                    <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                        <div class="report-box zoom-in">
-                            <div class="box p-5" id="blockAddGame">
-                                <div class="flex justify-content-center">
-                                    <i data-feather="plus" class="report-box__icon text-theme-10"></i>
-                                    <div id="directiveAddGame" class="text-3xl font-bold leading-8">Ajouter une partie</div>
-                                </div>
-                                <hr class="mt-5 mb-5">
-                                <div id="contentAddGame" class="text-center">
-                                    {% for room in rooms %}
-                                        <div class="bg-danger pl-2 pr-2" id="aaa">
-                                            {{ room.name }}
-                                        </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-span-12 sm:col-span-3 xl:col-span-4"></div>
-
-                </div>
-            </div>
-            <!-- END: General Report -->
             <!-- BEGIN: Sales Report -->
             <div class="col-span-12 lg:col-span-1 mt-8"></div>
 
             <div class="col-span-12 lg:col-span-6 mt-8">
                 <div class="intro-y block sm:flex items-center h-10">
                     <h2 class="text-lg font-medium truncate mr-5">
-                        Courbe
+                        Courbe Globale
                     </h2>
                 </div>
                 <div class="intro-y box p-5 sm:mt-5">
@@ -301,7 +283,6 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN: JS Assets-->
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 <script src="/assets/user/js/app.js"></script>
-<script src="/assets/user/js/addGame.js"></script>
 <!-- END: JS Assets-->
 </body>
 </html>
