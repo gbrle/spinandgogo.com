@@ -6,6 +6,7 @@ use App\Repository\BuyInRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=BuyInRepository::class)
@@ -16,11 +17,13 @@ class BuyIn
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("buy_in")
      */
     private $id;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups("buy_in")
      */
     private $value;
 

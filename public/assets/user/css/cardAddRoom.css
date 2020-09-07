@@ -44,7 +44,7 @@ p
 
 .property-image
 {
-    height:6em;
+    height:11em;
     width:14em;
     padding:1em 2em;
     position:Absolute;
@@ -61,7 +61,7 @@ p
 .property-description
 {
     background-color: #FAFAFC;
-    height:12em;
+    height:7em;
     width:14em;
     position:absolute;
     bottom:0em;

@@ -174,7 +174,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="report-box zoom-in">
                             <div class="box p-5">
                                 <div class="text-center">
-                                    <div id="directiveAddGame" class="text-3xl font-bold leading-8">Sur quelle salle ?</div>
+                                    <div id="directiveAddGame" class="tooltip text-3xl font-bold leading-8" title="This is awesome tooltip example!">Sur quelle salle ?</div>
                                 </div>
                             </div>
                         </div>
@@ -195,6 +195,32 @@ License: You must have a valid license purchased only from themeforest(the above
                             </div>
                     </div>
 
+{#                    <!-- BUY IN  ???? -->#}
+{#                    <div id="blockAddGameRoom" class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y animate__animated" style="display: none">#}
+{#                        <div class="report-box zoom-in">#}
+{#                            <div class="box p-5">#}
+{#                                <div class="text-center">#}
+{#                                    <div id="directiveAddGame" class="text-3xl font-bold leading-8">Quel Buy In ? (prix du Spin And Go)</div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div id="blockRooms" class="col-span-12 intro-y animate__animated" style="display: none">#}
+{#                        <div class="center d-flex flex-wrap">#}
+{#                            {% for room in rooms %}#}
+{#                                <div class="property-card ml-1 mr-1">#}
+{#                                    <a onclick="addRoom({{ room.id }})" href="#">#}
+{#                                        <div class="property-image" style="background-image:url('/assets/logosRooms/{{ room.logo }}');">#}
+{#                                        </div></a>#}
+{#                                    <div class="property-description">#}
+{#                                        <h5> {{ room.name}} </h5>#}
+{#                                        <p>{{ room.nameSpinAndGo }}</p>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            {% endfor %}#}
+{#                        </div>#}
+{#                    </div>#}
+
 
                     <div class="col-span-12 sm:col-span-3 xl:col-span-4"></div>
 
@@ -209,6 +235,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN: JS Assets-->
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 <script src="/assets/user/js/app.js"></script>
+<script src="/assets/ajax.js"></script>
 <script src="/assets/user/js/addGame.js"></script>
 <!-- END: JS Assets-->
 </body>

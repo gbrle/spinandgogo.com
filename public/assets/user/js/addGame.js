@@ -2,6 +2,7 @@ let blockAddGame = document.getElementById('blockAddGame');
 let blockAddGameRoom = document.getElementById('blockAddGameRoom');
 let blockRooms = document.getElementById('blockRooms');
 
+let dataAddGame = {}
 
 blockAddGame.addEventListener('click', function (){
     blockAddGame.classList.remove('intro-y')
@@ -14,11 +15,16 @@ blockAddGame.addEventListener('click', function (){
     }, 500);
 })
 
-function addRoom(roomId){
+function addRoom(id_room){
     blockAddGameRoom.classList.remove('intro-y')
     blockRooms.classList.remove('intro-y')
     blockAddGameRoom.classList.add('animate__bounceOutLeft')
     blockRooms.classList.add('animate__bounceOutLeft')
+    dataAddGame.id_room = id_room;
+
+    ajaxPost('/user/user_get_buy_in', id_room, function (response){
+        console.log((response))
+    })
     setTimeout(function(){
         blockAddGameRoom.style.display = 'none'
         blockRooms.style.display = 'none'
