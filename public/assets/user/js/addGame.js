@@ -26,24 +26,31 @@ function addRoom(id_room){
 
     ajaxPost('/user/user_get_buy_in', id_room, function (response){
 
-        Object.response(response).forEach(function (key) {
-          console.log(response[0][])
-        })
-
+        let responseBuyIn = JSON.parse(response)
 
         setTimeout(function(){
             blockAddGameRoom.style.display = "none"
             blockRooms.style.display = "none"
 
-            // I add all buy in in front (javascript only) I get the Json
             let buyButtons = document.getElementById('buyButtons')
 
+            let tabBuyInId = []
+            let tabBuyInValue = []
+            responseBuyIn.forEach(element => tabBuyInId.push(element.id));
+            responseBuyIn.forEach(element => tabBuyInValue.push(element.value));
 
-            let button = document.createElement("button");
-            button.classList.add('paste')
-            button.innerText = "{{ room.id }}"
 
-            buyButtons.appendChild(button)
+            for (i = 0; i < tabBuyInId.length; i++) {
+                let button = document.createElement("button");
+                button.classList.add('paste')
+                button.id = tabBuyInId[i]
+                button.innerText = tabBuyInValue[i]+'€'
+                button.onclick = function addmultiplicator(click, tabBuyInId){
+                    tabBuyInId = tabBuyInId[i]
+                }
+                buyButtons.appendChild(button)
+            }
+
 
             blockAddBuyIn.style.display = 'block'
             blockBuyIn.style.display = 'block'
@@ -55,5 +62,9 @@ function addRoom(id_room){
 
     })
 
+
+}
+
+function addmultiplicator(){
 
 }
