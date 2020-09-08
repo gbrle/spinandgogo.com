@@ -21,6 +21,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="/assets/user/css/app.css" />
     <link rel="stylesheet" href="/assets/user/css/cardAddRoom.css" />
+    <link rel="stylesheet" href="/assets/user/css/button.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
     <!-- END: CSS Assets-->
 </head>
@@ -195,31 +196,25 @@ License: You must have a valid license purchased only from themeforest(the above
                             </div>
                     </div>
 
-{#                    <!-- BUY IN  ???? -->#}
-{#                    <div id="blockAddGameRoom" class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y animate__animated" style="display: none">#}
-{#                        <div class="report-box zoom-in">#}
-{#                            <div class="box p-5">#}
-{#                                <div class="text-center">#}
-{#                                    <div id="directiveAddGame" class="text-3xl font-bold leading-8">Quel Buy In ? (prix du Spin And Go)</div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div id="blockRooms" class="col-span-12 intro-y animate__animated" style="display: none">#}
-{#                        <div class="center d-flex flex-wrap">#}
-{#                            {% for room in rooms %}#}
-{#                                <div class="property-card ml-1 mr-1">#}
-{#                                    <a onclick="addRoom({{ room.id }})" href="#">#}
-{#                                        <div class="property-image" style="background-image:url('/assets/logosRooms/{{ room.logo }}');">#}
-{#                                        </div></a>#}
-{#                                    <div class="property-description">#}
-{#                                        <h5> {{ room.name}} </h5>#}
-{#                                        <p>{{ room.nameSpinAndGo }}</p>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            {% endfor %}#}
-{#                        </div>#}
-{#                    </div>#}
+                    <!-- BUY IN OF ROOM ???? -->
+                    <div id="blockAddBuyIn" class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y animate__animated" style="display: none">
+                        <div class="report-box zoom-in">
+                            <div class="box p-5">
+                                <div class="text-center">
+                                    <div id="directiveAddGame" class="text-3xl font-bold leading-8">Quel Buy In ? (prix du Spin And Go)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="blockBuyIn" class="col-span-12 intro-y animate__animated" style="display: none">
+                        <div class="center d-flex flex-wrap justify">
+                            <!-- LOOP BUY IN  --- MEMO = add : onclick="addRoom(buyInId) -->
+                            <div id="buyButtons" class="multi-button">
+                                <button class="paste"></button>
+                            </div>
+                            <!-- END LOOP BUY IN -->
+                        </div>
+                    </div>
 
 
                     <div class="col-span-12 sm:col-span-3 xl:col-span-4"></div>
