@@ -7,6 +7,8 @@ let blockAddMultiplicator = document.getElementById('blockAddMultiplicator');
 let blockMultiplicator = document.getElementById('blockMultiplicator');
 let blockAddRanked = document.getElementById('blockAddRanked');
 let blockRanked = document.getElementById('blockRanked');
+let blockConfirmAddGame = document.getElementById('blockConfirmAddGame');
+let blockConfirmAddGameButton = document.getElementById('blockConfirmAddGameButton');
 
 let dataAddGame = {}
 
@@ -126,8 +128,20 @@ function addRoom(id_room){
 
                                                 button.onclick = function (){
                                                     ajaxPost('/user/user_create_game', rankedId, function (response){
-                                                            console.log(response)
 
+
+                                                        blockAddRanked.classList.remove('intro-y')
+                                                        blockRanked.classList.remove('intro-y')
+                                                        blockAddRanked.classList.add('animate__bounceOutLeft')
+                                                        blockRanked.classList.add('animate__bounceOutLeft')
+                                                        setTimeout(function(){
+                                                            blockAddRanked.style.display = "none"
+                                                            blockRanked.style.display = "none"
+
+                                                            blockConfirmAddGame.style.display = 'block'
+                                                            blockConfirmAddGameButton.style.display = 'block'
+
+                                                        })
 
                                                         }
 
