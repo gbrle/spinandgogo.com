@@ -141,7 +141,7 @@ function addRoom(id_room){
                                                             blockConfirmAddGame.style.display = 'block'
                                                             blockConfirmAddGameButton.style.display = 'block'
 
-                                                        })
+                                                        }, 500)
 
                                                         }
 
