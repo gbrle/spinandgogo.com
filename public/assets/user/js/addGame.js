@@ -45,8 +45,14 @@ function addRoom(id_room){
                 button.classList.add('paste')
                 button.id = tabBuyInId[i]
                 button.innerText = tabBuyInValue[i]+'€'
-                button.onclick = function addmultiplicator(click, tabBuyInId){
-                    tabBuyInId = tabBuyInId[i]
+                let buyInId = tabBuyInId[i]
+                button.onclick = function (){
+                    ajaxPost('/user/user_get_multiplicator', buyInId, function (response){
+                        console.log(response)
+                    })
+
+
+                    console.log(buyInId)
                 }
                 buyButtons.appendChild(button)
             }
@@ -62,9 +68,5 @@ function addRoom(id_room){
 
     })
 
-
-}
-
-function addmultiplicator(){
 
 }
