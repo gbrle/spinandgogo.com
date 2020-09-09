@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\RankedRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=RankedRepository::class)
@@ -14,11 +15,13 @@ class Ranked
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("ranked")
      */
     private $id;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups("ranked")
      */
     private $position;
 

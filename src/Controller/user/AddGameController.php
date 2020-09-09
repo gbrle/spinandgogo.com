@@ -2,9 +2,13 @@
 
 namespace App\Controller\user;
 
+use App\Entity\Game;
 use App\Repository\BuyInRepository;
+use App\Repository\MultiplicatorRepository;
+use App\Repository\RankedRepository;
 use App\Repository\RoomRepository;
 use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\ORM\EntityManagerInterface;
 use http\Client\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -75,6 +79,61 @@ class AddGameController extends AbstractController
         );
 
         return new \Symfony\Component\HttpFoundation\Response($json);
+
+
+    }
+
+    /**
+     * @Route("/user/user_get_ranked", name="user_get_ranked")
+     */
+    public function get_ranked(Request $request, MultiplicatorRepository $multiplicatorRepository, SerializerInterface  $serializer)
+    {
+
+        $idMultiplicator = $request->getContent();
+
+
+        $multiplicator = $multiplicatorRepository->findOneBy([
+            'id' => $idMultiplicator,
+        ]);
+
+        $json = $serializer->serialize(
+            $multiplicator->getRankeds(),
+            'json',
+            ['groups' => 'ranked']
+        );
+
+        return new \Symfony\Component\HttpFoundation\Response($json);
+
+
+    }
+
+    /**
+     * @Route("/user/user_create_game", name="user_create_game")
+     */
+    public function create_game(Request $request, RankedRepository $rankedRepository, EntityManagerInterface $manager)
+    {
+        $idRanked = $request->getContent();
+
+
+        $ranked = $rankedRepository->findOneBy([
+            'id' => $idRanked,
+        ]);
+
+
+        $game = new Game();
+        $game->setUser($this->getUser());
+        $game->setRoom($ranked->getMultiplicator()->getBuyIn()->getRoom());
+        $game->setBuyIn($ranked->getMultiplicator()->getBuyIn()->getValue());
+        $game->setMultiplicator($ranked->getMultiplicator()->getValue());
+        $game->setPlace($ranked->getPosition());
+        $game->setPrice($rankedRepository->find($idRanked)->getPrice());
+        $game->setCreatedAt(new \DateTime('now'));
+
+        $manager->persist($game);
+        $manager->flush();
+
+
+        return new \Symfony\Component\HttpFoundation\Response('super');
 
 
     }

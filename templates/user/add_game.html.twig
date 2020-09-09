@@ -151,7 +151,7 @@ License: You must have a valid license purchased only from themeforest(the above
 </nav>
 <!-- END: Top Menu -->
 <!-- BEGIN: Content -->
-<div class="content" style="min-height: 10vh">
+<div class="content">
 
     <div class="grid grid-cols-12 gap-6">
         <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
@@ -210,6 +210,46 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="center d-flex flex-wrap justify">
                             <!-- LOOP BUY IN  --- MEMO = add : onclick="addRoom(buyInId) -->
                             <div id="buyButtons" class="multi-button">
+                                <!-- Buttons of buy ins -->
+                            </div>
+                            <!-- END LOOP BUY IN -->
+                        </div>
+                    </div>
+
+                    <!-- MULTIPLICATOR OF BUY IN ???? -->
+                    <div id="blockAddMultiplicator" class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y animate__animated" style="display: none">
+                        <div class="report-box zoom-in">
+                            <div class="box p-5">
+                                <div class="text-center">
+                                    <div id="directiveAddGame" class="text-3xl font-bold leading-8">Quel multiplicateur ?</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="blockMultiplicator" class="col-span-12 intro-y animate__animated" style="display: none">
+                        <div class="center d-flex flex-wrap justify">
+                            <!-- LOOP BUY IN  --- MEMO = add : onclick="addRoom(multiplicatorId) -->
+                            <div id="multiplicatorButtons" class="multi-button">
+                                <!-- Buttons of buy ins -->
+                            </div>
+                            <!-- END LOOP BUY IN -->
+                        </div>
+                    </div>
+
+                    <!-- RANKED OF MULTIPLICATOR ???? -->
+                    <div id="blockAddRanked" class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y animate__animated" style="display: none">
+                        <div class="report-box zoom-in">
+                            <div class="box p-5">
+                                <div class="text-center">
+                                    <div id="directiveAddGame" class="text-3xl font-bold leading-8">A quelle position as-tu terminé ?</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="blockRanked" class="col-span-12 intro-y animate__animated" style="display: none">
+                        <div class="center d-flex flex-wrap justify">
+                            <!-- LOOP BUY IN  --- MEMO = add : onclick="addRoom(multiplicatorId) -->
+                            <div id="rankedButtons" class="multi-button">
                                 <!-- Buttons of buy ins -->
                             </div>
                             <!-- END LOOP BUY IN -->
