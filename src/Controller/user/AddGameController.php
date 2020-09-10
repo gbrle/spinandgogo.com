@@ -4,6 +4,7 @@ namespace App\Controller\user;
 
 use App\Entity\Game;
 use App\Repository\BuyInRepository;
+use App\Repository\GameRepository;
 use App\Repository\MultiplicatorRepository;
 use App\Repository\RankedRepository;
 use App\Repository\RoomRepository;
@@ -11,6 +12,7 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\ORM\EntityManagerInterface;
 use http\Client\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
@@ -136,5 +138,39 @@ class AddGameController extends AbstractController
         return new \Symfony\Component\HttpFoundation\Response('super');
 
 
+    }
+
+
+    /**
+     * @Route("/user/user_get_games_for_chart", name="user_get_games_for_chart")
+     */
+    public function get_games_for_chart(Request $request, GameRepository $gameRepository)
+    {
+        $nbreGame = [];
+        $bankroll = [];
+
+        $games = $gameRepository->findBy([
+            'user' => $this->getUser(),
+        ]);
+
+
+        $startGame = 0;
+        foreach ($games as $game){
+            array_push($nbreGame, $startGame + 1);
+            $startGame += 1;
+        }
+        $startBankroll = 0;
+        foreach ($games as $game){
+            array_push($bankroll, $startBankroll + ($game->getPrice() - $game->getBuyIn()));
+            $startBankroll = $startBankroll + ($game->getPrice() - $game->getBuyIn());
+        }
+
+
+        if ($request->isXMLHttpRequest()) {
+            return new JsonResponse(([json_encode($nbreGame), json_encode($bankroll)]));
+        }
+
+
+        return new Response('Error 400', 400);
     }
 }
