@@ -14,20 +14,20 @@ let dataAddGame = {}
 
 blockAddGame.addEventListener('click', function (){
     blockAddGame.classList.remove('intro-y')
-    blockAddGame.classList.add('animate__bounceOutLeft')
+    blockAddGame.classList.add('animate__fadeOutDown')
     setTimeout(function(){
         blockAddGame.style.display = 'none'
         blockAddGameRoom.style.display = "block"
         blockRooms.style.display = "block"
 
-    }, 500);
+    }, 300);
 })
 
 function addRoom(id_room){
     blockAddGameRoom.classList.remove('intro-y')
     blockRooms.classList.remove('intro-y')
-    blockAddGameRoom.classList.add('animate__bounceOutLeft')
-    blockRooms.classList.add('animate__bounceOutLeft')
+    blockAddGameRoom.classList.add('animate__fadeOutDown')
+    blockRooms.classList.add('animate__fadeOutDown')
     dataAddGame.id_room = id_room;
 
     console.log(dataAddGame)
@@ -72,8 +72,8 @@ function addRoom(id_room){
 
                         blockAddBuyIn.classList.remove('intro-y')
                         blockBuyIn.classList.remove('intro-y')
-                        blockAddBuyIn.classList.add('animate__bounceOutLeft')
-                        blockBuyIn.classList.add('animate__bounceOutLeft')
+                        blockAddBuyIn.classList.add('animate__fadeOutDown')
+                        blockBuyIn.classList.add('animate__fadeOutDown')
                         setTimeout(function(){
                             blockAddBuyIn.style.display = "none"
                             blockBuyIn.style.display = "none"
@@ -102,8 +102,8 @@ function addRoom(id_room){
 
                                         blockAddMultiplicator.classList.remove('intro-y')
                                         blockMultiplicator.classList.remove('intro-y')
-                                        blockAddMultiplicator.classList.add('animate__bounceOutLeft')
-                                        blockMultiplicator.classList.add('animate__bounceOutLeft')
+                                        blockAddMultiplicator.classList.add('animate__fadeOutDown')
+                                        blockMultiplicator.classList.add('animate__fadeOutDown')
 
                                         setTimeout(function(){
                                             blockAddMultiplicator.style.display = "none"
@@ -132,8 +132,8 @@ function addRoom(id_room){
 
                                                         blockAddRanked.classList.remove('intro-y')
                                                         blockRanked.classList.remove('intro-y')
-                                                        blockAddRanked.classList.add('animate__bounceOutLeft')
-                                                        blockRanked.classList.add('animate__bounceOutLeft')
+                                                        blockAddRanked.classList.add('animate__fadeOutDown')
+                                                        blockRanked.classList.add('animate__fadeOutDown')
                                                         setTimeout(function(){
                                                             blockAddRanked.style.display = "none"
                                                             blockRanked.style.display = "none"
@@ -141,7 +141,7 @@ function addRoom(id_room){
                                                             blockConfirmAddGame.style.display = 'block'
                                                             blockConfirmAddGameButton.style.display = 'block'
 
-                                                        }, 500)
+                                                        }, 300)
 
                                                         }
 
@@ -153,7 +153,7 @@ function addRoom(id_room){
                                                 rankedButtons.appendChild(button)
                                             }
 
-                                        }, 500);
+                                        }, 300);
 
                                     })
                                 }
@@ -166,7 +166,7 @@ function addRoom(id_room){
                             }
 
 
-                        }, 500);
+                        }, 300);
 
                     })
 
@@ -177,7 +177,7 @@ function addRoom(id_room){
 
 
 
-        }, 500);
+        }, 300);
 
 
     })

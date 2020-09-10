@@ -161,7 +161,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                     <div class="col-span-12 sm:col-span-3 xl:col-span-4 intro-y"></div>
                     <!-- ADD A GAME >>>>>> -->
-                    <div id="blockAddGame" class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y animate__animated">
+                    <div id="blockAddGame" class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y animate__animated" style="display: none">
                        <div class="report-box zoom-in">
                             <div class="box p-5">
                                 <div class="text-center">
@@ -171,16 +171,16 @@ License: You must have a valid license purchased only from themeforest(the above
                         </div>
                     </div>
                     <!-- ROOMS ???? -->
-                    <div id="blockAddGameRoom" class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y animate__animated" style="display: none">
+                    <div id="blockAddGameRoom" class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y animate__animated" style="display: block">
                         <div class="report-box zoom-in">
                             <div class="box p-5">
                                 <div class="text-center">
-                                    <div id="directiveAddGame" class="tooltip text-3xl font-bold leading-8" title="This is awesome tooltip example!">Sur quelle salle ?</div>
+                                    <div id="directiveAddGame" class="tooltip text-3xl font-bold leading-8" title="This is awesome tooltip example!">Sur quelle salle ajouter une partie ?</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div id="blockRooms" class="col-span-12 intro-y animate__animated" style="display: none">
+                    <div id="blockRooms" class="col-span-12 intro-y animate__animated" style="display: block">
                             <div class="center d-flex flex-wrap">
                                 {% for room in rooms %}
                                 <div class="property-card ml-1 mr-1">
