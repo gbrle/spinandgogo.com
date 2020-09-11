@@ -165,9 +165,16 @@ class AddGameController extends AbstractController
             $startBankroll = $startBankroll + ($game->getPrice() - $game->getBuyIn());
         }
 
+        $brankroolFinale = 0;
+        $totalBuy = 0;
+        foreach ($games as $game){
+            $totalBuy = $totalBuy + $game->getBuyIn();
+            $brankroolFinale = $brankroolFinale + ($game->getPrice() - $game->getBuyIn());
+        }
+        $roi = ($brankroolFinale - $totalBuy) / $totalBuy;
 
         if ($request->isXMLHttpRequest()) {
-            return new JsonResponse(([json_encode($nbreGame), json_encode($bankroll)]));
+            return new JsonResponse(([json_encode($nbreGame), json_encode($bankroll), round($roi, 1)]));
         }
 
 
