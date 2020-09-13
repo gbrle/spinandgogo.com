@@ -158,6 +158,7 @@
         <div class="border border-dark rounded text-center p-3">
             <h5 class="mb-4">Ajouter un buy in :</h5>
             <div>
+                {% form_theme formBuyIn 'bootstrap_4_layout.html.twig' %}
                 {{ form_start(formBuyIn) }}
                 {{ form_row(formBuyIn.value) }}
                 <button class="btn btn-warning" type="submit">Créer</button>
