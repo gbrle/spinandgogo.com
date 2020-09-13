@@ -30,7 +30,6 @@ function addRoom(id_room){
     blockRooms.classList.add('animate__fadeOutDown')
     dataAddGame.id_room = id_room;
 
-    console.log(dataAddGame)
 
     ajaxPost('/user/user_get_buy_in', id_room, function (response){
 
@@ -67,8 +66,6 @@ function addRoom(id_room){
                         dataAddGame.id_buyIn = buyInId
                         dataAddGame.buy_in_value = buyVAlue
 
-                        console.log(dataAddGame)
-
 
                         blockAddBuyIn.classList.remove('intro-y')
                         blockBuyIn.classList.remove('intro-y')
@@ -98,7 +95,6 @@ function addRoom(id_room){
 
                                         dataAddGame.id_multiplicator = multiplicatorId
 
-                                        console.log(dataAddGame)
 
                                         blockAddMultiplicator.classList.remove('intro-y')
                                         blockMultiplicator.classList.remove('intro-y')
@@ -142,45 +138,22 @@ function addRoom(id_room){
                                                             blockConfirmAddGameButton.style.display = 'block'
 
                                                         }, 300)
-
                                                         }
-
                                                     )}
-
                                                 let rankedId = tabRankedId[i]
-
-
                                                 rankedButtons.appendChild(button)
                                             }
-
                                         }, 300);
-
                                     })
                                 }
-
                                 let multiplicatorId = tabMultiplicatorId[i]
-
                                 multiplicatorButtons.appendChild(button)
-
-
                             }
-
-
                         }, 300);
-
                     })
-
-
                 }
                 buyButtons.appendChild(button)
             }
-
-
-
         }, 300);
-
-
     })
-
-
 }

@@ -1,86 +1,395 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="background-100-e">
 <head>
-    <title>Login Page</title>
-    <!--Made with love by Mutiullah Samim -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--Bootsrap 4 CDN-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-    <!--Fontawesome CDN-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-    <link rel="stylesheet" type="text/css" href="/assets/forms/login.css">
-    <!--Custom styles-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Skrollex</title>
+    <meta name="description" content="Onepage Parallax Site" />
+    <meta name="keywords" content="onepage, parallax" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/home/bower_components/fontawesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/assets/home/bower_components/animate.css/animate.min.css" />
+    <link rel="stylesheet" href="/assets/home/bower_components/minicolors/jquery.minicolors.css" />
+    <link rel="stylesheet" href="/assets/home/bower_components/slick.js/slick/slick.css" />
+    <link rel="stylesheet" href="/assets/home/bower_components/slick.js/slick/slick-theme.css" />
+    <link rel="stylesheet" href="/assets/home/bootstrap/dist/css/bootstrap-custom.min.css" />
+    <link rel="stylesheet" href="/assets/home/lib/linecons/style.css" />
+    <link rel="stylesheet" href="/assets/home/styles/style.min.css" />
+    <link rel="stylesheet" href="/assets/home/theme-custom.css" />
+    <link rel="shortcut icon" href="/assets/home/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/assets/home/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/home/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/home/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/home/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/home/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/home/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/home/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/home/apple-touch-icon-152x152.png" />
 </head>
-<body>
-<div class="container">
-    <div class="d-flex justify-content-center h-100">
-        <div class="card">
-            <div class="card-header">
-                <h3>Se connecter</h3>
-                <div class="d-flex justify-content-end social_icon">
-                    <span><i class="fab fa-facebook-square"></i></span>
-                    <span><i class="fab fa-google-plus-square"></i></span>
-                    <span><i class="fab fa-twitter-square"></i></span>
-                </div>
-            </div>
-            <div class="card-body">
-                <form method="post">
-                    <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+<body class="state1 background-100-e">
+<div class="ext-nav background-95-h page-transition">
+    <div class="view half-height">
+        <img alt class="bg static" src="/assets/home/images/placeholders/1920x1200-2.jpg" />
+        <div class="content no-top-padding no-bottom-padding  full-height">
+            <div class="container-fluid  full-height">
+                <div class="row full-height">
+                    <a href="blog.html" class="col-md-6 colors-a background-95-a full-height">
+                        <div>
+                            <span class="side-label">All The Latest</span>
+                            <span class="side-title">Blog</span>
                         </div>
-                        <input value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email">
-
-                    </div>
-                    <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </a>
+                    <a href="help.html" class="col-md-6 colors-f background-95-f full-height">
+                        <div>
+                            <span class="side-label">Documentation</span>
+                            <span class="side-title">Help</span>
                         </div>
-                        <input type="password" name="password" id="inputPassword"  class="form-control" placeholder="Mot de passe">
-                    </div>
-                    <input type="hidden" name="_csrf_token"
-                           value="{{ csrf_token('authenticate') }}">
-
-
-                    {% for message in app.flashes('success') %}
-                        <div class="alert alert-success text-center">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                    {% if error %}
-                        <div class="alert alert-danger">{{ error.messageKey|trans|raw(error.messageData, 'security') }}</div>
-                    {% endif %}
-
-                    {% if app.user %}
-                        <div class="mb-3">
-                            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
-                        </div>
-                    {% endif %}
-                    <div class="row align-items-center remember">
-                        <input type="checkbox" name="_remember_me">Se souvenir
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Valider" class="btn float-right login_btn">
-                    </div>
-                </form>
-            </div>
-            <div class="card-footer">
-                <div class="d-flex justify-content-center links">
-                    Pas de compte ?<a class="text-warning" href="{{ path('app_registration') }}">Créer un compte</a>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <a class="text-warning" href="{{ path("forgotten_password") }}">Mot de passe oublié ?</a>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+    <div class="container-fluid  half-height">
+        <div class="row full-height">
+            <a href="#how-we-work" class="col-md-4 colors-g background-solid full-height border-bottom border-lite">
+                <div>
+                    <span class="side-label">Awesome</span>
+                    <span class="side-title">How We Work</span>
+                </div>
+            </a>
+            <a href="#who-we-are" class="col-md-4 colors-g background-solid full-height border-bottom border-left border-lite">
+                <div>
+                    <span class="side-label">We Are Designers</span>
+                    <span class="side-title">Who We Are</span>
+                </div>
+            </a>
+            <a href="#numbers" class="col-md-4 colors-g background-solid full-height border-bottom border-left border-lite">
+                <div>
+                    <span class="side-label">Some Facts</span>
+                    <span class="side-title">Our Numbers</span>
+                </div>
+            </a>
+        </div>
+    </div>
 </div>
+<div class="page-border bottom colors-e background-solid"><a href="#top" class="hover-effect">To <span class="highlight">Top</span></a></div>
+<div class="page-border left colors-e background-solid">
+    <ul>
+        <li><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="http://www.youtube.com/" target="_blank"><i class="fa fa-youtube"></i></a></li>
+        <li><a href="https://vimeo.com/" target="_blank"><i class="fa fa-vimeo-square"></i></a></li>
+        <li><a href="http://www.skype.com/" target="_blank"><i class="fa fa-skype"></i></a></li>
+    </ul>
+</div>
+<!-- BEGIN: Top menu -->
+<div class="page-border right colors-e background-solid"></div>
+<nav class="navbar navbar-default navbar-fixed-top page-transition colors-e background-solid" role="navigation" id="top-nav">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="menu-toggle ext-nav-toggle visible-xs-block" data-target=".ext-nav" href="#"><span></span></a>
+            <a class="menu-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" href="#"><span></span></a>
+            <a class="navbar-brand" href="{{ path('home') }}">SpinAnd<span class="highlight">GOGO</span></a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#home" class="hover-effect">Home</a></li>
+                <li><a href="#about" class="hover-effect">About</a></li>
+                <li><a href="#team" class="hover-effect">Team</a></li>
+                <li><a href="#services" class="hover-effect">Services</a></li>
+                <li><a href="#work" class="hover-effect">Work</a></li>
+                <li><a href="#process" class="hover-effect">Process</a></li>
+                <li><a href="#skills" class="hover-effect">Skills</a></li>
+                <li><a href="#contact" class="hover-effect">Contact</a></li>
+                <li class="hidden-xs"><a class="menu-toggle ext-nav-toggle" data-target=".ext-nav" href="#"><span></span></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- END: Top menu -->
+<ul id="dot-scroll" class="colors-e background-solid"></ul>
+<div class="overlay-window gallery-overlay colors-g background-95-g" data-overlay-zoom="#work .content">
+    <div class="overlay-control background-90-b">
+        <a class="previos" href="#"></a>
+        <a class="next" href="#"></a>
+        <a class="cross" href="#"></a>
+    </div>
+    <div class="overlay-view"></div>
+    <ul class="loader">
+        <li class="background-highlight-e"></li>
+        <li class="background-highlight-e"></li>
+        <li class="background-highlight-e"></li>
+    </ul>
+</div>
+<div class="overlay-window map-overlay colors-h background-75-h">
+    <div class="overlay-control background-90-g">
+        <a class="cross" href="#"></a>
+    </div>
+    <div class="overlay-view">
+        <div class="map-canvas" data-latitude="42.487606" data-longitude="-71.115661" data-zoom="14">
+            <div class="map-marker" data-latitude="42.487606" data-longitude="-71.115661" data-text="Our awesome location"></div>
+            <div class="map-marker" data-latitude="42.485100" data-longitude="-71.113256" data-text="Our sales office"></div>
+        </div>
+    </div>
+</div>
+<div class="overlay-window credits-overlay colors-g background-95-g">
+    <div class="overlay-control background-90-b">
+        <a class="cross" href="#"></a>
+    </div>
+    <div class="overlay-view">
+        <div class="content-container">
+            <h3>Credits</h3>
+            <ul>
+                <li>
+                    Photos by:
+                    <ul>
+                        <li><a target="_blank" href="https://www.flickr.com/photos/katya_alagich/">Katya Alagich</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
+                        <li><a target="_blank" href="https://www.flickr.com/photos/65047661@N00/">Jim Lukach</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
+                        <li><a target="_blank" href="https://www.flickr.com/photos/johanl/">Johan Larsson</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
+                        <li><a target="_blank" href="https://www.flickr.com/photos/johny/">John Kraus</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
+                        <li><a target="_blank" href="https://www.flickr.com/photos/geishaboy500/">THOR</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
+                        <li><a target="_blank" href="https://www.flickr.com/photos/stf-o/">stephane</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
+                        <li><a target="_blank" href="http://www.pexels.com/">Pexels</a>, <a target="_blank" href="http://www.pexels.com/photo-license/">CC0 License</a></li>
+                        <li><a target="_blank" href="https://stocksnap.io/">Stocksnap</a>, <a target="_blank" href="https://stocksnap.io/license">CC0 License</a></li>
+                        <li><a target="_blank" href="http://picjumbo.com/">Picjumbo</a>, <a target="_blank" href="http://picjumbo.com/about-author/">Picjumbo License</a></li>
+                    </ul>
+                </li>
+                <li>
+                    Video by:
+                    <ul>
+                        <li><a target="_blank" href="http://mazwai.com/">Mazwai</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0 License</a></li>
+                    </ul>
+                </li>
+                <li>
+                    Icons by:
+                    <ul>
+                        <li><a target="_blank" href="http://designmodo.com/">Designmodoh</a>, <a target="_blank" href="http://designmodo.com/linecons-free/">License</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="gate colors-e background-solid">
+    <div class="gate-bar background-heading-e"></div>
+    <ul class="loader">
+        <li class="background-heading-e"></li>
+        <li class="background-heading-e"></li>
+        <li class="background-heading-e"></li>
+    </ul>
+</div>
+<!-- BEGIN: Page content -->
+<section id="home">
+    <div class="view">
+        <img alt class="bg" src="/assets/home/images/home-background.jpg" /><img alt class="bg" src="/assets/home/images/home-background.jpg" />
+        <div class="content home-suzi full-size colors-h background-3">
+            <div class="container highlight-h">
+                <div class="show-list slogan" style="margin-top: 15px; margin-bottom: 30px">
+                    <div class="show-item">Se connecter</div>
+                </div>
+                <form method="post" class="col-md-offset-2 col-md-8 col-md-offset-2">
+
+                                    <input value="{{ last_username }}" name="email" id="inputEmail" placeholder="Email" style="margin-top: 7px; margin-bottom: 7px">
+
+                                    <input type="password" name="password" id="inputPassword"  placeholder="Mot de passe" style="margin-top: 7px; margin-bottom: 7px">
+
+                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+
+                                        {% for message in app.flashes('success') %}
+                                            <div class="alert alert-success text-center">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
+                                        {% if error %}
+                                            <div class="alert alert-danger">{{ error.messageKey|trans|raw(error.messageData, 'security') }}</div>
+                                        {% endif %}
+
+                                        {% if app.user %}
+                                            <div class="mb-3">
+                                                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                                            </div>
+                                        {% endif %}
+
+                                            <input type="submit" value="Valider" class="background-b highlight-b" style="margin-top: 7px; margin-bottom: 7px">
+
+                                    </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END: Page content -->
+<script>
+    if (typeof(atob) == "undefined")
+    {
+        document.write('<script src="/assets/home/lib/stringencoders-v3.10.3/javascript/base64.js"><\/script>');
+        var atob = function(x)
+        {
+            return base64.decode(x);
+        }
+    }
+</script>
+<script src="/assets/home/bower_components/less.js/dist/less.min.js"></script>
+<script src="/assets/home/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/assets/home/lib/tween/tween.min.js"></script>
+<script src="/assets/home/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/assets/home/lib/modernizr-edited.js"></script>
+<script src="/assets/home/lib/SmoothScroll-1.4.9/SmoothScroll.js"></script>
+<script src="/assets/home/bower_components/jquery-cookie/jquery.cookie.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="/assets/home/bower_components/jqBootstrapValidation/dist/jqBootstrapValidation-1.3.7.min.js"></script>
+<script src="/assets/home/bower_components/minicolors/jquery.minicolors.min.js"></script>
+<script src="/assets/home/bower_components/slick.js/slick/slick.min.js"></script>
+<script src="/assets/home/bower_components/shufflejs/dist/jquery.shuffle.min.js"></script>
+<script src="/assets/home/bower_components/textillate/assets/jquery.lettering.js"></script>
+<script src="/assets/home/bower_components/textillate/assets/jquery.fittext.js"></script>
+<script src="/assets/home/bower_components/textillate/jquery.textillate.js"></script>
+<script src="/assets/home/lib/prism/prism.js"></script>
+<script>
+    (function()
+    {
+        var disableMobileAnimations = true;
+        var isWin = navigator.appVersion.indexOf("Win") !== -1;
+        if (isWin) $('html').addClass('win');
+        var ua = navigator.userAgent.toLowerCase();
+        var isChrome = ua.indexOf('chrome') > -1;
+        if (isChrome) $('html').addClass('chrome');
+        var isAndroidBrowser4_3minus = ((ua.indexOf('mozilla/5.0') > -1 && ua.indexOf('android ') > -1 && ua.indexOf('applewebkit') > -1) && !(ua.indexOf('chrome') > -1));
+        if (isAndroidBrowser4_3minus) $('html').addClass('android-browser-4_3minus');
+        var isSafari = !isChrome && ua.indexOf('safari') !== -1;
+        if (isSafari) $('html').addClass('safari');
+        var isMobile = false; //Change false to Modernizr.touch if you want to disable animations on touchscreen devices;
+        if (isMobile)
+        {
+            $('html').addClass('mobile');
+            if (disableMobileAnimations) $('html').addClass('poor-browser');
+        }
+        else
+        {
+            $('html').addClass('non-mobile');
+        }
+        if (isWin && isSafari)
+        {
+            $('html').addClass('flat-animation');
+        }
+    })();
+</script>
+<script src="/assets/home/scripts/script-bundle.js"></script>
+<script>
+    if (Function('/*@cc_on return document.documentMode===9@*/')())
+    {
+        $('html').addClass('ie9');
+    }
+    if (Function('/*@cc_on return document.documentMode===10@*/')())
+    {
+        $('html').addClass('ie10');
+    }
+    if (!!navigator.userAgent.match(/Trident.*rv\:11\./))
+    {
+        $('html').addClass('ie11');
+    }
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{#<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">#}
+{#<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>#}
+{#<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>#}
+{#<!------ Include the above in your HEAD tag ---------->#}
+
+{#<!DOCTYPE html>#}
+{#<html lang="fr">#}
+{#<head>#}
+{#    <title>Login Page</title>#}
+{#    <!--Made with love by Mutiullah Samim -->#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">#}
+{#    <!--Bootsrap 4 CDN-->#}
+{#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">#}
+
+{#    <!--Fontawesome CDN-->#}
+{#    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">#}
+
+{#    <link rel="stylesheet" type="text/css" href="/assets/forms/login.css">#}
+{#    <!--Custom styles-->#}
+{#</head>#}
+{#<body>#}
+{#<div class="container">#}
+{#    <div class="d-flex justify-content-center h-100">#}
+{#        <div class="card">#}
+{#            <div class="card-header">#}
+{#                <h3>Se connecter</h3>#}
+{#                <div class="d-flex justify-content-end social_icon">#}
+{#                    <span><i class="fab fa-facebook-square"></i></span>#}
+{#                    <span><i class="fab fa-google-plus-square"></i></span>#}
+{#                    <span><i class="fab fa-twitter-square"></i></span>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="card-body">#}
+{#                <form method="post">#}
+{#                    <div class="input-group form-group">#}
+{#                        <div class="input-group-prepend">#}
+{#                            <span class="input-group-text"><i class="fas fa-user"></i></span>#}
+{#                        </div>#}
+{#                        <input value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email">#}
+
+{#                    </div>#}
+{#                    <div class="input-group form-group">#}
+{#                        <div class="input-group-prepend">#}
+{#                            <span class="input-group-text"><i class="fas fa-key"></i></span>#}
+{#                        </div>#}
+{#                        <input type="password" name="password" id="inputPassword"  class="form-control" placeholder="Mot de passe">#}
+{#                    </div>#}
+{#                    <input type="hidden" name="_csrf_token"#}
+{#                           value="{{ csrf_token('authenticate') }}">#}
+
+
+{#                    {% for message in app.flashes('success') %}#}
+{#                        <div class="alert alert-success text-center">#}
+{#                            {{ message }}#}
+{#                        </div>#}
+{#                    {% endfor %}#}
+{#                    {% if error %}#}
+{#                        <div class="alert alert-danger">{{ error.messageKey|trans|raw(error.messageData, 'security') }}</div>#}
+{#                    {% endif %}#}
+
+{#                    {% if app.user %}#}
+{#                        <div class="mb-3">#}
+{#                            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>#}
+{#                        </div>#}
+{#                    {% endif %}#}
+{#                    <div class="row align-items-center remember">#}
+{#                        <input type="checkbox" name="_remember_me">Se souvenir#}
+{#                    </div>#}
+{#                    <div class="form-group">#}
+{#                        <input type="submit" value="Valider" class="btn float-right login_btn">#}
+{#                    </div>#}
+{#                </form>#}
+{#            </div>#}
+{#            <div class="card-footer">#}
+{#                <div class="d-flex justify-content-center links">#}
+{#                    Pas de compte ?<a class="text-warning" href="{{ path('app_registration') }}">Créer un compte</a>#}
+{#                </div>#}
+{#                <div class="d-flex justify-content-center">#}
+{#                    <a class="text-warning" href="{{ path("forgotten_password") }}">Mot de passe oublié ?</a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+{#</body>#}
+{#</html>#}
