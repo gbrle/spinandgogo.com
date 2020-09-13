@@ -74,13 +74,13 @@
 </div>
 <div class="page-border bottom colors-e background-solid"><a href="#top" class="hover-effect">To <span class="highlight">Top</span></a></div>
 <div class="page-border left colors-e background-solid">
-    <ul>
-        <li><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>
-        <li><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
-        <li><a href="http://www.youtube.com/" target="_blank"><i class="fa fa-youtube"></i></a></li>
-        <li><a href="https://vimeo.com/" target="_blank"><i class="fa fa-vimeo-square"></i></a></li>
-        <li><a href="http://www.skype.com/" target="_blank"><i class="fa fa-skype"></i></a></li>
-    </ul>
+{#    <ul>#}
+{#        <li><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>#}
+{#        <li><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>#}
+{#        <li><a href="http://www.youtube.com/" target="_blank"><i class="fa fa-youtube"></i></a></li>#}
+{#        <li><a href="https://vimeo.com/" target="_blank"><i class="fa fa-vimeo-square"></i></a></li>#}
+{#        <li><a href="http://www.skype.com/" target="_blank"><i class="fa fa-skype"></i></a></li>#}
+{#    </ul>#}
 </div>
 <!-- BEGIN: Top menu -->
 <div class="page-border right colors-e background-solid"></div>
@@ -191,29 +191,27 @@
                 <div class="col-md-offset-2 col-md-8 col-md-offset-2">
                     {{ form_start(form) }}
                     <div class="row">
-                        <div class="col-md-6 text-light">
-                            {{ form_row(form.firstname, { 'label': 'Prénom' }) }}
+                        <div class="col-md-6 text-light" style="margin-top: 7px; margin-bottom: 7px">
+                            {{ form_row(form.firstname, {'label': false , 'attr': {'placeholder': 'Prénom' }}) }}
                         </div>
-                        <div class="col-md-6 text-light">
-                            {{ form_row(form.lastname, { 'label': 'Nom' }) }}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-offset-3 col-md-6 col-md-offset-3 text-light">
-                                {{ form_row(form.email, { 'label': 'E-mail' }) }}
+                        <div class="col-md-6 text-light" style="margin-top: 7px; margin-bottom: 7px">
+                            {{ form_row(form.lastname, {'label': false , 'attr': {'placeholder': 'Nom' }}) }}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 text-light">
-                                {{ form_row(form.password, { 'label': 'Mot de passe' }) }}
-                        </div>
-                        <div class="col-md-6 text-light">
-                            {{ form_row(form.confirm_password, { 'label': 'Confirmation' }) }}
+                        <div class="col-md-12 text-light">
+                                {{ form_row(form.email, {'label': false , 'attr': {'placeholder': 'E-mail' }}) }}
                         </div>
                     </div>
-                    <div class="row text-center">
-                        <button type="submit" class="button background-b highlight-b" style="height: 50px; width: 80%; margin-top: 23px; margin-bottom: 20px">Valider</button>
+                    <div class="row">
+                        <div class="col-md-6 text-light" style="margin-top: 7px; margin-bottom: 7px">
+                                {{ form_row(form.password, {'label': false , 'attr': {'placeholder': 'Mot de passe' }}) }}
+                        </div>
+                        <div class="col-md-6 text-light" style="margin-top: 7px; margin-bottom: 7px">
+                            {{ form_row(form.confirm_password, {'label': false , 'attr': {'placeholder': 'Confirmation mot de passe' }}) }}
+                        </div>
                     </div>
+                        <input type="submit" class="background-b highlight-b" style="margin-top: 7px; margin-bottom: 7px">
                     {{ form_end(form) }}
                 </div>
             </div>
@@ -293,75 +291,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-{#<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">#}
-{#<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>#}
-{#<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>#}
-{#<!------ Include the above in your HEAD tag ---------->#}
-
-{#<!DOCTYPE html>#}
-{#<html lang="fr">#}
-{#<head>#}
-{#    <title>Inscription</title>#}
-{#    <!--Made with love by Mutiullah Samim -->#}
-{#    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">#}
-{#    <!--Bootsrap 4 CDN-->#}
-{#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">#}
-
-{#    <!--Fontawesome CDN-->#}
-{#    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">#}
-
-{#    <link rel="stylesheet" type="text/css" href="/assets/forms/login.css">#}
-{#    <!--Custom styles-->#}
-{#</head>#}
-{#<body>#}
-{#<div class="container">#}
-{#    <div class="d-flex justify-content-center h-100">#}
-{#        <div class="card">#}
-{#            <div class="card-header">#}
-{#                <h3>Créer un compte</h3>#}
-{#                <div class="d-flex justify-content-end social_icon">#}
-{#                    <span><i class="fab fa-facebook-square"></i></span>#}
-{#                    <span><i class="fab fa-google-plus-square"></i></span>#}
-{#                    <span><i class="fab fa-twitter-square"></i></span>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="card-body">#}
-{#                {{ form_start(form) }}#}
-{#                <div class="row">#}
-{#                    <div class="col-md-6 text-light">#}
-{#                        {{ form_row(form.firstname, { 'label': 'Prénom' }) }}#}
-{#                    </div>#}
-{#                    <div class="col-md-6 text-light">#}
-{#                        {{ form_row(form.lastname, { 'label': 'Nom' }) }}#}
-{#                    </div>#}
-{#                    <div class="col-12 text-light">#}
-{#                        {{ form_row(form.email) }}#}
-{#                    </div>#}
-
-
-{#                    <div class="col-md-6 text-light">#}
-{#                        {{ form_row(form.password, { 'label': 'Mot de passe' }) }}#}
-{#                    </div>#}
-{#                    <div class="col-md-6 text-light">#}
-{#                        {{ form_row(form.confirm_password, { 'label': 'Confirmation' }) }}#}
-{#                    </div>#}
-
-{#                </div>#}
-{#                <button type="submit" class="btn btn-warning btn-lg float-md-right mt-4 mb-4">Valider</button>#}
-
-{#                {{ form_end(form) }}#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
-{#</body>#}
-{#</html>#}
