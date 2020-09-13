@@ -33,10 +33,10 @@
                 <div class="content no-top-padding no-bottom-padding  full-height">
                     <div class="container-fluid  full-height">
                         <div class="row full-height">
-                            <a href="blog.html" class="col-md-6 colors-a background-95-a full-height">
-                                <div>
-                                    <span class="side-label">All The Latest</span>
-                                    <span class="side-title">Blog</span>
+                            <a href="{{ path('app_login') }}" class="col-md-6 colors-a background-95-a full-height">
+                                <div class="text-center">
+                                    <span class="side-label"><i class="li_user"></i></span>
+                                    <span class="side-title">Connexion</span>
                                 </div>
                             </a>
                             <a href="help.html" class="col-md-6 colors-f background-95-f full-height">
@@ -72,7 +72,12 @@
                 </div>
             </div>
         </div>
-        <div class="page-border bottom colors-e background-solid"><a href="#top" class="hover-effect">To <span class="highlight">Top</span></a></div>
+        <div class="page-border bottom colors-e background-solid">
+            <a href="#" class="hover-effect" style="margin-left: 10px; margin-right: 10px">Conditions générales de ventes (CGV)<span class="highlight"></span></a>
+            <a href="#" class="hover-effect" style="margin-left: 10px; margin-right: 10px"><span class="highlight">INFORMATIONS LÉGALES</span></a>
+            <a href="#" class="hover-effect" style="margin-left: 10px; margin-right: 10px">PROTECTIONS DES DONNÉES<span class="highlight"></span></a>
+            <a href="#" class="hover-effect" style="margin-left: 10px; margin-right: 10px"><span class="highlight">NOS PARTENAIRES</span></a>
+        </div>
         <div class="page-border left colors-e background-solid">
         {#    <ul>#}
         {#        <li><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>#}
@@ -88,20 +93,22 @@
             <div class="container">
                 <div class="navbar-header">
                     <a class="menu-toggle ext-nav-toggle visible-xs-block" data-target=".ext-nav" href="#"><span></span></a>
-                    <a class="menu-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" href="#"><span></span></a>
+{#                    <a class="menu-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" href="#"><span></span></a>#}
                     <a class="navbar-brand" href="">SpinAnd<span class="highlight">GOGO</span></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#home" class="hover-effect">Home</a></li>
+                        <li><a href="#home" class="hover-effect">Acceuil</a></li>
                         <li><a href="#about" class="hover-effect">About</a></li>
                         <li><a href="#team" class="hover-effect">Team</a></li>
                         <li><a href="#services" class="hover-effect">Services</a></li>
                         <li><a href="#work" class="hover-effect">Work</a></li>
-                        <li><a href="#process" class="hover-effect">Process</a></li>
-                        <li><a href="#skills" class="hover-effect">Skills</a></li>
-                        <li><a href="#contact" class="hover-effect">Contact</a></li>
-                        <li class="hidden-xs"><a class="menu-toggle ext-nav-toggle" data-target=".ext-nav" href="#"><span></span></a></li>
+                        {% if app.user %}
+                            <li><a href="{{ path('user_home') }}" class="hover-effect">Mon compte <i class="li_user"></i></a></li>
+                        {% else %}
+                            <li><a href="{{ path('app_login') }}" class="hover-effect">Se connecter <i class="li_user"></i></a></li>
+                        {% endif %}
+{#                      <li class="hidden-xs"><a class="menu-toggle ext-nav-toggle" data-target=".ext-nav" href="#"><span></span></a></li>#}
                     </ul>
                 </div>
             </div>
@@ -181,69 +188,76 @@
         <!-- BEGIN: Page content -->
         <section id="home">
             <div class="view">
-                <img alt class="bg" src="/assets/home/images/home-background.jpg" /><img alt class="bg" src="/assets/home/images/home-background.jpg" />
-                <div class="content home-suzi full-size colors-d background-0">
+                <img alt class="bg" src="https://images4.alphacoders.com/418/41814.jpg" /><img alt class="bg" src="https://images.alphacoders.com/794/79423.jpg" /><img alt class="bg" src="https://images6.alphacoders.com/449/449381.jpg" />
+                <div class="content home-suzi full-size colors-h background-3">
                     <div class="container">
-                        <h2><span class="thin-font-weight">We <span class="highlight">Are</span></span></h2>
-                        <h1 class="text-center">SKROLL<span class="highlight thin-font-weight">EX</span></h1>
-                        <div class="row">
-                            <div class="col-md-4 col-md-offset-4">
-                                <p class="title text-center">
-                                    Integer ligula ante, posuere et ante quis, eleifend eleifend ipsum. In sed odio mi vivamus dapibus gravida.
-                                </p>
-                            </div>
+                        <div class="show-list slogan bg-success" style="margin-top: 15px; margin-bottom: 30px">
+                            <div class="show-item">www.SpingAndGoGo.com</div>
                         </div>
-                        <p class="text-center animated"><a href="#about" class="button background-60-d heading-d border-hard">En savoir plus</a><a href="{{ path('app_registration') }}" class="button background-60-f heading-f border-hard">Créer mon compte</a></p>
+                        <h2 style="margin: 0"><span class="thin-font-weight">Gère <span class="highlight">Ton</span></span></h2>
+                        <h1 style="margin: 0">Poker<span class="highlight thin-font-weight"> EN</span></h1>
+                        <h2 style="margin: 0"><span class="thin-font-weight">Spin <span class="highlight">And</span> GO</span></h2>
+{#                        <div class="row">#}
+{#                            <div class="col-md-4 col-md-offset-4">#}
+{#                                <p class="title text-center">#}
+{#                                    Integer ligula ante, posuere et ante quis, eleifend eleifend ipsum. In sed odio mi vivamus dapibus gravida.#}
+{#                                </p>#}
+{#                            </div>#}
+{#                        </div>#}
+                        <p style="margin-top: 40px" class="text-center animated">
+                            <a href="#about" style="min-width: 200px;margin-right: 10px; margin-left: 10px" class="animated bounceInLeft button background-60-f heading-f border-hard">En savoir plus</a>
+                            <a href="{{ path('app_registration') }}" style="min-width: 200px;margin-right: 10px; margin-left: 10px" class="animated bounceInRight button background-60-f heading-f border-hard">Créer mon compte</a>
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
         <section id="about">
-            <div class="view">
-                <img alt class="bg" src="/assets/home/images/placeholders/1920x1200-2.jpg" />
-                <div class="content pane">
-                    <div class="container-fluid">
-                        <div class="row hidden-xs hidden-sm">
-                            <div class="col-md-4 colors-b">
-                                <div class="row">
-                                    <div class="col-xs-12 banner-cell">
-                                        <h3 class="light-font-weight">Responsive</h3>
-                                        <p class="title">Layout</p>
-                                    </div>
-                                    <div class="col-xs-12 success heading-b banner-cell">
-                                        Responsive Styling
-                                        <br /> Retina Ready
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 colors-c">
-                                <div class="row">
-                                    <div class="col-xs-12 banner-cell">
-                                        <h3 class="light-font-weight">Parallax</h3>
-                                        <p class="title">Effects</p>
-                                    </div>
-                                    <div class="col-xs-12 warning heading-c banner-cell">
-                                        Highly Optimized
-                                        <br /> Smooth Animations
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 colors-d">
-                                <div class="row">
-                                    <div class="col-xs-12 banner-cell">
-                                        <h3 class="light-font-weight">Bootstrap</h3>
-                                        <p class="title">Framework</p>
-                                    </div>
-                                    <div class="col-xs-12 info heading-d banner-cell">
-                                        Adapted for Multicolor Sections
-                                        <br /> Highly Customized
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+{#            <div class="view">#}
+{#                <img alt class="bg" src="/assets/home/images/placeholders/1920x1200-2.jpg" />#}
+{#                <div class="content pane">#}
+{#                    <div class="container-fluid">#}
+{#                        <div class="row hidden-xs hidden-sm">#}
+{#                            <div class="col-md-4 colors-b">#}
+{#                                <div class="row">#}
+{#                                    <div class="col-xs-12 banner-cell">#}
+{#                                        <h3 class="light-font-weight">Responsive</h3>#}
+{#                                        <p class="title">Layout</p>#}
+{#                                    </div>#}
+{#                                    <div class="col-xs-12 success heading-b banner-cell">#}
+{#                                        Responsive Styling#}
+{#                                        <br /> Retina Ready#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-md-4 colors-c">#}
+{#                                <div class="row">#}
+{#                                    <div class="col-xs-12 banner-cell">#}
+{#                                        <h3 class="light-font-weight">Parallax</h3>#}
+{#                                        <p class="title">Effects</p>#}
+{#                                    </div>#}
+{#                                    <div class="col-xs-12 warning heading-c banner-cell">#}
+{#                                        Highly Optimized#}
+{#                                        <br /> Smooth Animations#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-md-4 colors-d">#}
+{#                                <div class="row">#}
+{#                                    <div class="col-xs-12 banner-cell">#}
+{#                                        <h3 class="light-font-weight">Bootstrap</h3>#}
+{#                                        <p class="title">Framework</p>#}
+{#                                    </div>#}
+{#                                    <div class="col-xs-12 info heading-d banner-cell">#}
+{#                                        Adapted for Multicolor Sections#}
+{#                                        <br /> Highly Customized#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
             <div class="view">
                 <div class="content colors-e background-solid">
                     <div class="container">
@@ -811,155 +825,6 @@
                     </div>
                     <div class="container">
                         <p class="text-center ">Donec vulputate sit amet dolor vel pharetra donec pharetra.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="skills">
-            <div class="view">
-                <div class="content colors-e background-solid">
-                    <div class="container">
-                        <h2>Our <span class="highlight">Skills</span></h2>
-                        <p class="header-details"><span class="highlight">Our Main</span> Skills</p>
-                        <p class="lead">Aliquam scelerisque vestibulum mi, eu commodo sem vestibulum convallis. Proin sed mi vehicula, porta nisi eu, facilisis nisl. Etiam tristique mi nec fermentum vestibulum. Nullam in nisi ut tellus laoreet ultrices. In ullamcorper dictum interdum vestibulum etiam tristique mi nec fermentum commodo sem vestibulum laoreet ultrices.</p>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <ul class="widget-tabs nav nav-tabs background-lite-e">
-                                    <li class="active"><a href="#html5" data-toggle="tab">HTML5</a></li>
-                                    <li class=""><a href="#css3" data-toggle="tab">CSS3</a></li>
-                                    <li class=""><a href="#jquery-skill" data-toggle="tab">jQuery</a></li>
-                                    <li class=""><a href="#wordpress" data-toggle="tab">Wordpress</a></li>
-                                    <li class=""><a href="#seo" data-toggle="tab">SEO</a></li>
-                                    <li class=""><a href="#photoshop" data-toggle="tab">Photoshop</a></li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div class="tab-pane fade active in" id="html5">
-                                        <p>Fusce hendrerit enim et lacus rutrum, fermentum consectetur mauris hendrerit. Mauris scelerisque, est eget convallis blandit, lorem est scelerisque dolor, non dapibus orci enim ut risus. Praesent rhoncus ex sit amet nunc luctus, nec eleifend erat suscipit. In feugiat dui eget gravida dignissim. Quisque sed dictum felis. Integer viverra iaculis nulla, a euismod est. Nulla nec felis ipsum. Phasellus sed scelerisque nisl, eu condimentum metus. Aenean convallis risus nec eleifend pharetra. Vivamus rhoncus eleifend mi in imperdiet. Nullam a justo quis dolor viverra elementum. Nam eleifend leo quis elementum cursus.</p>
-                                    </div>
-                                    <div class="tab-pane fade" id="css3">
-                                        <p>Sed dapibus, leo ut egestas convallis, leo purus condimentum ipsum, sit amet lobortis odio nisi id enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi suscipit, mi in interdum volutpat, quam mi porta nisi, dapibus placerat sapien tortor eleifend arcu. Cras sit amet euismod mi, non imperdiet felis. Praesent eros nibh, ullamcorper ut suscipit sit amet, mattis sollicitudin lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis in enim sit amet nibh placerat consectetur id et enim. Nunc nec dui ac ligula posuere posuere vel id metus. Integer maximus eros nec lobortis tempor.</p>
-                                    </div>
-                                    <div class="tab-pane fade" id="jquery-skill">
-                                        <p>Nam eget ex mi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam blandit, enim nec rutrum maximus, odio purus maximus odio, vel mattis nisi ante ut velit. Nam ut turpis vel dolor maximus dictum. Donec blandit turpis ut vulputate facilisis. Nam est nisi, posuere vitae posuere in, viverra non tellus. Pellentesque congue, sapien eget sollicitudin sollicitudin, est leo imperdiet ante, facilisis viverra mi augue in leo. Vestibulum felis urna, pharetra et eros ut, mattis consequat mi. Curabitur id tortor mattis, aliquet eros hendrerit, mattis metus. Ut dignissim vel augue in congue. Nulla a ante ut mi scelerisque suscipit. Aenean condimentum turpis mi, sit amet ullamcorper mi commodo non.</p>
-                                    </div>
-                                    <div class="tab-pane fade" id="php">
-                                        <p>Nulla egestas eu odio ac dictum. Phasellus eu odio lectus. Fusce luctus tempor mauris, vel accumsan leo. Nam libero velit, ultrices vel malesuada nec, euismod nec dolor. Maecenas congue erat sed maximus semper. Aliquam vestibulum magna sit amet pulvinar vestibulum. Cras semper condimentum ante, eget suscipit sapien. Sed ac urna nunc. Aenean viverra sem sit amet dolor pretium fringilla. Nam luctus tempus nibh vitae efficitur. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-                                    </div>
-                                    <div class="tab-pane fade" id="wordpress">
-                                        <p>Fusce non commodo sapien, quis ultrices enim. Proin in placerat urna. Nulla luctus leo nec massa vestibulum consequat quis a quam. Maecenas et leo ut orci fringilla ornare non sit amet lectus. Donec ornare eros tortor, sit amet condimentum lectus placerat ut. Duis lacus neque, lacinia non nunc id, aliquet tincidunt orci. In tellus felis, posuere non est rhoncus, tincidunt elementum sapien. Sed non sagittis ante. Duis ultricies mi dolor, feugiat blandit metus ullamcorper nec. Nullam semper gravida consequat. Suspendisse potenti. Mauris sit amet nisi at enim lacinia dignissim. Aenean suscipit pulvinar ex, eu venenatis magna dapibus sit amet.</p>
-                                    </div>
-                                    <div class="tab-pane fade" id="seo">
-                                        <p>Proin non augue posuere, iaculis tortor in, molestie lorem. Praesent ut gravida sem. Aenean sit amet lorem leo. Curabitur risus ante, pulvinar vel erat viverra, porttitor volutpat turpis. Praesent et sapien interdum, sollicitudin nisi non, bibendum leo. Duis posuere lectus velit, vel volutpat massa blandit non. Donec pellentesque vel magna ut dignissim. Pellentesque luctus fringilla eros, in tempus neque venenatis consectetur. Pellentesque purus mauris, laoreet eget augue in, pellentesque sagittis arcu. Etiam at blandit lectus, sit amet volutpat tellus.</p>
-                                    </div>
-                                    <div class="tab-pane fade" id="photoshop">
-                                        <p>Donec ac consectetur neque, vel eleifend nisi. In et nibh at neque convallis tincidunt. Aliquam sodales odio vel malesuada interdum. Duis auctor malesuada lorem. Nulla sed neque ut dui imperdiet congue ut sit amet enim. Phasellus vel commodo dui. Aliquam eu eleifend diam, vitae dapibus velit. Suspendisse ac est hendrerit, mollis lectus vel, accumsan urna. Quisque sit amet iaculis libero, sed maximus justo. Nunc laoreet non libero eu vehicula. Vestibulum ex lectus, pharetra non elementum et, gravida quis mauris. Donec sodales odio eget accumsan blandit.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="skillbars">
-                                    <div class="skillbar clearfix background-d" data-percent="40%">
-                                        <div class="skillbar-title background-b heading-b"><span>HTML5</span></div>
-                                        <div class="skillbar-bar background-b"></div>
-                                        <div class="skill-bar-percent heading-d">40%</div>
-                                    </div>
-                                    <div class="skillbar clearfix background-d" data-percent="45%">
-                                        <div class="skillbar-title background-c heading-c"><span>CSS3</span></div>
-                                        <div class="skillbar-bar background-c"></div>
-                                        <div class="skill-bar-percent heading-d">45%</div>
-                                    </div>
-                                    <div class="skillbar clearfix background-d" data-percent="50%">
-                                        <div class="skillbar-title background-b heading-b"><span>jQuery</span></div>
-                                        <div class="skillbar-bar background-b"></div>
-                                        <div class="skill-bar-percent heading-d">50%</div>
-                                    </div>
-                                    <div class="skillbar clearfix background-d" data-percent="40%">
-                                        <div class="skillbar-title background-c heading-c"><span>PHP</span></div>
-                                        <div class="skillbar-bar background-c"></div>
-                                        <div class="skill-bar-percent heading-d">40%</div>
-                                    </div>
-                                    <div class="skillbar clearfix background-d" data-percent="90%">
-                                        <div class="skillbar-title background-b heading-b"><span>Wordpress</span></div>
-                                        <div class="skillbar-bar background-b"></div>
-                                        <div class="skill-bar-percent heading-d">90%</div>
-                                    </div>
-                                    <div class="skillbar clearfix background-d" data-percent="75%">
-                                        <div class="skillbar-title background-c heading-c"><span>SEO</span></div>
-                                        <div class="skillbar-bar background-c"></div>
-                                        <div class="skill-bar-percent heading-d">75%</div>
-                                    </div>
-                                    <div class="skillbar clearfix background-d" data-percent="70%">
-                                        <div class="skillbar-title background-b heading-b"><span>Photoshop</span></div>
-                                        <div class="skillbar-bar background-b"></div>
-                                        <div class="skill-bar-percent heading-d">70%</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="contact">
-            <div class="view">
-                <img alt class="bg" src="/assets/home/images/placeholders/1920x1200-2.jpg" /><img alt class="bg" src="/assets/home/images/placeholders/1920x1200-0.jpg" /><img alt class="bg" src="/assets/home/images/placeholders/1920x1200-1.jpg" />
-                <div class="content full-size colors-h">
-                    <div class="container">
-                        <h2>Contact</h2>
-                        <p class="header-details">Keep In Touch</p>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="text-right scroll-in-animation" data-animation="fadeInLeft">
-                                    <p class="big-font uppercase">
-                                        Tel: <strong class="highlight">+7 (781) 503-1810</strong>
-                                    </p>
-                                    <p class="big-font uppercase">
-                                        500 Unicorn Park Dr, 21st Floor
-                                        <br/> Woburn, MA 01801, United States
-                                    </p>
-                                    <p class="big-font">
-                                        <b>
-                                            <a href="mailto:info@ouraddress.com">info@ouraddress.com</a><br/>
-                                            <a href="http://www.ouraddress.com">www.ouraddress.com</a>
-                                        </b>
-                                    </p>
-                                    <p class="big-font">
-                                        <a target="_blank" href="https://twitter.com/"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x heading"></i><i class="fa fa-twitter fa-stack-1x text-background"></i></span></a>
-                                        <a target="_blank" href="https://www.facebook.com/"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x heading"></i><i class="fa fa-facebook fa-stack-1x text-background"></i></span></a>
-                                        <a target="_blank" href="http://www.youtube.com/"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x heading"></i><i class="fa fa-youtube fa-stack-1x text-background"></i></span></a>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="text-left scroll-in-animation" data-animation="fadeInRight">
-                                    <form class="ajax-form" data-message-class="colors-e background-95 border heading" action="contact.php" method="post" novalidate="novalidate">
-                                        <div class="row">
-                                            <div class="col-md-6 control-group">
-                                                <div class="alt-placeholder">Name</div>
-                                                <input type="text" name="your-name" value="" size="40" placeholder="Name" data-validation-required-message="Please fill the required field." required>
-                                                <div class="help-block"></div>
-                                            </div>
-                                            <div class="col-md-6 control-group">
-                                                <div class="alt-placeholder">Email</div>
-                                                <input type="email" name="your-email" value="" size="40" placeholder="Email" data-validation-required-message="Please fill the required field." required>
-                                                <div class="help-block"></div>
-                                            </div>
-                                            <div class="col-md-12 control-group">
-                                                <div class="alt-placeholder">Message</div>
-                                                <textarea name="your-message" placeholder="Message" data-validation-required-message="Please fill the required field." required></textarea>
-                                                <div class="help-block"></div>
-                                            </div>
-                                            <div class="col-md-12 form-actions">
-                                                <input class="button" type="submit" value="Send">
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <a class="map-open button background-lite-b border-heading-b heading-b" data-map-overlay=".map-overlay" href="#">Locate Us on Map</a>
-                        </div>
                     </div>
                 </div>
             </div>
