@@ -1,16 +1,18 @@
-h5
+.formAddGame h5
 {
+    color: #c7af8b;
     margin:0px;
-    font-size:1.4em;
+    font-size:1.2em;
     font-weight:700;
 }
 
-p
+.formAddGame p
 {
-    font-size:12px;
+    font-size:10px;
+    color: black!important;
 }
 
-.center
+.formAddGame .center
 {
     display: flex;
     justify-content: center;
@@ -18,7 +20,7 @@ p
 
 /* End Non-Essential  */
 
-.property-card
+.formAddGame .property-card
 {
     height:18em;
     width:14em;
@@ -35,16 +37,16 @@ p
     transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
     border-radius:16px;
     overflow:hidden;
-    -webkit-box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
-    box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+    -webkit-box-shadow:  3px 3px 9px #e1e1e3, -3px -3px 9px #ffffff;
+    box-shadow:  3px 3px 9px #e1e1e3, -3px -3px 9px #ffffff;
 }
 /* ^-- The margin bottom is necessary for the drop shadow otherwise it gets clipped in certain cases. */
 
 /* Top Half of card, image. */
 
-.property-image
+.formAddGame .property-image
 {
-    height:11em;
+    height:13em;
     width:14em;
     padding:1em 2em;
     position:Absolute;
@@ -58,10 +60,10 @@ p
 
 /* Bottom Card Section */
 
-.property-description
+.formAddGame .property-description
 {
     background-color: #FAFAFC;
-    height:7em;
+    height:5em;
     width:14em;
     position:absolute;
     bottom:0em;
@@ -74,7 +76,7 @@ p
 
 /* Social Icons */
 
-.property-social-icons
+.formAddGame .property-social-icons
 {
     width:1em;
     height:1em;
@@ -89,23 +91,28 @@ p
 
 /* Property Cards Hover States */
 
-.property-card:hover .property-description
+.formAddGame .property-card:hover .property-description
 {
     height:0em;
     padding:0px 1em;
 }
-.property-card:hover .property-image
+.formAddGame .property-card:hover .property-image
 {
-    height:18em;
+    height:15em;
 }
 
-.property-card:hover .property-social-icons
+.formAddGame .property-card:hover .property-social-icons
 {
     background-color:white;
 }
 
-.property-card:hover .property-social-icons:hover
+.formAddGame .property-card:hover .property-social-icons:hover
 {
     background-color:blue;
     cursor:pointer;
+}
+
+.formAddGame .question
+{
+    font-size: 30px;
 }

@@ -4771,3 +4771,28 @@ html {
   left: auto;
 }
 
+/*==================================================================
+32. Button Add Game
+==================================================================*/
+.buttonAddGame{
+  cursor: pointer;
+  z-index: 1000000000;
+  width:100%;position:
+        fixed; bottom: 0;
+}
+
+@media (max-width: 1199px) {
+  .buttonAddGame {
+
+  }
+}
+@media (max-width: 991px) {
+  .buttonAddGame {
+
+  }
+}
+@media (max-width: 767px) {
+  .buttonAddGame {
+
+  }
+}

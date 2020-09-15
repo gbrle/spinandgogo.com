@@ -8,19 +8,12 @@ use App\Repository\GameRepository;
 use App\Repository\MultiplicatorRepository;
 use App\Repository\RankedRepository;
 use App\Repository\RoomRepository;
-use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\ORM\EntityManagerInterface;
 use http\Client\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
-use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Normalizer\PropertyNormalizer;
-use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class AddGameController extends AbstractController
@@ -148,12 +141,18 @@ class AddGameController extends AbstractController
     {
         $nbreGame = [];
         $bankroll = [];
+        $nbreGameEmptyForChart = [];
 
         $games = $gameRepository->findBy([
             'user' => $this->getUser(),
         ]);
 
 
+        // Tab empty for chart
+        foreach ($games as $game){
+            array_push($nbreGameEmptyForChart, '');
+
+        }
         $startGame = 0;
         foreach ($games as $game){
             array_push($nbreGame, $startGame + 1);
@@ -174,7 +173,7 @@ class AddGameController extends AbstractController
         $roi = ($brankroolFinale - $totalBuy) / $totalBuy;
 
         if ($request->isXMLHttpRequest()) {
-            return new JsonResponse(([json_encode($nbreGame), json_encode($bankroll), round($roi, 1)]));
+            return new JsonResponse(([json_encode($nbreGame), json_encode($bankroll), round($roi, 1), json_encode($nbreGameEmptyForChart)]));
         }
 
 

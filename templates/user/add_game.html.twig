@@ -1,297 +1,421 @@
 <!DOCTYPE html>
-<!--
-Template Name: Midone - HTML Admin Dashboard Template
-Author: Left4code
-Website: http://www.left4code.com/
-Contact: muhammadrizki@left4code.com
-Purchase: https://themeforest.net/user/left4code/portfolio
-Renew Support: https://themeforest.net/user/left4code/portfolio
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
--->
-<html lang="en">
-<!-- BEGIN: Head -->
-<head>
-    <meta charset="utf-8">
-    <link href="/assets/user/images/logo.svg" rel="shortcut icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Midone admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Midone admin template, dashboard template, flat admin template, responsive admin template, web app">
-    <meta name="author" content="LEFT4CODE">
-    <title>Dashboard - Midone - Tailwind HTML Admin Template</title>
-    <!-- BEGIN: CSS Assets-->
-    <link rel="stylesheet" href="/assets/user/css/app.css" />
-    <link rel="stylesheet" href="/assets/user/css/cardAddRoom.css" />
-    <link rel="stylesheet" href="/assets/user/css/button.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
-    <!-- END: CSS Assets-->
-</head>
-<!-- END: Head -->
-<body class="app">
-<!-- BEGIN: Mobile Menu -->
-<div class="mobile-menu md:hidden">
-    <div class="mobile-menu-bar">
-        <a href="" class="flex mr-auto">
-            <img alt="Midone Tailwind HTML Admin Template" class="w-6" src="/assets/user/images/logo.svg">
-        </a>
-        <a href="javascript:;" id="mobile-menu-toggler"> <i data-feather="bar-chart-2" class="w-8 h-8 text-white transform -rotate-90"></i> </a>
-    </div>
-    <ul class="border-t border-theme-24 py-5 hidden">
-        <li>
-            <a href="{{ path('user_home') }}" class="menu menu--active">
-                <div class="menu__icon"> <i data-feather="home"></i> </div>
-                <div class="menu__title"> Acceuil </div>
-            </a>
-        </li>
-        <li>
-            <a href="{{ path('user_add_game') }}" class="menu">
-                <div class="menu__icon"> <i data-feather="home"></i> </div>
-                <div class="menu__title"> Ajouter une partie </div>
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;" class="menu">
-                <div class="menu__icon"> <i data-feather="box"></i> </div>
-                <div class="menu__title"> Mes parties <i data-feather="chevron-down" class="menu__sub-icon"></i> </div>
-            </a>
-            <ul class="">
-                <li>
-                    <a href="{{ path('user_all_games') }}" class="menu">
-                        <div class="menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="menu__title"> Toutes les salles </div>
-                    </a>
-                </li>
-                {% for room in rooms %}
-                    <li>
-                        <a href="simple-menu-dashboard.html" class="menu">
-                            <div class="menu__icon"> <i data-feather="activity"></i> </div>
-                            <div class="menu__title"> {{ room.name }} </div>
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </li>
-    </ul>
-</div>
-<!-- END: Mobile Menu -->
-<!-- BEGIN: Top Bar -->
-<div class="border-b border-theme-24 -mt-10 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 pt-3 md:pt-0 mb-10">
-    <div class="top-bar-boxed flex items-center">
-        <!-- BEGIN: Logo -->
-        <a href="{{ path('home') }}" class="-intro-x hidden md:flex">
-            <img alt="Midone Tailwind HTML Admin Template" class="w-6" src="/assets/user/images/logo.svg">
-            <span class="text-white text-lg ml-3"> SpinAnd<span class="font-medium">GoGo</span>.fr </span>
-        </a>
-        <!-- END: Logo -->
-        <!-- BEGIN: Breadcrumb -->
-        <div class="-intro-x breadcrumb breadcrumb--light mr-auto">
-            <span class="text-white text-lg ml-3"> Bienvenue <span class="font-medium">{{ app.user.firstname }}</span> </span>
-        </div>
-        <!-- END: Breadcrumb -->
-
-        <!-- BEGIN: Account Menu -->
-        <div class="intro-x dropdown w-8 h-8 relative">
-            <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in scale-110">
-                <i data-feather="user" style="color: white"></i>
-            </div>
-            <div class="dropdown-box mt-10 absolute w-56 top-0 right-0 z-20">
-                <div class="dropdown-box__content box bg-theme-38 dark:bg-dark-6 text-white">
-                    <div class="p-4 border-b border-theme-40 dark:border-dark-3">
-                        <div class="font-medium">{{ app.user.lastname }} {{ app.user.firstname }}</div>
-                        <div class="text-xs text-theme-41 dark:text-gray-600">Statut : Utilisateur</div>
+<html lang="fr" class="background-100-e">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Skrollex</title>
+        <meta name="description" content="Onepage Parallax Site" />
+        <meta name="keywords" content="onepage, parallax" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/assets/home/bower_components/fontawesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="/assets/home/bower_components/animate.css/animate.min.css" />
+        <link rel="stylesheet" href="/assets/home/bower_components/minicolors/jquery.minicolors.css" />
+        <link rel="stylesheet" href="/assets/home/bower_components/slick.js/slick/slick.css" />
+        <link rel="stylesheet" href="/assets/home/bower_components/slick.js/slick/slick-theme.css" />
+        <link rel="stylesheet" href="/assets/home/bootstrap/dist/css/bootstrap-custom.min.css" />
+        <link rel="stylesheet" href="/assets/home/lib/linecons/style.css" />
+        <link rel="stylesheet" href="/assets/home/styles/style.min.css" />
+        <link rel="stylesheet" href="/assets/home/theme-custom.css" />
+        <link rel="stylesheet" href="/assets/user/css/cardAddRoom.css" />
+        <link rel="stylesheet" href="/assets/user/css/button.css" />
+        <link rel="shortcut icon" href="/assets/home/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/assets/home/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="/assets/home/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/assets/home/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="/assets/home/apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/assets/home/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="/assets/home/apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="/assets/home/apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/assets/home/apple-touch-icon-152x152.png" />
+    </head>
+    <body class="state1 background-100-e">
+        <div class="ext-nav background-95-h page-transition">
+            <div class="view half-height">
+                <img alt class="bg static" src="/assets/home/images/placeholders/1920x1200-2.jpg" />
+                <div class="content no-top-padding no-bottom-padding  full-height">
+                    <div class="container-fluid  full-height">
+                        <div class="row full-height">
+                            <a href="{{ path('app_login') }}" class="col-md-6 colors-a background-95-a full-height">
+                                <div class="text-center">
+                                    <span class="side-label"><i class="li_user"></i></span>
+                                    <span class="side-title">Connexion</span>
+                                </div>
+                            </a>
+                            <a href="help.html" class="col-md-6 colors-f background-95-f full-height">
+                                <div>
+                                    <span class="side-label">Documentation</span>
+                                    <span class="side-title">Help</span>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                    <div class="p-2">
-                        <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="user" class="w-4 h-4 mr-2"></i> Mon compte </a>
-                        <a href="/logout" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Déconnexion </a>
+                </div>
+            </div>
+            <div class="container-fluid  half-height">
+                <div class="row full-height">
+                    <a href="#how-we-work" class="col-md-4 colors-g background-solid full-height border-bottom border-lite">
+                        <div>
+                            <span class="side-label">Awesome</span>
+                            <span class="side-title">How We Work</span>
+                        </div>
+                    </a>
+                    <a href="#who-we-are" class="col-md-4 colors-g background-solid full-height border-bottom border-left border-lite">
+                        <div>
+                            <span class="side-label">We Are Designers</span>
+                            <span class="side-title">Who We Are</span>
+                        </div>
+                    </a>
+                    <a href="#numbers" class="col-md-4 colors-g background-solid full-height border-bottom border-left border-lite">
+                        <div>
+                            <span class="side-label">Some Facts</span>
+                            <span class="side-title">Our Numbers</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="page-border bottom colors-e background-solid">
+
+        </div>
+        <div class="page-border left colors-e background-solid">
+            {#    <ul>#}
+            {#        <li><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>#}
+            {#        <li><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>#}
+            {#        <li><a href="http://www.youtube.com/" target="_blank"><i class="fa fa-youtube"></i></a></li>#}
+            {#        <li><a href="https://vimeo.com/" target="_blank"><i class="fa fa-vimeo-square"></i></a></li>#}
+            {#        <li><a href="http://www.skype.com/" target="_blank"><i class="fa fa-skype"></i></a></li>#}
+            {#    </ul>#}
+        </div>
+        <!-- BEGIN: Top menu -->
+        <div class="page-border right colors-e background-solid"></div>
+        <nav class="navbar navbar-default navbar-fixed-top page-transition colors-e background-solid" role="navigation" id="top-nav">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="menu-toggle ext-nav-toggle visible-xs-block" data-target=".ext-nav" href="#"><span></span></a>
+                    {#                    <a class="menu-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" href="#"><span></span></a>#}
+                    <a class="navbar-brand" href="">SpinAnd<span class="highlight">GOGO</span></a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#" data-toggle="modal" data-target="#statisticsRooms" class="hover-effect">Statistiques</a></li>
+                        <li><a href="#work" class="hover-effect">Mes parties</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#myAccount" class="hover-effect"><i class="li_user"></i> Mon compte <span style="font-size: 10px; color: white">({{ app.user.firstname }} {{ app.user.lastname }})</span></a></li>
+                        {#                      <li class="hidden-xs"><a class="menu-toggle ext-nav-toggle" data-target=".ext-nav" href="#"><span></span></a></li>#}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Modal Statistics Rooms -->
+        <div class="modal fade" id="statisticsRooms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title heading-e text-center" id="exampleModalLabel">Statistiques pour quelle salle ?</h5>
+                    </div>
+                    <div class="modal-body">
+                        <a href="#" class="button background-h highlight-h" style="width: 100%">Toutes les salles (globale)</a>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="button background-c highlight-c" data-dismiss="modal">Fermer</a>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- END: Account Menu -->
-    </div>
-</div>
-<!-- END: Top Bar -->
-<!-- BEGIN: Top Menu -->
-<nav class="top-nav">
-    <ul>
-        <li>
-            <a href="{{ path('user_home') }}" class="top-menu">
-                <div class="top-menu__icon"> <i data-feather="home"></i> </div>
-                <div class="top-menu__title"> Acceuil </div>
-            </a>
-        </li>
-        <li>
-            <a href="{{ path('user_add_game') }}" class="top-menu top-menu--active">
-                <div class="top-menu__icon"> <i data-feather="home"></i> </div>
-                <div class="top-menu__title"> Ajouter une partie </div>
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;" class="top-menu">
-                <div class="top-menu__icon"> <i data-feather="hard-drive"></i> </div>
-                <div class="top-menu__title"> Mes parties <i data-feather="chevron-down" class="top-menu__sub-icon"></i> </div>
-            </a>
-            <ul class="">
-                <li>
-                    <a href="{{ path('user_all_games') }}" class="top-menu">
-                        <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="top-menu__title"> Toutes les salles </div>
-                    </a>
-                </li>
-                {% for room in rooms %}
-                    <li>
-                        <a href="top-menu-chart.html" class="top-menu">
-                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
-                            <div class="top-menu__title"> {{ room.name }} </div>
-                        </a>
-                    </li>
-                {% endfor %}
+        <!-- End Modal Statistics Rooms -->
+        <!-- Modal My Account -->
+        <div class="modal fade" id="myAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title heading-e text-center" id="exampleModalLabel">Gérer mon compte</h5>
+                    </div>
+                    <div class="modal-body">
+                        <a href="#" class="button background-h highlight-h" style="width: 100%">Changer de mot de passe</a>
+                        <a href="{{ path('app_logout') }}" class="button background-d highlight-d" style="width: 100%">Se déconnecter</a>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="button background-c highlight-c" data-dismiss="modal">Fermer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal My Account -->
+        <!-- END: Top menu -->
+        <ul id="dot-scroll" class="colors-e background-solid"></ul>
+        <div class="overlay-window gallery-overlay colors-g background-95-g" data-overlay-zoom="#work .content">
+            <div class="overlay-control background-90-b">
+                <a class="previos" href="#"></a>
+                <a class="next" href="#"></a>
+                <a class="cross" href="#"></a>
+            </div>
+            <div class="overlay-view"></div>
+            <ul class="loader">
+                <li class="background-highlight-e"></li>
+                <li class="background-highlight-e"></li>
+                <li class="background-highlight-e"></li>
             </ul>
-        </li>
-    </ul>
-</nav>
-<!-- END: Top Menu -->
-<!-- BEGIN: Content -->
-<div class="content">
+        </div>
+        <div class="overlay-window map-overlay colors-h background-75-h">
+            <div class="overlay-control background-90-g">
+                <a class="cross" href="#"></a>
+            </div>
+            <div class="overlay-view">
+                <div class="map-canvas" data-latitude="42.487606" data-longitude="-71.115661" data-zoom="14">
+                    <div class="map-marker" data-latitude="42.487606" data-longitude="-71.115661" data-text="Our awesome location"></div>
+                    <div class="map-marker" data-latitude="42.485100" data-longitude="-71.113256" data-text="Our sales office"></div>
+                </div>
+            </div>
+        </div>
+        <div class="overlay-window credits-overlay colors-g background-95-g">
+            <div class="overlay-control background-90-b">
+                <a class="cross" href="#"></a>
+            </div>
+            <div class="overlay-view">
+                <div class="content-container">
+                    <h3>Credits</h3>
+                    <ul>
+                        <li>
+                            Photos by:
+                            <ul>
+                                <li><a target="_blank" href="https://www.flickr.com/photos/katya_alagich/">Katya Alagich</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
+                                <li><a target="_blank" href="https://www.flickr.com/photos/65047661@N00/">Jim Lukach</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
+                                <li><a target="_blank" href="https://www.flickr.com/photos/johanl/">Johan Larsson</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
+                                <li><a target="_blank" href="https://www.flickr.com/photos/johny/">John Kraus</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
+                                <li><a target="_blank" href="https://www.flickr.com/photos/geishaboy500/">THOR</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
+                                <li><a target="_blank" href="https://www.flickr.com/photos/stf-o/">stephane</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
+                                <li><a target="_blank" href="http://www.pexels.com/">Pexels</a>, <a target="_blank" href="http://www.pexels.com/photo-license/">CC0 License</a></li>
+                                <li><a target="_blank" href="https://stocksnap.io/">Stocksnap</a>, <a target="_blank" href="https://stocksnap.io/license">CC0 License</a></li>
+                                <li><a target="_blank" href="http://picjumbo.com/">Picjumbo</a>, <a target="_blank" href="http://picjumbo.com/about-author/">Picjumbo License</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            Video by:
+                            <ul>
+                                <li><a target="_blank" href="http://mazwai.com/">Mazwai</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0 License</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            Icons by:
+                            <ul>
+                                <li><a target="_blank" href="http://designmodo.com/">Designmodoh</a>, <a target="_blank" href="http://designmodo.com/linecons-free/">License</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="gate colors-e background-solid">
+            <div class="gate-bar background-heading-e"></div>
+            <ul class="loader">
+                <li class="background-heading-e"></li>
+                <li class="background-heading-e"></li>
+                <li class="background-heading-e"></li>
+            </ul>
+        </div>
 
-    <div class="grid grid-cols-12 gap-6">
-        <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
-            <!-- BEGIN: General Report -->
-            <div class="col-span-12 mt-8">
-                <div class="grid grid-cols-12 gap-6 mt-5">
+        <!-- BEGIN: Page content -->
+        <section id="home">
+            <div class="view">
 
-                    <div class="col-span-12 sm:col-span-3 xl:col-span-4 intro-y"></div>
-                    <!-- ADD A GAME >>>>>> -->
-                    <div id="blockAddGame" class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y animate__animated" style="display: none">
-                       <div class="report-box zoom-in">
-                            <div class="box p-5">
-                                <div class="text-center">
-                                    <div id="directiveAddGame" class="text-3xl font-bold leading-8">Ajouter une partie<i class="float-right" data-feather="mouse-pointer"></i></div>
-                                </div>
-                            </div>
+                <img alt class="bg" src="https://images4.alphacoders.com/418/41814.jpg" /><img alt class="bg" src="https://images.alphacoders.com/794/79423.jpg" /><img alt class="bg" src="https://images6.alphacoders.com/449/449381.jpg" />
+                <div class="content formAddGameContent contentUserPage home-suzi full-size colors-h background-3">
+                    <div class="container">
+                        <div class="show-list slogan titleUserPage bg-warning">
+                            <div class="show-item">Ajouter une partie</div>
                         </div>
-                    </div>
-                    <!-- ROOMS ???? -->
-                    <div id="blockAddGameRoom" class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y animate__animated" style="display: block">
-                        <div class="report-box zoom-in">
-                            <div class="box p-5">
-                                <div class="text-center">
-                                    <div id="directiveAddGame" class="tooltip text-3xl font-bold leading-8" title="This is awesome tooltip example!">Sur quelle salle ajouter une partie ?</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="blockRooms" class="col-span-12 intro-y animate__animated" style="display: block">
-                            <div class="center d-flex flex-wrap">
-                                {% for room in rooms %}
-                                <div class="property-card ml-1 mr-1">
-                                    <a onclick="addRoom({{ room.id }})" href="#">
-                                        <div class="property-image" style="background-image:url('/assets/logosRooms/{{ room.logo }}');">
-                                        </div></a>
-                                    <div class="property-description">
-                                        <h5> {{ room.name}} </h5>
-                                        <p>{{ room.nameSpinAndGo }}</p>
+
+                        <div class="formAddGame">
+                            <!-- ADD A GAME >>>>>> -->
+                            <div id="blockAddGame" class="animated" style="display: none">
+                                <div class="report-box zoom-in">
+                                    <div class="box p-5">
+                                        <div class="text-center">
+                                            <div id="directiveAddGame" class="text-3xl font-bold leading-8">Ajouter une partie<i class="float-right" data-feather="mouse-pointer"></i></div>
+                                        </div>
                                     </div>
                                 </div>
-                                {% endfor %}
                             </div>
-                    </div>
+                            <!-- ROOMS ???? -->
+                            <div id="blockAddGameRoom" class="animated" style="display: block">
 
-                    <!-- BUY IN OF ROOM ???? -->
-                    <div id="blockAddBuyIn" class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y animate__animated" style="display: none">
-                        <div class="report-box zoom-in">
-                            <div class="box p-5">
-                                <div class="text-center">
-                                    <div id="directiveAddGame" class="text-3xl font-bold leading-8">Quel Buy In ? (prix du Spin And Go)</div>
+                            <div class="text-center" style="margin-bottom: 50px">
+                                <div id="directiveAddGame" class="question">SUR QUELLE SALLE AJOUTER UNE PARTIE ?</div>
+                            </div>
+
+                            </div>
+                            <div id="blockRooms" class="animated" style="display: block">
+                                <div class="center" style="display: flex; flex-wrap: wrap">
+                                    {% for room in rooms %}
+                                        <div class="property-card ml-1 mr-1" style="margin: 30px">
+                                            <a onclick="addRoom({{ room.id }})" href="#">
+                                                <div class="property-image" style="background-image:url('/assets/logosRooms/{{ room.logo }}');">
+                                                </div></a>
+                                            <div class="property-description">
+                                                <h5> {{ room.name}} </h5>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <!-- BUY IN OF ROOM ???? -->
+                            <div id="blockAddBuyIn" class="animated" style="display: none">
+                                <div class="report-box zoom-in">
+                                    <div class="box p-5">
+                                        <div class="text-center">
+                                            <div id="directiveAddGame" class="question">Quel Buy In ? (prix du Spin And Go)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="blockBuyIn" class="animated" style="display: none">
+                                <div class="center d-flex flex-wrap justify">
+                                    <!-- LOOP BUY IN  --- MEMO = add : onclick="addRoom(buyInId) -->
+                                    <div id="buyButtons" class="multi-button">
+                                        <!-- Buttons of buy ins -->
+                                    </div>
+                                    <!-- END LOOP BUY IN -->
+                                </div>
+                            </div>
+
+                            <!-- MULTIPLICATOR OF BUY IN ???? -->
+                            <div id="blockAddMultiplicator" class="animated" style="display: none">
+                                <div class="report-box zoom-in">
+                                    <div class="box p-5">
+                                        <div class="text-center">
+                                            <div id="directiveAddGame" class="question">Quel multiplicateur ?</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="blockMultiplicator" class="animated" style="display: none">
+                                <div class="center d-flex flex-wrap justify">
+                                    <!-- LOOP BUY IN  --- MEMO = add : onclick="addRoom(multiplicatorId) -->
+                                    <div id="multiplicatorButtons" class="multi-button">
+                                        <!-- Buttons of buy ins -->
+                                    </div>
+                                    <!-- END LOOP BUY IN -->
+                                </div>
+                            </div>
+
+                            <!-- RANKED OF MULTIPLICATOR ???? -->
+                            <div id="blockAddRanked" class="animated" style="display: none">
+                                <div class="report-box zoom-in">
+                                    <div class="box p-5">
+                                        <div class="text-center">
+                                            <div id="directiveAddGame" class="question">A quelle position as-tu terminé ?</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="blockRanked" class="animated" style="display: none">
+                                <div class="center d-flex flex-wrap justify">
+                                    <!-- LOOP BUY IN  --- MEMO = add : onclick="addRoom(multiplicatorId) -->
+                                    <div id="rankedButtons" class="multi-button">
+                                        <!-- Buttons of buy ins -->
+                                    </div>
+                                    <!-- END LOOP BUY IN -->
+                                </div>
+                            </div>
+
+                            <!-- CONFIRM ADD GAME -->
+                            <div id="blockConfirmAddGame" class="animated" style="display: none">
+                                <div class="report-box zoom-in">
+                                    <div class="box p-5">
+                                        <div class="text-center">
+                                            <div id="directiveAddGame" class="question" style="color: #1C440C; background-color: #c7af8b; padding: 15px">La partie a bien été enregistrée</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="blockConfirmAddGameButton" class="animated mt-4" style="display: none">
+                                <div class="center d-flex flex-wrap justify">
+                                    <!-- LOOP BUY IN  --- MEMO = add : onclick="addRoom(multiplicatorId) -->
+                                    <div id="rankedButtons" class="multi-button">
+                                        <a href="{{ path('user_add_game') }}"><button class="paste" style="color: black">Ajouter une autre partie</button></a>
+                                    </div>
+                                    <!-- END LOOP BUY IN -->
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div id="blockBuyIn" class="col-span-12 intro-y animate__animated" style="display: none">
-                        <div class="center d-flex flex-wrap justify">
-                            <!-- LOOP BUY IN  --- MEMO = add : onclick="addRoom(buyInId) -->
-                            <div id="buyButtons" class="multi-button">
-                                <!-- Buttons of buy ins -->
-                            </div>
-                            <!-- END LOOP BUY IN -->
-                        </div>
-                    </div>
-
-                    <!-- MULTIPLICATOR OF BUY IN ???? -->
-                    <div id="blockAddMultiplicator" class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y animate__animated" style="display: none">
-                        <div class="report-box zoom-in">
-                            <div class="box p-5">
-                                <div class="text-center">
-                                    <div id="directiveAddGame" class="text-3xl font-bold leading-8">Quel multiplicateur ?</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="blockMultiplicator" class="col-span-12 intro-y animate__animated" style="display: none">
-                        <div class="center d-flex flex-wrap justify">
-                            <!-- LOOP BUY IN  --- MEMO = add : onclick="addRoom(multiplicatorId) -->
-                            <div id="multiplicatorButtons" class="multi-button">
-                                <!-- Buttons of buy ins -->
-                            </div>
-                            <!-- END LOOP BUY IN -->
-                        </div>
-                    </div>
-
-                    <!-- RANKED OF MULTIPLICATOR ???? -->
-                    <div id="blockAddRanked" class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y animate__animated" style="display: none">
-                        <div class="report-box zoom-in">
-                            <div class="box p-5">
-                                <div class="text-center">
-                                    <div id="directiveAddGame" class="text-3xl font-bold leading-8">A quelle position as-tu terminé ?</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="blockRanked" class="col-span-12 intro-y animate__animated" style="display: none">
-                        <div class="center d-flex flex-wrap justify">
-                            <!-- LOOP BUY IN  --- MEMO = add : onclick="addRoom(multiplicatorId) -->
-                            <div id="rankedButtons" class="multi-button">
-                                <!-- Buttons of buy ins -->
-                            </div>
-                            <!-- END LOOP BUY IN -->
-                        </div>
-                    </div>
-
-                    <!-- CONFIRM ADD GAME -->
-                    <div id="blockConfirmAddGame" class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y animate__animated" style="display: none">
-                        <div class="report-box zoom-in">
-                            <div class="box p-5">
-                                <div class="text-center">
-                                    <div id="directiveAddGame" class="text-3xl font-bold leading-8" style="color: #1C440C">La partie a bien été enregistrée</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="blockConfirmAddGameButton" class="col-span-12 intro-y animate__animated mt-4" style="display: none">
-                        <div class="center d-flex flex-wrap justify">
-                            <!-- LOOP BUY IN  --- MEMO = add : onclick="addRoom(multiplicatorId) -->
-                            <div id="rankedButtons" class="multi-button">
-                                <a href="{{ path('user_add_game') }}"><button class="paste">Ajouter une autre partie</button></a>
-                            </div>
-                            <!-- END LOOP BUY IN -->
-                        </div>
-                    </div>
 
 
-                    <div class="col-span-12 sm:col-span-3 xl:col-span-4"></div>
-
+                    </div>
                 </div>
-
             </div>
-            <!-- END: General Report -->
-        </div>
-    </div>
-</div>
-<!-- END: Content -->
-<!-- BEGIN: JS Assets-->
-<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-<script src="/assets/ajax.js"></script>
-<script src="/assets/user/js/app.js"></script>
-<script src="/assets/user/js/addGame.js"></script>
-<!-- END: JS Assets-->
-</body>
+        </section>
+        <script>
+            if (typeof(atob) == "undefined")
+            {
+                document.write('<script src="/assets/home/lib/stringencoders-v3.10.3/javascript/base64.js"><\/script>');
+                var atob = function(x)
+                {
+                    return base64.decode(x);
+                }
+            }
+        </script>
+        <script src="/assets/home/bower_components/less.js/dist/less.min.js"></script>
+        <script src="/assets/home/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="/assets/home/lib/tween/tween.min.js"></script>
+        <script src="/assets/home/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/assets/home/lib/modernizr-edited.js"></script>
+        <script src="/assets/home/lib/SmoothScroll-1.4.9/SmoothScroll.js"></script>
+        <script src="/assets/home/bower_components/jquery-cookie/jquery.cookie.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        <script src="/assets/home/bower_components/jqBootstrapValidation/dist/jqBootstrapValidation-1.3.7.min.js"></script>
+        <script src="/assets/home/bower_components/minicolors/jquery.minicolors.min.js"></script>
+        <script src="/assets/home/bower_components/slick.js/slick/slick.min.js"></script>
+        <script src="/assets/home/bower_components/shufflejs/dist/jquery.shuffle.min.js"></script>
+        <script src="/assets/home/bower_components/textillate/assets/jquery.lettering.js"></script>
+        <script src="/assets/home/bower_components/textillate/assets/jquery.fittext.js"></script>
+        <script src="/assets/home/bower_components/textillate/jquery.textillate.js"></script>
+        <script src="/assets/home/lib/prism/prism.js"></script>
+        <script src="/assets/ajax.js"></script>
+        <script src="/assets/user/js/addGame.js"></script>
+
+        <script>
+            (function()
+            {
+                var disableMobileAnimations = true;
+                var isWin = navigator.appVersion.indexOf("Win") !== -1;
+                if (isWin) $('html').addClass('win');
+                var ua = navigator.userAgent.toLowerCase();
+                var isChrome = ua.indexOf('chrome') > -1;
+                if (isChrome) $('html').addClass('chrome');
+                var isAndroidBrowser4_3minus = ((ua.indexOf('mozilla/5.0') > -1 && ua.indexOf('android ') > -1 && ua.indexOf('applewebkit') > -1) && !(ua.indexOf('chrome') > -1));
+                if (isAndroidBrowser4_3minus) $('html').addClass('android-browser-4_3minus');
+                var isSafari = !isChrome && ua.indexOf('safari') !== -1;
+                if (isSafari) $('html').addClass('safari');
+                var isMobile = false; //Change false to Modernizr.touch if you want to disable animations on touchscreen devices;
+                if (isMobile)
+                {
+                    $('html').addClass('mobile');
+                    if (disableMobileAnimations) $('html').addClass('poor-browser');
+                }
+                else
+                {
+                    $('html').addClass('non-mobile');
+                }
+                if (isWin && isSafari)
+                {
+                    $('html').addClass('flat-animation');
+                }
+            })();
+        </script>
+        <script src="/assets/home/scripts/script-bundle.js"></script>
+        <script>
+            if (Function('/*@cc_on return document.documentMode===9@*/')())
+            {
+                $('html').addClass('ie9');
+            }
+            if (Function('/*@cc_on return document.documentMode===10@*/')())
+            {
+                $('html').addClass('ie10');
+            }
+            if (!!navigator.userAgent.match(/Trident.*rv\:11\./))
+            {
+                $('html').addClass('ie11');
+            }
+        </script>
+    </body>
 </html>

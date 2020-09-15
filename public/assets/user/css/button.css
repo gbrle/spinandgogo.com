@@ -10,6 +10,7 @@
 .multi-button button {
 
     background: white;
+    color: black;
     border: 0.125em solid black;
     cursor: pointer;
     font: 600 1.5rem/1.25 'Montserrat', sans-serif;
@@ -18,6 +19,8 @@
     padding: 0.5em 0.75em;
     position: relative;
     text-transform: uppercase;
+    -webkit-box-shadow:  3px 3px 9px #e1e1e3, -3px -3px 9px #ffffff;
+    box-shadow:  3px 3px 9px #e1e1e3, -3px -3px 9px #ffffff;
 }
 .multi-button button:before, .multi-button button:after {
     content: '';
