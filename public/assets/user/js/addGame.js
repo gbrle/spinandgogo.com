@@ -28,8 +28,8 @@ function addRoom(id_room){
     dataAddGame.id_room = id_room;
 
 
-    ajaxPost('/user/user_get_buy_in', id_room, function (response){
-
+    ajaxPost('/user/user_get_buy_in', id_room, function (response, event){
+        document.getElementById('onclickAddRoom').onclick = null;
         let responseBuyIn = JSON.parse(response)
 
         setTimeout(function(){
@@ -57,8 +57,10 @@ function addRoom(id_room){
                 let buyInId = tabBuyInId[i]
                 let buyVAlue = tabBuyInValue[i]
 
+
                 button.onclick = function (){
                     ajaxPost('/user/user_get_multiplicator', buyInId, function (response){
+                        document.getElementById(buyInId).onclick = null;
 
                         let responseMultiplicator = JSON.parse(response)
 
@@ -86,10 +88,15 @@ function addRoom(id_room){
                             for (i = 0; i < tabMultiplicatorId.length; i++) {
                                 let button = document.createElement("button");
                                 button.classList.add('paste')
-                                button.id = tabMultiplicatorId[i]
+                                button.id = 'multiplicator' + tabMultiplicatorId[i]
                                 button.innerText = 'x' + tabMultiplicatorValue[i] + ' (' + (tabMultiplicatorValue[i] * dataAddGame.buy_in_value + '€') + ')'
+
+                                let buttonMultiplicatorId = tabMultiplicatorId[i]
+
                                 button.onclick = function (){
                                     ajaxPost('/user/user_get_ranked', multiplicatorId, function (response){
+                                        document.getElementById('multiplicator' + buttonMultiplicatorId).onclick = null;
+
                                         let responseRanked = JSON.parse(response)
 
                                         dataAddGame.id_multiplicator = multiplicatorId
@@ -117,11 +124,14 @@ function addRoom(id_room){
                                             for (i = 0; i < tabRankedPositions.length; i++) {
                                                 let button = document.createElement("button");
                                                 button.classList.add('paste')
-                                                button.id = tabRankedId[i]
+                                                button.id = 'ranked' + tabRankedId[i]
                                                 button.innerText = tabRankedPositions[i]
+
+                                                let buttonRankedId = tabRankedId[i]
 
                                                 button.onclick = function (){
                                                     ajaxPost('/user/user_create_game', rankedId, function (response){
+                                                        document.getElementById('ranked' + buttonRankedId).onclick = null;
 
                                                          blockAddRanked.classList.add('fadeOutDown')
                                                             blockRanked.classList.add('fadeOutDown')

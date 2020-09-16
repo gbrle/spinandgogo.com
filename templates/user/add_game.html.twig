@@ -247,7 +247,7 @@
                                 <div class="center" style="display: flex; flex-wrap: wrap">
                                     {% for room in rooms %}
                                         <div class="property-card ml-1 mr-1" style="margin: 30px">
-                                            <a onclick="addRoom({{ room.id }})" href="#">
+                                            <a id="onclickAddRoom" onclick="addRoom({{ room.id }})" href="#">
                                                 <div class="property-image" style="background-image:url('/assets/logosRooms/{{ room.logo }}');">
                                                 </div></a>
                                             <div class="property-description">
