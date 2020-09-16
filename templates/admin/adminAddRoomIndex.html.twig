@@ -62,6 +62,7 @@
 
             <div>
                 {{ form_start(formRoom) }}
+                {% form_theme formRoom 'bootstrap_4_layout.html.twig' %}
                 {{ form_row(formRoom.name) }}
                 {{ form_row(formRoom.nameSpinAndGo) }}
                 {{ form_row(formRoom.logo) }}
