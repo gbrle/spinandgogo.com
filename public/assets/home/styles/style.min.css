@@ -4500,7 +4500,7 @@ html {
     .buttonAddGame {
         bottom: 23px;
         font-size: 30px!important;
-        padding: 50px!important;
+        padding: 35px!important;
     }
 }
 @media (max-width: 1250px) {

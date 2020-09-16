@@ -30,45 +30,30 @@
     </head>
     <body class="state1 background-100-e">
         <div class="ext-nav background-95-h page-transition">
-            <div class="view half-height">
-                <img alt class="bg static" src="/assets/home/images/placeholders/1920x1200-2.jpg" />
-                <div class="content no-top-padding no-bottom-padding  full-height">
-                    <div class="container-fluid  full-height">
-                        <div class="row full-height">
-                            <a href="{{ path('app_login') }}" class="col-md-6 colors-a background-95-a full-height">
-                                <div class="text-center">
-                                    <span class="side-label"><i class="li_user"></i></span>
-                                    <span class="side-title">Connexion</span>
-                                </div>
-                            </a>
-                            <a href="help.html" class="col-md-6 colors-f background-95-f full-height">
-                                <div>
-                                    <span class="side-label">Documentation</span>
-                                    <span class="side-title">Help</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="container-fluid  half-height">
                 <div class="row full-height">
-                    <a href="#how-we-work" class="col-md-4 colors-g background-solid full-height border-bottom border-lite">
-                        <div>
-                            <span class="side-label">Awesome</span>
-                            <span class="side-title">How We Work</span>
+                    <a href="#" data-toggle="modal" data-target="#statisticsRooms" class="col-md-4 colors-g background-solid full-height border-bottom border-lite">
+                        <div class="text-center">
+                            <span class="side-label"><i class="fa fa-line-chart" aria-hidden="true"></i></span>
+                            <span class="side-title">Statistiques</span>
                         </div>
                     </a>
                     <a href="#who-we-are" class="col-md-4 colors-g background-solid full-height border-bottom border-left border-lite">
-                        <div>
-                            <span class="side-label">We Are Designers</span>
-                            <span class="side-title">Who We Are</span>
+                        <div class="text-center">
+                            <span class="side-label"><i class="fa fa-list" aria-hidden="true"></i></span>
+                            <span class="side-title">Mes parties</span>
                         </div>
                     </a>
-                    <a href="#numbers" class="col-md-4 colors-g background-solid full-height border-bottom border-left border-lite">
-                        <div>
-                            <span class="side-label">Some Facts</span>
-                            <span class="side-title">Our Numbers</span>
+                    <a href="#" data-toggle="modal" data-target="#myAccount" class="col-md-6 colors-a background-95-a full-height">
+                        <div class="text-center">
+                            <span class="side-label"><i class="fa fa-user" aria-hidden="true"></i></span>
+                            <span class="side-title">Mon compte</span>
+                        </div>
+                    </a>
+                    <a href="{{path('app_logout')}}" class="col-md-4 colors-g background-solid full-height border-bottom border-left border-lite">
+                        <div class="text-center">
+                            <span class="side-label"><i class="fa fa-list" aria-hidden="true"></i></span>
+                            <span class="side-title">Se déconnecter</span>
                         </div>
                     </a>
                 </div>
@@ -93,7 +78,7 @@
                 <div class="navbar-header">
                     <a class="menu-toggle ext-nav-toggle visible-xs-block" data-target=".ext-nav" href="#"><span></span></a>
                     {#                    <a class="menu-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" href="#"><span></span></a>#}
-                    <a class="navbar-brand" href="/">SpinAnd<span class="highlight">GoGo</span> <i class="fa fa-trophy" aria-hidden="true"></i></a>
+                    <a class="navbar-brand" href="{{ path('user_home') }}">SpinAnd<span class="highlight">GoGo</span> <i class="fa fa-trophy" aria-hidden="true"></i></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
