@@ -27,6 +27,14 @@
         <link rel="apple-touch-icon" sizes="152x152" href="/assets/home/apple-touch-icon-152x152.png" />
     </head>
     <body class="state1 background-100-e">
+    <!-- Inscription pop up -->
+    <div id="popUpInscription" class="popUpInscription">
+        <a href="{{ path('app_registration') }}" style="min-width: 200px;margin-right: 10px; margin-left: 10px" class="animated bounceInLeft button background-60-f heading-f border-hard">Créer mon compte</a>
+    </div>
+    <!-- End Inscription pop up -->
+
+
+
         <div class="ext-nav background-95-h page-transition">
             <div class="view half-height">
                 <img alt class="bg static" src="/assets/home/images/placeholders/1920x1200-2.jpg" />
@@ -35,14 +43,14 @@
                         <div class="row full-height">
                             <a href="{{ path('app_login') }}" class="col-md-6 colors-a background-95-a full-height">
                                 <div class="text-center">
-                                    <span class="side-label"><i class="li_user"></i></span>
-                                    <span class="side-title">Connexion</span>
+                                    <span class="side-label"><i class="fa fa-user fa-3x" aria-hidden="true"></i></span>
+                                    <span class="side-title">Se connecter</span>
                                 </div>
                             </a>
-                            <a href="help.html" class="col-md-6 colors-f background-95-f full-height">
-                                <div>
-                                    <span class="side-label">Documentation</span>
-                                    <span class="side-title">Help</span>
+                            <a href="#" class="col-md-6 colors-f background-95-f full-height">
+                                <div class="text-center">
+                                    <span class="side-label"><i class="fa fa-outdent fa-3x" aria-hidden="true"></i></span>
+                                    <span class="side-title">Blog</span>
                                 </div>
                             </a>
                         </div>
@@ -98,15 +106,15 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#home" class="hover-effect">Acceuil</a></li>
-                        <li><a href="#about" class="hover-effect">About</a></li>
-                        <li><a href="#team" class="hover-effect">Team</a></li>
+{#                      <li><a href="#home" class="hover-effect">Acceuil</a></li>#}
+                        <li><a href="#about" class="hover-effect">C'est quoi ?</a></li>
+                        <li><a href="#pokerRoom" class="hover-effect">Salle de poker</a></li>
                         <li><a href="#services" class="hover-effect">Services</a></li>
                         <li><a href="#work" class="hover-effect">Work</a></li>
                         {% if app.user %}
                             <li><a href="{{ path('user_home') }}" class="hover-effect">Mon compte <i class="li_user"></i></a></li>
                         {% else %}
-                            <li><a href="{{ path('app_login') }}" class="hover-effect">Se connecter <i class="li_user"></i></a></li>
+                            <li><a href="{{ path('app_login') }}" class="hover-effect" style="color: white">Se connecter <i class="li_user"></i></a></li>
                         {% endif %}
 {#                      <li class="hidden-xs"><a class="menu-toggle ext-nav-toggle" data-target=".ext-nav" href="#"><span></span></a></li>#}
                     </ul>
@@ -185,6 +193,38 @@
                 <li class="background-heading-e"></li>
             </ul>
         </div>
+        <!-- Affiliate Pop Up -->
+        <div class="modal fade text-center" id="affiliateModal" style="background-color: rgba(255,255,255, 0.1)">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" style="background-color: white">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Nos avantages</h4>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="col-md-4">
+                            ascasc
+                        </div>
+                        <div class="col-md-4">
+                            ascac
+                        </div>
+                        <div class="col-md-4">
+                            ascac
+                        </div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End Affiliate Pop Up -->
         <!-- BEGIN: Page content -->
         <section id="home">
             <div class="view">
@@ -197,13 +237,7 @@
                         <h2 style="margin: 0"><span class="thin-font-weight">Gère <span class="highlight">Ton</span></span></h2>
                         <h1 style="margin: 0">Poker<span class="highlight thin-font-weight"> EN</span></h1>
                         <h2 style="margin: 0"><span class="thin-font-weight">Spin <span class="highlight">And</span> GO</span></h2>
-{#                        <div class="row">#}
-{#                            <div class="col-md-4 col-md-offset-4">#}
-{#                                <p class="title text-center">#}
-{#                                    Integer ligula ante, posuere et ante quis, eleifend eleifend ipsum. In sed odio mi vivamus dapibus gravida.#}
-{#                                </p>#}
-{#                            </div>#}
-{#                        </div>#}
+
                         <p style="margin-top: 40px" class="text-center">
                             <a href="#about" style="min-width: 200px;margin-right: 10px; margin-left: 10px" class="animated bounceInLeft button background-60-f heading-f border-hard">En savoir plus</a>
                             <a href="{{ path('app_registration') }}" style="min-width: 200px;margin-right: 10px; margin-left: 10px" class="animated bounceInRight button background-60-f heading-f border-hard">Créer mon compte</a>
@@ -213,135 +247,60 @@
             </div>
         </section>
         <section id="about">
-{#            <div class="view">#}
-{#                <img alt class="bg" src="/assets/home/images/placeholders/1920x1200-2.jpg" />#}
-{#                <div class="content pane">#}
-{#                    <div class="container-fluid">#}
-{#                        <div class="row hidden-xs hidden-sm">#}
-{#                            <div class="col-md-4 colors-b">#}
-{#                                <div class="row">#}
-{#                                    <div class="col-xs-12 banner-cell">#}
-{#                                        <h3 class="light-font-weight">Responsive</h3>#}
-{#                                        <p class="title">Layout</p>#}
-{#                                    </div>#}
-{#                                    <div class="col-xs-12 success heading-b banner-cell">#}
-{#                                        Responsive Styling#}
-{#                                        <br /> Retina Ready#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                            <div class="col-md-4 colors-c">#}
-{#                                <div class="row">#}
-{#                                    <div class="col-xs-12 banner-cell">#}
-{#                                        <h3 class="light-font-weight">Parallax</h3>#}
-{#                                        <p class="title">Effects</p>#}
-{#                                    </div>#}
-{#                                    <div class="col-xs-12 warning heading-c banner-cell">#}
-{#                                        Highly Optimized#}
-{#                                        <br /> Smooth Animations#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                            <div class="col-md-4 colors-d">#}
-{#                                <div class="row">#}
-{#                                    <div class="col-xs-12 banner-cell">#}
-{#                                        <h3 class="light-font-weight">Bootstrap</h3>#}
-{#                                        <p class="title">Framework</p>#}
-{#                                    </div>#}
-{#                                    <div class="col-xs-12 info heading-d banner-cell">#}
-{#                                        Adapted for Multicolor Sections#}
-{#                                        <br /> Highly Customized#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
             <div class="view">
                 <div class="content colors-e background-solid">
                     <div class="container">
-                        <h2>SpinAndGoGo</h2>
-                        <h4 class="text-center">C'est quoi ?</h4>
-                        <p class="header-details"><span class="highlight">We Create</span> Awesome Stuff</p>
-                        <p class="lead">We are <span class="highlight">Creative Team</span> located in Kalura, Bovlandia. Tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="col-icon">
-                                    <i class="li_bulb"></i>
-                                </div>
-                                <div class="col-content">
-                                    <h4>Web <span class="highlight">Development</span></h4>
-                                    <p>Praesent sodales, quam vitae gravida interdum, ex mi bibendum enim, sit amet tristique mi quam vel odio. Donec non nunc condimentum, hendrerit elit sed, condimentum magna. Suspendisse imperdiet purus vel ornare cursus.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="col-icon">
-                                    <i class="li_t-shirt"></i>
-                                </div>
-                                <div class="col-content">
-                                    <h4>Internet <span class="highlight">Marketing</span></h4>
-                                    <p>Curabitur et diam elementum, mollis tortor a, malesuada turpis. Vivamus gravida, justo et molestie sollicitudin, erat lorem tempus eros, vel laoreet nibh urna ac nunc, vestibulum neque vitae pellentesque efficitur.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="col-icon">
-                                    <i class="li_megaphone"></i>
-                                </div>
-                                <div class="col-content">
-                                    <h4>Client <span class="highlight">Support</span></h4>
-                                    <p>Sed porta erat vel ipsum maximus, eget maximus est maximus. Maecenas at venenatis nibh, sit amet suscipit odio. In feugiat vehicula dui. In felis enim, maximus a dolor semper efficitur elit euismod magna quis commodo.</p>
-                                </div>
-                            </div>
-                        </div>
+                        <h2>Spin <span class="highlight">And </span> GoGo</h2>
+                        <h4 class="text-center highlight" style="margin-bottom: 30px">C'est quoi ?</h4>
+                        <h4 class="text-center"><i class="fa fa-chevron-down fa-2x" aria-hidden="true"></i></h4>
                     </div>
                 </div>
             </div>
             <div class="view" id="how-we-work">
-                <img alt class="bg" src="/assets/home/images/placeholders/1920x1200-0.jpg" /><img alt class="bg" src="/assets/home/images/placeholders/1920x1200-1.jpg" />
-                <div class="content colors-h">
+                <img alt class="bg" src="https://a-static.besthdwallpaper.com/points-d-interrogation-3d-fond-d-ecran-1920x1200-55034_6.jpg" /><img alt class="bg" src="https://a-static.besthdwallpaper.com/points-d-interrogation-3d-fond-d-ecran-1920x1200-55034_6.jpg" />
+                <div class="content colors-c">
                     <div class="container">
-                        <h3><span class="highlight">How</span> We Work</h3>
-                        <div class="row">
-                            <div class="col-md-6 col-md-offset-3">
-                                <p class="text-center">Aliquam fermentum massa ac est sollicitudin, at ultricies ligula tristique. Cras finibus, nulla ac convallis feugiat, nisl nisl lobortis est, eget auctor velit magna vel nunc. Donec nec eros rhoncus.</p>
+                        <p class="lead">A l'heure ou les salles de <strong class="highlight">poker</strong> interdissent les traqueurs sur
+                            leurs plateformes, les moyens de tenir ses statistiques en ligne n'est plus aussi simple.
+                            <br><br>
+                            <a>SpinAnd<span class="highlight">GoGo</span> <i class="fa fa-trophy" aria-hidden="true"></i></a>
+                            se spécialise sur le format "Spin & Go" qui n'est acctuellement plus traqué sur plusieurs sites de poker et
+                            vous propose par le billet de quelques cliques d'entrer vos parties via une interface utilisateur simple et rapide.
+                        </p>
+                        <h3 style="margin-bottom: 45px"><span class="highlight">Comment ça</span> marche ?</h3>
+
+                        <div class="process">
+                            <div class="row process-row">
+                                <div class="col-md-4 process-step">
+                                    <div class="process-box"><strong class="fa-stack-1x heading">1</strong></div>
+                                    <p class="title">Crée ton compte</p>
+                                </div>
+                                <div class="col-md-4 process-step">
+                                    <div class="process-box"><strong class="fa-stack-1x heading">2</strong></div>
+                                    <p class="title">Joue une partie</p>
+                                </div>
+                                <div class="col-md-4 process-step">
+                                    <div class="process-box"><strong class="fa-stack-1x heading">3</strong></div>
+                                    <p class="title">Entre ton résultat</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="row icon-set">
-                            <div class="col-md-3 text-center">
-                                <p>
-                                    <i class="li_eye circle scroll-in-animation background-20 heading" data-animation="fadeInUp"></i>
-                                </p>
-                                <p class="title"><span class="underline-text">Awesome</span></p>
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <p>
-                                    <i class="li_like circle scroll-in-animation background-20 heading" data-animation="fadeInUp"></i>
-                                </p>
-                                <p class="title"><span class="underline-text">Innovative</span></p>
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <p>
-                                    <i class="li_paperplane circle scroll-in-animation background-20 heading" data-animation="fadeInUp"></i>
-                                </p>
-                                <p class="title"><span class="underline-text">Creative</span></p>
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <p>
-                                    <i class="li_lab circle scroll-in-animation background-20 heading" data-animation="fadeInUp"></i>
-                                </p>
-                                <p class="title"><span class="underline-text">Experimental</span></p>
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                            </div>
-                        </div>
+
+                        <h3 style="margin-bottom: 45px">Et <span class="highlight">alors ?</span></h3>
+
+                        <p class="lead">
+                            Tes statistique se forment au fur et amesure que tu entres tes partie.
+                            Retrouve alors une courbe d'évolution, ton ROI, le nombre de tes parties, ton bénéfice, l'ITM ... et ce, par
+                            salle de poker ou globalement.
+                            <br><br>
+                            Tu reçevera une information sur le style de jeu à adopter à chaque connexion sur ton compte, des bases de gestion
+                            de bankroll pour ne pas finir solde out !
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
-        <section id="team">
+        <section id="pokerRoom">
             <div class="view">
                 <div class="content colors-e background-solid">
                     <div class="container">
@@ -925,6 +884,8 @@
         <script src="/assets/home/bower_components/textillate/assets/jquery.fittext.js"></script>
         <script src="/assets/home/bower_components/textillate/jquery.textillate.js"></script>
         <script src="/assets/home/lib/prism/prism.js"></script>
+    <script src="/assets/home/scripts/scroolInscriptionPopUp.js"></script>
+    <script src="/assets/home/scripts/affiliatePopUp.js"></script>
         <script>
             (function()
             {

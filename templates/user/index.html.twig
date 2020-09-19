@@ -61,13 +61,7 @@
 
 </div>
 <div class="page-border left colors-e background-solid">
-    {#    <ul>#}
-    {#        <li><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>#}
-    {#        <li><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>#}
-    {#        <li><a href="http://www.youtube.com/" target="_blank"><i class="fa fa-youtube"></i></a></li>#}
-    {#        <li><a href="https://vimeo.com/" target="_blank"><i class="fa fa-vimeo-square"></i></a></li>#}
-    {#        <li><a href="http://www.skype.com/" target="_blank"><i class="fa fa-skype"></i></a></li>#}
-    {#    </ul>#}
+
 </div>
 <!-- BEGIN: Top menu -->
 <div class="page-border right colors-e background-solid"></div>
@@ -75,7 +69,6 @@
     <div class="container">
         <div class="navbar-header">
             <a class="menu-toggle ext-nav-toggle visible-xs-block" data-target=".ext-nav" href="#"><span></span></a>
-            {#                    <a class="menu-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" href="#"><span></span></a>#}
             <a class="navbar-brand" href="{{ path('user_home') }}">SpinAnd<span class="highlight">GoGo</span> <i class="fa fa-trophy" aria-hidden="true"></i></a>
         </div>
         <div class="collapse navbar-collapse">
@@ -83,7 +76,6 @@
                 <li><a href="#" data-toggle="modal" data-target="#statisticsRooms" class="hover-effect">Statistiques</a></li>
                 <li><a href="#work" class="hover-effect">Mes parties</a></li>
                 <li><a href="#" data-toggle="modal" data-target="#myAccount" class="hover-effect"><i class="li_user"></i> Mon compte <span style="font-size: 10px; color: white">({{ app.user.firstname }} {{ app.user.lastname }})</span></a></li>
-                {#                      <li class="hidden-xs"><a class="menu-toggle ext-nav-toggle" data-target=".ext-nav" href="#"><span></span></a></li>#}
             </ul>
         </div>
     </div>
@@ -195,7 +187,6 @@
         <li class="background-heading-e"></li>
     </ul>
 </div>
-
 <!-- BEGIN: Page content -->
 <section id="home">
     <a href="{{ path('user_add_game') }}" class="buttonAddGame button background-b highlight-b">Ajouter une partie</a>
@@ -207,8 +198,47 @@
                 <div class="show-list slogan titleUserPage bg-warning">
                     <div class="show-item">Statistiques globales</div>
                 </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4 style="color: white">Courbe de progression</h4>
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 style="color: white">Dernières parties</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">Date</th>
+                                    <th class="text-center">Buy-in</th>
+                                    <th class="text-right">Gain</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for game in games |reverse | slice(0, 6) %}
+                                {% if game.price != 0 %}
+                                    <tr class="success">
+                                        <td class="text-left">{{ game.createdAt|date("d/m/Y") }}</td>
+                                        <td class="text-center">{{ game.buyIn }} €</td>
+                                        <td class="text-right">{{ game.price - game.buyIn }} € <i class="fa fa-check" aria-hidden="true"></i></td>
+                                    </tr>
+                                {% else %}
+                                    <tr class="danger">
+                                        <td class="text-left">{{ game.createdAt|date("d/m/Y") }}</td>
+                                        <td class="text-center">{{ game.buyIn }} €</td>
+                                        <td class="text-right">{{ game.price - game.buyIn }} € <i class="fa fa-times" aria-hidden="true"></i></td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <div class="text-right">
+                            <a href="#" class="button background-g highlight-g">Voir tout</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row counters" style="margin-bottom: 80px; margin-right: 15px; margin-left: 15px">
+                    <h4 style="color: white;">Statistiques</h4>
 
-                <div class="row counters">
                     <div class="col-md-3 counter background-35-b">
                         <div>Parties jouées</div>
                         <div id="nbreGame" class="row heading background-10-light" style="font-size: 40px"></div><span class="caption">parties</span>
@@ -225,715 +255,20 @@
                         <div>Buy-in moyens</div>
                         <div id="buyInMoy" class="player row heading background-10-light" style="font-size: 40px">7</div><span class="caption">€</span>
                     </div>
+                    <div class="col-md-6 counter background-35-b">
+                        <div>ITM</div>
+                        <div class="player row heading background-10-light" style="font-size: 40px">111</div><span>%</span>
+                    </div>
+                    <div class="col-md-6 counter background-35-h">
+                        <div>Buy-in moyens</div>
+                        <div class="player row heading background-10-light" style="font-size: 40px">7</div><span>€</span>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="row counters">
-                            <div class="col-md-6 counter background-35-b">
-                                <div class="caption">ROI</div>
-                                <div class="count player row heading background-10-light">111</div><span>%</span>
-                            </div>
-                            <div class="col-md-6 counter background-35-h">
-                                <div class="caption">Buy-in moyens</div>
-                                <div class="count player row heading background-10-light">7</div><span>€</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <canvas id="myChart" width="300" height="200"></canvas>
-                    </div>
 
-                </div>
             </div>
         </div>
     </div>
 </section>
-{#<section id="about">#}
-    {#            <div class="view">#}
-    {#                <img alt class="bg" src="/assets/home/images/placeholders/1920x1200-2.jpg" />#}
-    {#                <div class="content pane">#}
-    {#                    <div class="container-fluid">#}
-    {#                        <div class="row hidden-xs hidden-sm">#}
-    {#                            <div class="col-md-4 colors-b">#}
-    {#                                <div class="row">#}
-    {#                                    <div class="col-xs-12 banner-cell">#}
-    {#                                        <h3 class="light-font-weight">Responsive</h3>#}
-    {#                                        <p class="title">Layout</p>#}
-    {#                                    </div>#}
-    {#                                    <div class="col-xs-12 success heading-b banner-cell">#}
-    {#                                        Responsive Styling#}
-    {#                                        <br /> Retina Ready#}
-    {#                                    </div>#}
-    {#                                </div>#}
-    {#                            </div>#}
-    {#                            <div class="col-md-4 colors-c">#}
-    {#                                <div class="row">#}
-    {#                                    <div class="col-xs-12 banner-cell">#}
-    {#                                        <h3 class="light-font-weight">Parallax</h3>#}
-    {#                                        <p class="title">Effects</p>#}
-    {#                                    </div>#}
-    {#                                    <div class="col-xs-12 warning heading-c banner-cell">#}
-    {#                                        Highly Optimized#}
-    {#                                        <br /> Smooth Animations#}
-    {#                                    </div>#}
-    {#                                </div>#}
-    {#                            </div>#}
-    {#                            <div class="col-md-4 colors-d">#}
-    {#                                <div class="row">#}
-    {#                                    <div class="col-xs-12 banner-cell">#}
-    {#                                        <h3 class="light-font-weight">Bootstrap</h3>#}
-    {#                                        <p class="title">Framework</p>#}
-    {#                                    </div>#}
-    {#                                    <div class="col-xs-12 info heading-d banner-cell">#}
-    {#                                        Adapted for Multicolor Sections#}
-    {#                                        <br /> Highly Customized#}
-    {#                                    </div>#}
-    {#                                </div>#}
-    {#                            </div>#}
-    {#                        </div>#}
-    {#                    </div>#}
-    {#                </div>#}
-    {#            </div>#}
-{#    <div class="view">#}
-{#        <div class="content colors-e background-solid">#}
-{#            <div class="container">#}
-{#                <h2>About</h2>#}
-{#                <p class="header-details"><span class="highlight">We Create</span> Awesome Stuff</p>#}
-{#                <p class="lead">We are <span class="highlight">Creative Team</span> located in Kalura, Bovlandia. Tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>#}
-{#                <div class="row">#}
-{#                    <div class="col-md-4">#}
-{#                        <div class="col-icon">#}
-{#                            <i class="li_bulb"></i>#}
-{#                        </div>#}
-{#                        <div class="col-content">#}
-{#                            <h4>Web <span class="highlight">Development</span></h4>#}
-{#                            <p>Praesent sodales, quam vitae gravida interdum, ex mi bibendum enim, sit amet tristique mi quam vel odio. Donec non nunc condimentum, hendrerit elit sed, condimentum magna. Suspendisse imperdiet purus vel ornare cursus.</p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="col-md-4">#}
-{#                        <div class="col-icon">#}
-{#                            <i class="li_t-shirt"></i>#}
-{#                        </div>#}
-{#                        <div class="col-content">#}
-{#                            <h4>Internet <span class="highlight">Marketing</span></h4>#}
-{#                            <p>Curabitur et diam elementum, mollis tortor a, malesuada turpis. Vivamus gravida, justo et molestie sollicitudin, erat lorem tempus eros, vel laoreet nibh urna ac nunc, vestibulum neque vitae pellentesque efficitur.</p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="col-md-4">#}
-{#                        <div class="col-icon">#}
-{#                            <i class="li_megaphone"></i>#}
-{#                        </div>#}
-{#                        <div class="col-content">#}
-{#                            <h4>Client <span class="highlight">Support</span></h4>#}
-{#                            <p>Sed porta erat vel ipsum maximus, eget maximus est maximus. Maecenas at venenatis nibh, sit amet suscipit odio. In feugiat vehicula dui. In felis enim, maximus a dolor semper efficitur elit euismod magna quis commodo.</p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="view" id="how-we-work">#}
-{#        <img alt class="bg" src="/assets/home/images/placeholders/1920x1200-0.jpg" /><img alt class="bg" src="/assets/home/images/placeholders/1920x1200-1.jpg" />#}
-{#        <div class="content colors-h">#}
-{#            <div class="container">#}
-{#                <h3><span class="highlight">How</span> We Work</h3>#}
-{#                <div class="row">#}
-{#                    <div class="col-md-6 col-md-offset-3">#}
-{#                        <p class="text-center">Aliquam fermentum massa ac est sollicitudin, at ultricies ligula tristique. Cras finibus, nulla ac convallis feugiat, nisl nisl lobortis est, eget auctor velit magna vel nunc. Donec nec eros rhoncus.</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="row icon-set">#}
-{#                    <div class="col-md-3 text-center">#}
-{#                        <p>#}
-{#                            <i class="li_eye circle scroll-in-animation background-20 heading" data-animation="fadeInUp"></i>#}
-{#                        </p>#}
-{#                        <p class="title"><span class="underline-text">Awesome</span></p>#}
-{#                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>#}
-{#                    </div>#}
-{#                    <div class="col-md-3 text-center">#}
-{#                        <p>#}
-{#                            <i class="li_like circle scroll-in-animation background-20 heading" data-animation="fadeInUp"></i>#}
-{#                        </p>#}
-{#                        <p class="title"><span class="underline-text">Innovative</span></p>#}
-{#                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>#}
-{#                    </div>#}
-{#                    <div class="col-md-3 text-center">#}
-{#                        <p>#}
-{#                            <i class="li_paperplane circle scroll-in-animation background-20 heading" data-animation="fadeInUp"></i>#}
-{#                        </p>#}
-{#                        <p class="title"><span class="underline-text">Creative</span></p>#}
-{#                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>#}
-{#                    </div>#}
-{#                    <div class="col-md-3 text-center">#}
-{#                        <p>#}
-{#                            <i class="li_lab circle scroll-in-animation background-20 heading" data-animation="fadeInUp"></i>#}
-{#                        </p>#}
-{#                        <p class="title"><span class="underline-text">Experimental</span></p>#}
-{#                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</section>#}
-{#<section id="team">#}
-{#    <div class="view">#}
-{#        <div class="content colors-e background-solid">#}
-{#            <div class="container">#}
-{#                <h2>Team</h2>#}
-{#                <p class="header-details"><span class="highlight">Who </span>We Are</p>#}
-{#                <p class="lead">Our success depends on the <strong class="highlight">strength of our team.</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, nostrud exercitation.</p>#}
-{#                <div class="row">#}
-{#                    <div class="col-md-3 col-sm-6  col-xs-6">#}
-{#                        <div class="hover-overlay">#}
-{#                            <img alt="Mike Johnson" src="/assets/home/images/placeholders/380x573-1.jpg" title="Mike Johnson" class="fluid-width">#}
-{#                            <div class="overlay background-90-b">#}
-{#                                <div>#}
-{#                                    <p class="text-center text-uppercase heading-b">#}
-{#                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.#}
-{#                                    </p>#}
-{#                                    <div class="separator-small"></div>#}
-{#                                    <p class="text-center">#}
-{#                                        <a target="_blank" href="https://www.facebook.com/"><i class="fa fa-facebook heading-b"></i></a>#}
-{#                                        <a target="_blank" href="http://www.youtube.com/"><i class="fa fa-youtube heading-b"></i></a>#}
-{#                                        <a target="_blank" href="https://github.com/"><i class="fa fa-github heading-b"></i></a>#}
-{#                                    </p>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <div class="caption">#}
-{#                            <p>#}
-{#                                <span class="title">Mike Johnson</span>#}
-{#                                <br/>#}
-{#                                <span class="highlight">CEO &amp; Founder</span>#}
-{#                            </p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="col-md-3 col-sm-6  col-xs-6">#}
-{#                        <div class="hover-overlay">#}
-{#                            <img alt="Jessica Specter" src="/assets/home/images/placeholders/380x573-1.jpg" title="Jessica Specter" class="fluid-width">#}
-{#                            <div class="overlay background-90-b">#}
-{#                                <div>#}
-{#                                    <p class="text-center text-uppercase heading-b">#}
-{#                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.#}
-{#                                    </p>#}
-{#                                    <div class="separator-small"></div>#}
-{#                                    <p class="text-center">#}
-{#                                        <a target="_blank" href="https://twitter.com/"><i class="fa fa-twitter heading-b"></i></a>#}
-{#                                        <a target="_blank" href="https://www.linkedin.com/"><i class="fa fa-linkedin heading-b"></i></a>#}
-{#                                        <a target="_blank" href="https://plus.google.com/"><i class="fa fa-google-plus heading-b"></i></a>#}
-{#                                        <a target="_blank" href="https://vimeo.com/"><i class="fa fa-vimeo-square heading-b"></i></a>#}
-{#                                        <a target="_blank" href="https://www.tumblr.com/"><i class="fa fa-tumblr heading-b"></i></a>#}
-{#                                    </p>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <div class="caption">#}
-{#                            <p>#}
-{#                                <span class="title">Jessica Specter</span>#}
-{#                                <br/>#}
-{#                                <span class="highlight">Creative Director</span>#}
-{#                            </p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="col-md-3 col-sm-6  col-xs-6">#}
-{#                        <div class="hover-overlay">#}
-{#                            <img alt="Lynda Smith" src="/assets/home/images/placeholders/380x573-1.jpg" title="Lynda Smith" class="fluid-width">#}
-{#                            <div class="overlay background-90-b">#}
-{#                                <div>#}
-{#                                    <p class="text-center text-uppercase heading-b">#}
-{#                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.#}
-{#                                    </p>#}
-{#                                    <div class="separator-small"></div>#}
-{#                                    <p class="text-center">#}
-{#                                        <a target="_blank" href="https://www.flickr.com/"><i class="fa fa-flickr heading-b"></i></a>#}
-{#                                        <a target="_blank" href="https://www.dropbox.com/"><i class="fa fa-dropbox heading-b"></i></a>#}
-{#                                        <a target="_blank" href="https://www.xing.com/"><i class="fa fa-xing heading-b"></i></a>#}
-{#                                        <a target="_blank" href="http://vk.com/"><i class="fa fa-vk heading-b"></i></a>#}
-{#                                    </p>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <div class="caption">#}
-{#                            <p>#}
-{#                                <span class="title">Andrew Miles</span>#}
-{#                                <br/>#}
-{#                                <span class="highlight">Developer</span>#}
-{#                            </p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="col-md-3 col-sm-6  col-xs-6">#}
-{#                        <div class="hover-overlay">#}
-{#                            <img alt="Lynda Smith" src="/assets/home/images/placeholders/380x573-1.jpg" title="Lynda Smith" class="fluid-width">#}
-{#                            <div class="overlay background-90-b">#}
-{#                                <div>#}
-{#                                    <p class="text-center text-uppercase heading-b">#}
-{#                                        Exercitation ut enim ad minim veniam, quis nostrud ullamco laboris nisi ut aliquip ex ea commodo consequat.#}
-{#                                    </p>#}
-{#                                    <div class="separator-small"></div>#}
-{#                                    <p class="text-center">#}
-{#                                        <a target="_blank" href="https://twitter.com/"><i class="fa fa-twitter heading-b"></i></a>#}
-{#                                        <a target="_blank" href="https://www.linkedin.com/"><i class="fa fa-linkedin heading-b"></i></a>#}
-{#                                        <a target="_blank" href="https://plus.google.com/"><i class="fa fa-google-plus heading-b"></i></a>#}
-{#                                        <a target="_blank" href="https://vimeo.com/"><i class="fa fa-vimeo-square heading-b"></i></a>#}
-{#                                        <a target="_blank" href="https://www.tumblr.com/"><i class="fa fa-tumblr heading-b"></i></a>#}
-{#                                    </p>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <div class="caption">#}
-{#                            <p>#}
-{#                                <span class="title">Lynda Smith</span>#}
-{#                                <br/>#}
-{#                                <span class="highlight">Programmer</span>#}
-{#                            </p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <h3><span class="highlight">We want to change</span><br/>peoples lives</h3>#}
-{#                <div class="row">#}
-{#                    <div class="col-md-6 col-md-offset-3">#}
-{#                        <p class="text-center">Aliquam fermentum massa ac est sollicitudin, at ultricies ligula tristique. Cras finibus, nulla ac convallis feugiat, nisl nisl lobortis est, eget auctor velit magna vel nunc. Donec nec eros rhoncus.</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="view" id="who-we-are">#}
-{#        <div class="content pane">#}
-{#            <div class="container-fluid">#}
-{#                <div class="row">#}
-{#                    <div class="col-md-6 stretch-height pane">#}
-{#                        <div class="view fluid-height">#}
-{#                            <img alt class="bg" src="/assets/home/images/placeholders/1920x1200-2.jpg" />#}
-{#                            <div class="content incut colors-d background-transparent">#}
-{#                                <div class="position-middle-center text-center">#}
-{#                                    <a class="button background-lite-c heading-c" href="#work">View Our Work</a>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="col-md-6  stretch-height pane">#}
-{#                        <div class="view fluid-height">#}
-{#                            <div class="content incut colors-h background-solid">#}
-{#                                <div class="position-middle-center">#}
-{#                                    <h3 class="text-left"><span class="highlight">Who</span> We Are</h3>#}
-{#                                    <p class="subtitle highlight"><strong>Quisque dolor lacus, commodo id hendrerit viverra, euismod in odio.</strong></p>#}
-{#                                    <p>Aliquam fermentum massa ac est sollicitudin, at ultricies ligula tristique. Cras finibus, nulla ac convallis feugiat, nisl nisl lobortis est, eget auctor velit magna vel nunc. Donec nec eros rhoncus.</p>#}
-{#                                    <p>Aenean nisi neque, aliquam ut nibh sit amet, finibus sagittis tortor aenean consectetur.</p>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</section>#}
-{#<section id="services">#}
-{#    <div class="view">#}
-{#        <div class="content colors-e background-solid">#}
-{#            <div class="container">#}
-{#                <h2>Services</h2>#}
-{#                <p class="header-details"><span class="highlight">We Are Here</span> For You</p>#}
-{#                <p class="lead">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>#}
-{#                <div class="row">#}
-{#                    <div class="col-md-3 top-line">#}
-{#                        <h4>Web<br />Design</h4>#}
-{#                        <p class="highlight">Duis ipsum dolor sit amet incididunt ut labore et dolore magna.</p>#}
-{#                        <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>#}
-{#                        <ul class="simple">#}
-{#                            <li>Responsive design</li>#}
-{#                            <li>Template development</li>#}
-{#                            <li>Rich media banners</li>#}
-{#                            <li>Frontend development</li>#}
-{#                            <li>Backend development</li>#}
-{#                            <li>Content creation</li>#}
-{#                            <li>Content audit</li>#}
-{#                            <li>Copywriting</li>#}
-{#                            <li>Photography</li>#}
-{#                        </ul>#}
-{#                    </div>#}
-{#                    <div class="col-md-3 top-line">#}
-{#                        <h4>Internet<br />Marketing</h4>#}
-{#                        <p class="highlight">Excepteur ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>#}
-{#                        <p>Excepteur sint occaecat elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>#}
-{#                        <ul class="simple">#}
-{#                            <li>Facebook advertising</li>#}
-{#                            <li>SEO and SEM</li>#}
-{#                            <li>Facebook apps</li>#}
-{#                            <li>Context advertising</li>#}
-{#                            <li>Rich media banners</li>#}
-{#                            <li>Game development</li>#}
-{#                            <li>Content creation</li>#}
-{#                            <li>Testing</li>#}
-{#                        </ul>#}
-{#                    </div>#}
-{#                    <div class="col-md-3 top-line">#}
-{#                        <h4>Digital<br />production</h4>#}
-{#                        <p class="highlight">Lorem ipsum dolor sit amet, consectetur adipisicing elit eiusmod consequat.</p>#}
-{#                        <p>Duis aute irure elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat. Exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>#}
-{#                        <ul class="simple">#}
-{#                            <li>Rich media banners</li>#}
-{#                            <li>Audio production</li>#}
-{#                            <li>Photography</li>#}
-{#                            <li>Design</li>#}
-{#                            <li>Content creation</li>#}
-{#                            <li>Content audit</li>#}
-{#                            <li>Project management</li>#}
-{#                            <li>Technical requirements</li>#}
-{#                            <li>Testing</li>#}
-{#                        </ul>#}
-{#                    </div>#}
-{#                    <div class="col-md-3 top-line">#}
-{#                        <h4>Application<br />Development</h4>#}
-{#                        <p class="highlight">Commodo ipsum dolor sit amet dolore magna aliqua.</p>#}
-{#                        <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>#}
-{#                        <ul class="simple">#}
-{#                            <li>Facebook apps</li>#}
-{#                            <li>Brand immersion &amp; research</li>#}
-{#                            <li>Competitive analysis</li>#}
-{#                            <li>Stakeholder interviews</li>#}
-{#                            <li>Content audit</li>#}
-{#                            <li>Project/platform planning</li>#}
-{#                            <li>Technical requirements</li>#}
-{#                            <li>Testing</li>#}
-{#                        </ul>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="view">#}
-{#        <img alt class="bg" src="/assets/home/images/placeholders/1920x1200-0.jpg" /><img alt class="bg" src="/assets/home/images/placeholders/1920x1200-1.jpg" /><img alt class="bg" src="/assets/home/images/placeholders/1920x1200-2.jpg" />#}
-{#        <div class="content half-size colors-h">#}
-{#            <div class="container">#}
-{#                <div class="show-list slogan">#}
-{#                    <div class="show-item">We Are Designers</div>#}
-{#                    <div class="show-item">We Are Programmers</div>#}
-{#                    <div class="show-item">We Are Coders</div>#}
-{#                    <div class="show-item">We Are Developers</div>#}
-{#                    <div class="show-item">We Are Creative</div>#}
-{#                </div>#}
-{#                <div class="separator"></div>#}
-{#                <p class="text-center big-font">#}
-{#                    <em>— Lorem ipsum dolor sit amet —</em>#}
-{#                </p>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</section>#}
-{#<section id="work">#}
-{#    <div class="view">#}
-{#        <div class="content no-bottom-padding colors-e background-solid">#}
-{#            <div class="container">#}
-{#                <h2>Our <span class="highlight">Work</span></h2>#}
-{#                <p class="header-details"><span class="highlight">Some Recent</span> Projects</p>#}
-{#                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>#}
-{#            </div>#}
-{#            <div class="gallery colors-h background-solid" data-default-group="all" data-overlay=".gallery-overlay">#}
-{#                <div class="container-fluid">#}
-{#                    <div class="filter">#}
-{#                        <ul class="nav nav-pills text-center">#}
-{#                            <li><a class="hover-effect" data-group="all" href="#">All</a></li>#}
-{#                            <li><a class="hover-effect" data-group="web" href="#">Web</a></li>#}
-{#                            <li><a class="hover-effect" data-group="video" href="#">Video</a></li>#}
-{#                            <li><a class="hover-effect" data-group="photography" href="#">Photography</a></li>#}
-{#                            <li><a class="hover-effect" data-group="design" href="#">Design</a> </li>#}
-{#                        </ul>#}
-{#                    </div>#}
-{#                    <div class="row">#}
-{#                        <div class="grid">#}
-{#                            <div class="item col-md-3 col-sm-4 col-xs-6" data-groups='["design"]'>#}
-{#                                <a href="#!portfolio-item-1.html" class="hover-overlay">#}
-{#                                    <img alt="Project 1" src="/assets/home/images/placeholders/500x400-0.jpg" />#}
-{#                                    <div class="overlay background-90-a">#}
-{#                                        <div class="hidden-xs">#}
-{#                                            <p class="title heading-a">Image</p>#}
-{#                                            <p class="text-center heading-a"><strong>Excepteur sint lorem ipsum dolor sit amet consectetur.</strong></p>#}
-{#                                            <p class="text-center"><i class="fa fa-picture-o heading-a"></i></p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </a>#}
-{#                            </div>#}
-{#                            <div class="item col-md-3 col-sm-4 col-xs-6" data-groups='["photography", "web", "video"]'>#}
-{#                                <a href="#!portfolio-item-2.html" class="hover-overlay">#}
-{#                                    <img alt="Project 2" src="/assets/home/images/placeholders/500x400-1.jpg" />#}
-{#                                    <div class="overlay background-90-a">#}
-{#                                        <div class="hidden-xs">#}
-{#                                            <p class="title heading-a">YouTube Video</p>#}
-{#                                            <p class="text-center heading-a"><strong>Excepteur sint lorem ipsum dolor sit amet consectetur.</strong></p>#}
-{#                                            <p class="text-center"><i class="fa fa-youtube-square heading-a"></i></p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </a>#}
-{#                            </div>#}
-{#                            <div class="item col-md-3 col-sm-4 col-xs-6" data-groups='["photography", "design"]'>#}
-{#                                <a href="#!portfolio-item-3.html" class="hover-overlay">#}
-{#                                    <img alt="Project 3" src="/assets/home/images/placeholders/500x400-2.jpg" />#}
-{#                                    <div class="overlay background-90-a">#}
-{#                                        <div class="hidden-xs">#}
-{#                                            <p class="title heading-a">Slider</p>#}
-{#                                            <p class="text-center heading-a"><strong>Excepteur sint lorem ipsum dolor sit amet consectetur.</strong></p>#}
-{#                                            <p class="text-center"><i class="fa fa-th heading-a"></i></p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </a>#}
-{#                            </div>#}
-{#                            <div class="item col-md-3 col-sm-4 col-xs-6" data-groups='["photography", "web", "video"]'>#}
-{#                                <a href="#!portfolio-item-4.html" class="hover-overlay">#}
-{#                                    <img alt="Project 4" src="/assets/home/images/placeholders/500x400-0.jpg" />#}
-{#                                    <div class="overlay background-90-a">#}
-{#                                        <div class="hidden-xs">#}
-{#                                            <p class="title heading-a">Vimeo Video</p>#}
-{#                                            <p class="text-center heading-a"><strong>Excepteur sint lorem ipsum dolor sit amet consectetur.</strong></p>#}
-{#                                            <p class="text-center"><i class="fa fa-vimeo-square heading-a"></i></p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </a>#}
-{#                            </div>#}
-{#                            <div class="item col-md-3 col-sm-4 col-xs-6" data-groups='["photography", "design"]'>#}
-{#                                <a href="#!portfolio-item-5.html" class="hover-overlay">#}
-{#                                    <img alt="Project 5" src="/assets/home/images/placeholders/500x400-1.jpg" />#}
-{#                                    <div class="overlay background-90-a">#}
-{#                                        <div class="hidden-xs">#}
-{#                                            <p class="title heading-a">Slider</p>#}
-{#                                            <p class="text-center heading-a"><strong>Excepteur sint lorem ipsum dolor sit amet consectetur.</strong></p>#}
-{#                                            <p class="text-center"><i class="fa fa-th heading-a"></i></p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </a>#}
-{#                            </div>#}
-{#                            <div class="item col-md-3 col-sm-4 col-xs-6" data-groups='["photography", "web", "design"]'>#}
-{#                                <a href="#!portfolio-item-6.html" class="hover-overlay">#}
-{#                                    <img alt="Project 6" src="/assets/home/images/placeholders/500x400-2.jpg" />#}
-{#                                    <div class="overlay background-90-a">#}
-{#                                        <div class="hidden-xs">#}
-{#                                            <p class="title heading-a">Image</p>#}
-{#                                            <p class="text-center heading-a"><strong>Excepteur sint lorem ipsum dolor sit amet consectetur.</strong></p>#}
-{#                                            <p class="text-center"><i class="fa fa-picture-o heading-a"></i></p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </a>#}
-{#                            </div>#}
-{#                            <div class="item col-md-3 col-sm-4 col-xs-6" data-groups='["design", "video", "web"]'>#}
-{#                                <a href="#!portfolio-item-7.html" class="hover-overlay">#}
-{#                                    <img alt="Project 7" src="/assets/home/images/placeholders/500x400-0.jpg" />#}
-{#                                    <div class="overlay background-90-a">#}
-{#                                        <div class="hidden-xs">#}
-{#                                            <p class="title heading-a">Vimeo Video</p>#}
-{#                                            <p class="text-center heading-a"><strong>Excepteur sint lorem ipsum dolor sit amet consectetur.</strong></p>#}
-{#                                            <p class="text-center"><i class="fa fa-vimeo-square heading-a"></i></p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </a>#}
-{#                            </div>#}
-{#                            <div class="item col-md-3 col-sm-4 col-xs-6" data-groups='["web"]'>#}
-{#                                <a href="#!portfolio-item-8.html" class="hover-overlay">#}
-{#                                    <img alt="Project 8" src="/assets/home/images/placeholders/500x400-1.jpg" />#}
-{#                                    <div class="overlay background-90-a">#}
-{#                                        <div class="hidden-xs">#}
-{#                                            <p class="title heading-a">Image</p>#}
-{#                                            <p class="text-center heading-a"><strong>Excepteur sint lorem ipsum dolor sit amet consectetur.</strong></p>#}
-{#                                            <p class="text-center"><i class="fa fa-picture-o heading-a"></i></p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </a>#}
-{#                            </div>#}
-{#                            <div class="item col-md-3 col-sm-4 col-xs-6" data-groups='["photography", "design", "video", "web"]'>#}
-{#                                <a href="#!portfolio-item-9.html" class="hover-overlay">#}
-{#                                    <img alt="Project 9" src="/assets/home/images/placeholders/500x400-2.jpg" />#}
-{#                                    <div class="overlay background-90-a">#}
-{#                                        <div class="hidden-xs">#}
-{#                                            <p class="title heading-a">YouTube Video</p>#}
-{#                                            <p class="text-center heading-a"><strong>Excepteur sint lorem ipsum dolor sit amet consectetur.</strong></p>#}
-{#                                            <p class="text-center"><i class="fa fa-youtube-square heading-a"></i></p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </a>#}
-{#                            </div>#}
-{#                            <div class="item col-md-3 col-sm-4 col-xs-6" data-groups='["photography", "design"]'>#}
-{#                                <a href="#!portfolio-item-10.html" class="hover-overlay">#}
-{#                                    <img alt="Project 10" src="/assets/home/images/placeholders/500x400-0.jpg" />#}
-{#                                    <div class="overlay background-90-a">#}
-{#                                        <div class="hidden-xs">#}
-{#                                            <p class="title heading-a">Vimeo Video</p>#}
-{#                                            <p class="text-center heading-a"><strong>Excepteur sint lorem ipsum dolor sit amet consectetur.</strong></p>#}
-{#                                            <p class="text-center"><i class="fa fa-vimeo-square heading-a"></i></p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </a>#}
-{#                            </div>#}
-{#                            <div class="item col-md-3 col-sm-4 col-xs-6" data-groups='["photography", "web"]'>#}
-{#                                <a href="#!portfolio-item-11.html" class="hover-overlay">#}
-{#                                    <img alt="Project 11" src="/assets/home/images/placeholders/500x400-1.jpg" />#}
-{#                                    <div class="overlay background-90-a">#}
-{#                                        <div class="hidden-xs">#}
-{#                                            <p class="title heading-a">Image</p>#}
-{#                                            <p class="text-center heading-a"><strong>Excepteur sint lorem ipsum dolor sit amet consectetur.</strong></p>#}
-{#                                            <p class="text-center"><i class="fa fa-picture-o heading-a"></i></p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </a>#}
-{#                            </div>#}
-{#                            <div class="item col-md-3 col-sm-4 col-xs-6" data-groups='["web", "design"]'>#}
-{#                                <a href="#!portfolio-item-12.html" class="hover-overlay">#}
-{#                                    <img alt="Project 12" src="/assets/home/images/placeholders/500x400-2.jpg" />#}
-{#                                    <div class="overlay background-90-a">#}
-{#                                        <div class="hidden-xs">#}
-{#                                            <p class="title heading-a">Slider</p>#}
-{#                                            <p class="text-center heading-a"><strong>Excepteur sint lorem ipsum dolor sit amet consectetur.</strong></p>#}
-{#                                            <p class="text-center"><i class="fa fa-th heading-a"></i></p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </a>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</section>#}
-{#<section id="process">#}
-{#    <div class="view">#}
-{#        <div class="content colors-e background-solid">#}
-{#            <div class="container">#}
-{#                <h2>Our <span class="highlight">Process</span></h2>#}
-{#                <p class="header-details"><span class="highlight">We Make</span> Our Customers Happy</p>#}
-{#                <p class="lead">Curabitur eget nulla ut neque aliquam dictum. Nam sollicitudin leo dui, non malesuada felis aliquam non. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus finibus tempor neque vel scelerisque. Cras nec ex ut eleifend mollis ut a nibh. Vivamus commodo est sit amet ultricies.</p>#}
-{#                <div class="process">#}
-{#                    <div class="row process-row">#}
-{#                        <div class="col-md-3 process-step">#}
-{#                            <div class="process-box"><i class="li_search heading"></i></div>#}
-{#                            <p class="title">Research</p>#}
-{#                            <p class="text-center">Vestibulum placerat, ipsum vel mollis ornare, libero ex dapibus diam, gravida tempor.</p>#}
-{#                        </div>#}
-{#                        <div class="col-md-3 process-step">#}
-{#                            <div class="process-box"><i class="li_pen heading"></i></div>#}
-{#                            <p class="title">Concept</p>#}
-{#                            <p class="text-center">Vestibulum vel dictum dolor, eget luctus risus. Nullam scelerisque viverra nisl et vehicula, in ut tellus.</p>#}
-{#                        </div>#}
-{#                        <div class="col-md-3 process-step">#}
-{#                            <div class="process-box"><i class="li_settings heading"></i></div>#}
-{#                            <p class="title">Develop</p>#}
-{#                            <p class="text-center">Mauris venenatis vulputate ligula eu finibus. Donec pretium libero lacus, vitae maximus purus dapibus.</p>#}
-{#                        </div>#}
-{#                        <div class="col-md-3 process-step">#}
-{#                            <div class="process-box"><i class="li_paperplane heading"></i></div>#}
-{#                            <p class="title">Test</p>#}
-{#                            <p class="text-center">Proin gravida, est sed vestibulum cursus, enim libero sollicitudin lacus, vel ornare nunc.</p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="row">#}
-{#                    <div class="col-md-6 col-md-offset-3">#}
-{#                        <p class="text-center">Aliquam fermentum massa ac est sollicitudin, at ultricies ligula tristique. Cras finibus, nulla ac convallis feugiat, nisl nisl lobortis est, eget auctor velit magna vel nunc. Donec nec eros rhoncus.</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="view" id="numbers">#}
-{#        <img alt class="bg" src="/assets/home/images/placeholders/1920x1200-0.jpg" /><img alt class="bg" src="/assets/home/images/placeholders/1920x1200-1.jpg" />#}
-{#        <div class="content half-size colors-h">#}
-{#            <div class="container-fluid">#}
-{#                <h3>Our <span class="highlight">Numbers</span></h3>#}
-{#                <p class="title"><span class="highlight">Some of the</span> cool facts about us</p>#}
-{#                <div class="row counters">#}
-{#                    <div class="col-md-3 counter background-35-b">#}
-{#                        <div class="count player row heading background-10-light">210</div>#}
-{#                        <div class="caption">Projects</div>#}
-{#                    </div>#}
-{#                    <div class="col-md-3 counter background-35-h">#}
-{#                        <div class="count player row heading background-10-light">120</div>#}
-{#                        <div class="caption">Clients</div>#}
-{#                    </div>#}
-{#                    <div class="col-md-3 counter background-35-b">#}
-{#                        <div class="count player row heading background-10-light">3459</div>#}
-{#                        <div class="caption">Followers</div>#}
-{#                    </div>#}
-{#                    <div class="col-md-3 counter background-35-h">#}
-{#                        <div class="count player row heading background-10-light">7</div>#}
-{#                        <div class="caption">Years</div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="container">#}
-{#                <p class="text-center ">Donec vulputate sit amet dolor vel pharetra donec pharetra.</p>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</section>#}
-{#<!-- END: Page content -->#}
-{#<!-- BEGIN: Footer -->#}
-{#<footer class="colors-g page-transition non-preloading">#}
-{#    <div class="container scroll-in-animation" data-animation="fadeInDown">#}
-{#        <div class="row">#}
-{#            <div class="col-md-3">#}
-{#                <h4>SKROLL<span class="highlight">EX</span></h4>#}
-{#                <div class="footer-description">#}
-{#                    <p>Mauris metus tellus, lacinia nec efficitur quis, rhoncus et mi.</p>#}
-{#                </div>#}
-{#                <p class="social-links">#}
-{#                    <a target="_blank" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>#}
-{#                    <a target="_blank" href="https://twitter.com/"><i class="fa fa-twitter"></i></a>#}
-{#                    <a target="_blank" href="http://www.youtube.com/"><i class="fa fa-youtube"></i></a>#}
-{#                    <a target="_blank" href="https://vimeo.com/"><i class="fa fa-vimeo-square"></i></a>#}
-{#                    <a target="_blank" href="https://www.pinterest.com/"><i class="fa fa-printerest"></i></a>#}
-{#                    <a target="_blank" href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a>#}
-{#                </p>#}
-{#            </div>#}
-{#            <div class="col-md-3">#}
-{#                <h5>Additional Links</h5>#}
-{#                <ul class="simple">#}
-{#                    <li><a href="help.html">Documentation</a></li>#}
-{#                    <li><a href="blog.html">Blog</a></li>#}
-{#                    <li><a href="#how-we-work">How We Work</a></li>#}
-{#                    <li><a href="#who-we-are">Who We Are</a></li>#}
-{#                    <li><a href="#numbers">Our Numbers</a></li>#}
-{#                </ul>#}
-{#            </div>#}
-{#            <div class="col-md-3">#}
-{#                <h5>Recent Posts</h5>#}
-{#                <ul class="simple">#}
-{#                    <li><a href="blog-single-1.html">Post with Featured Image</a></li>#}
-{#                    <li><a href="blog-single-2.html">And Post with Slider</a></li>#}
-{#                    <li><a href="blog-single-3.html">Post with Vimeo Video</a></li>#}
-{#                    <li><a href="blog-single-4.html">Another Post with Image</a></li>#}
-{#                    <li><a href="blog.html">More...</a></li>#}
-{#                </ul>#}
-{#            </div>#}
-{#            <div class="col-md-3">#}
-{#                <h5>Photo Stream</h5>#}
-{#                <div class="photo">#}
-{#                    <div class="col-xs-3 col-sm-2 col-md-4">#}
-{#                        <a target="_blank" href="https://www.flickr.com/photos/we-are-envato/12333983853" title="Melbourne Meetup by Envato, on Flickr"><img class="fluid-width" src="/assets/home/images/placeholders/150x150-1.jpg" alt="Melbourne Meetup"></a>#}
-{#                    </div>#}
-{#                    <div class="col-xs-3 col-sm-2 col-md-4">#}
-{#                        <a target="_blank" href="https://www.flickr.com/photos/we-are-envato/13090549273" title="Around the Envato Office - Highfive! by Envato, on Flickr"><img class="fluid-width" src="/assets/home/images/placeholders/150x150-2.jpg" alt="Around the Envato Office - Highfive!"></a>#}
-{#                    </div>#}
-{#                    <div class="col-xs-3 col-sm-2 col-md-4">#}
-{#                        <a target="_blank" href="https://www.flickr.com/photos/we-are-envato/12333834195" title="Melbourne Meetup by Envato, on Flickr"><img class="fluid-width" src="/assets/home/images/placeholders/150x150-1.jpg" alt="Melbourne Meetup"></a>#}
-{#                    </div>#}
-{#                    <div class="col-xs-3 col-sm-2 col-md-4">#}
-{#                        <a target="_blank" href="https://www.flickr.com/photos/we-are-envato/13090422515" title="Around the Envato Office - Becca by Envato, on Flickr"><img class="fluid-width" src="/assets/home/images/placeholders/150x150-2.jpg" alt="Around the Envato Office - Becca"></a>#}
-{#                    </div>#}
-{#                    <div class="col-xs-3 col-sm-2 col-md-4">#}
-{#                        <a target="_blank" href="https://www.flickr.com/photos/we-are-envato/13090762874" title="Around the Envato Office - Ben &amp; Jane by Envato, on Flickr"><img class="fluid-width" src="/assets/home/images/placeholders/150x150-1.jpg" alt="Around the Envato Office - Ben &amp; Jane"></a>#}
-{#                    </div>#}
-{#                    <div class="col-xs-3 col-sm-2 col-md-4">#}
-{#                        <a target="_blank" href="https://www.flickr.com/photos/we-are-envato/13090456565" title="Around the Envato Office - Selina by Envato, on Flickr"><img class="fluid-width" src="/assets/home/images/placeholders/150x150-2.jpg" alt="Around the Envato Office - Selina"></a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="bottom text-center background-5-b">#}
-{#        © 2020 All Rights Reserved. <a href="#" class="open-overlay-window heading" data-overlay-window=".credits-overlay">Credits.</a>#}
-{#    </div>#}
-{#</footer>#}
-<!-- END: Footer -->
 <script>
     if (typeof(atob) == "undefined")
     {

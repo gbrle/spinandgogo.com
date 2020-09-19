@@ -55,6 +55,7 @@
     -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
     transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
     background-size:cover;
+    background-position: center;
     background-repeat:no-repeat;
 }
 
@@ -62,7 +63,8 @@
 
 .formAddGame .property-description
 {
-    background-color: #FAFAFC;
+    color: black!important;
+    background-color: black;
     height:5em;
     width:14em;
     position:absolute;
@@ -98,7 +100,7 @@
 }
 .formAddGame .property-card:hover .property-image
 {
-    height:15em;
+    height:18em;
 }
 
 .formAddGame .property-card:hover .property-social-icons

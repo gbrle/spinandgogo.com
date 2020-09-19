@@ -579,9 +579,14 @@ textarea {
     text-decoration: none;
 }
 body {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
     padding-left: 25px;
     padding-right: 25px;
     padding-top: 48px;
+}
+body::-webkit-scrollbar {
+    display: none;
 }
 @media (max-width: 1249px) {
     body {
@@ -1293,8 +1298,8 @@ body {
     text-transform: uppercase;
     font-size: 16px;
     line-height: 28px;
-    padding-top: 60px;
-    padding-bottom: 60px;
+    padding-top: 19px;
+    padding-bottom: 19px;
 }
 .counters .counter .count {
     font-size: 45px;
@@ -4492,7 +4497,12 @@ html {
     padding-top: 100px!important;
     min-height: 100vh;
 }
-
+.popUpInscription{
+    z-index:10000000;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+}
 @media (min-width: 1250px) {
     .titleUserPage{
         margin-bottom: 80px!important;
@@ -4509,8 +4519,9 @@ html {
     }
 }
 @media (max-width: 991px) {
-    .buttonAddGame {
-
+    .popUpInscription {
+        bottom: 1px;
+        right: 1px;
     }
 }
 @media (max-width: 767px) {
