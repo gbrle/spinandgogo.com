@@ -29,14 +29,14 @@ class mailerService
         $this->mailer->send($email);
     }
 
-    public function sendForgottenPasswordLink($to, $subject, $contentMail, $template)
+    public function sendForgottenPasswordLink($to, $subject, $contentMail, $template, $user)
     {
         $email = (new TemplatedEmail())
             ->from("david@dg-web.fr")
             ->to($to)
             ->subject($subject)
             ->htmlTemplate($template)
-            ->context(['contentMail' => $contentMail]);
+            ->context(['contentMail' => $contentMail, 'userName' => $user]);
 
         $this->mailer->send($email);
     }

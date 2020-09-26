@@ -159,7 +159,8 @@ class SecurityController extends AbstractController
                     $user->getEmail(),
                     "Réinitialisation mot de passe",
                     "http://localhost:8000/resetPassword/".$user->getResetPasswordToken() ,
-                    "mailsTemplates/forgottenPassword.html.twig");
+                    "mailsTemplates/forgottenPassword.html.twig" ,
+                    $user->getFirstname().' '. $user->getLastname());
 
                 return $this->redirectToRoute("app_login");
             } else {

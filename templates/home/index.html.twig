@@ -319,34 +319,38 @@
                 <div class="content colors-e">
 
                     <div class="container">
-                        <div class="row">
+                        <div class="text-center">
+                            <i class="fa fa-money fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <h3 style="margin-bottom: 50px"><span class="highlight">Je m'inscris via spin and gogo</span><br>Je profite des offres</h3>
+                        <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center">
                             {% for room in rooms %}
-                            <div class="col-md-3 col-sm-6  col-xs-6">
+                            <div class="roomCard col-md-2 col-sm-3 col-xs-6">
+                                <div class="caption">
+                                    <p>
+                                        <span class="title" style="color: white">{{ room.name }}</span>
+                                    </p>
+                                </div>
                                 <div class="hover-overlay">
                                     <img alt="Mike Johnson" src="/assets/logosRooms/{{ room.logo }}" title="Mike Johnson" class="fluid-width">
                                     <div class="overlay background-90-h">
                                         <div>
                                             <p class="text-center text-uppercase heading-b">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                                50% Sur le premier dépot !
+                                                <br>
+                                                ---------
+                                                <br>
+                                                Super
                                             </p>
+
                                         </div>
+                                        <p class="text-center" style="position: absolute; bottom: 0;width: 100%">
+                                            <a href="#" class="button background-60-f heading-f border-hard" style="border-radius: 20px">Je m'inscris</a>
+                                        </p>
                                     </div>
-                                </div>
-                                <div class="caption">
-                                    <p>
-                                        <span class="title">{{ room.name }}</span>
-                                        <br/>
-                                        <span class="highlight">A définir</span>
-                                    </p>
                                 </div>
                             </div>
                             {% endfor %}
-                        </div>
-                        <h3><span class="highlight">We want to change</span><br/>peoples lives</h3>
-                        <div class="row">
-                            <div class="col-md-6 col-md-offset-3">
-                                <p class="text-center">Aliquam fermentum massa ac est sollicitudin, at ultricies ligula tristique. Cras finibus, nulla ac convallis feugiat, nisl nisl lobortis est, eget auctor velit magna vel nunc. Donec nec eros rhoncus.</p>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -643,76 +647,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="process">
-            <div class="view">
-                <div class="content colors-e background-solid">
-                    <div class="container">
-                        <h2>Our <span class="highlight">Process</span></h2>
-                        <p class="header-details"><span class="highlight">We Make</span> Our Customers Happy</p>
-                        <p class="lead">Curabitur eget nulla ut neque aliquam dictum. Nam sollicitudin leo dui, non malesuada felis aliquam non. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus finibus tempor neque vel scelerisque. Cras nec ex ut eleifend mollis ut a nibh. Vivamus commodo est sit amet ultricies.</p>
-                        <div class="process">
-                            <div class="row process-row">
-                                <div class="col-md-3 process-step">
-                                    <div class="process-box"><i class="li_search heading"></i></div>
-                                    <p class="title">Research</p>
-                                    <p class="text-center">Vestibulum placerat, ipsum vel mollis ornare, libero ex dapibus diam, gravida tempor.</p>
-                                </div>
-                                <div class="col-md-3 process-step">
-                                    <div class="process-box"><i class="li_pen heading"></i></div>
-                                    <p class="title">Concept</p>
-                                    <p class="text-center">Vestibulum vel dictum dolor, eget luctus risus. Nullam scelerisque viverra nisl et vehicula, in ut tellus.</p>
-                                </div>
-                                <div class="col-md-3 process-step">
-                                    <div class="process-box"><i class="li_settings heading"></i></div>
-                                    <p class="title">Develop</p>
-                                    <p class="text-center">Mauris venenatis vulputate ligula eu finibus. Donec pretium libero lacus, vitae maximus purus dapibus.</p>
-                                </div>
-                                <div class="col-md-3 process-step">
-                                    <div class="process-box"><i class="li_paperplane heading"></i></div>
-                                    <p class="title">Test</p>
-                                    <p class="text-center">Proin gravida, est sed vestibulum cursus, enim libero sollicitudin lacus, vel ornare nunc.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 col-md-offset-3">
-                                <p class="text-center">Aliquam fermentum massa ac est sollicitudin, at ultricies ligula tristique. Cras finibus, nulla ac convallis feugiat, nisl nisl lobortis est, eget auctor velit magna vel nunc. Donec nec eros rhoncus.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="view" id="numbers">
-                <img alt class="bg" src="/assets/home/images/placeholders/1920x1200-0.jpg" /><img alt class="bg" src="/assets/home/images/placeholders/1920x1200-1.jpg" />
-                <div class="content half-size colors-h">
-                    <div class="container-fluid">
-                        <h3>Our <span class="highlight">Numbers</span></h3>
-                        <p class="title"><span class="highlight">Some of the</span> cool facts about us</p>
-                        <div class="row counters">
-                            <div class="col-md-3 counter background-35-b">
-                                <div class="count player row heading background-10-light">210</div>
-                                <div class="caption">Projects</div>
-                            </div>
-                            <div class="col-md-3 counter background-35-h">
-                                <div class="count player row heading background-10-light">120</div>
-                                <div class="caption">Clients</div>
-                            </div>
-                            <div class="col-md-3 counter background-35-b">
-                                <div class="count player row heading background-10-light">3459</div>
-                                <div class="caption">Followers</div>
-                            </div>
-                            <div class="col-md-3 counter background-35-h">
-                                <div class="count player row heading background-10-light">7</div>
-                                <div class="caption">Years</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <p class="text-center ">Donec vulputate sit amet dolor vel pharetra donec pharetra.</p>
                     </div>
                 </div>
             </div>

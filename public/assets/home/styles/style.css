@@ -2922,6 +2922,7 @@ html.mobile .vimeo-bg {
   -webkit-transition: none;
 }
 .hover-overlay .overlay:hover {
+  border: 1px solid rgba(245,245,220,0.3);
   opacity: 1;
 }
 .hover-overlay .overlay > div {

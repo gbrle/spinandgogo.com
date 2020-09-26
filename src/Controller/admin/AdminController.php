@@ -259,7 +259,8 @@ class AdminController extends AbstractController
     }
 
 
-    private function getTargetDir(){
+    private function getTargetDir()
+    {
         return $this->getParameter('uploads_logo_dir');
     }
 }
