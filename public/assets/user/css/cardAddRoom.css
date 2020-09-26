@@ -46,7 +46,7 @@
 
 .formAddGame .property-image
 {
-    height:13em;
+    height:26em;
     width:14em;
     padding:1em 2em;
     position:Absolute;
@@ -100,7 +100,7 @@
 }
 .formAddGame .property-card:hover .property-image
 {
-    height:18em;
+    height:23em;
 }
 
 .formAddGame .property-card:hover .property-social-icons
