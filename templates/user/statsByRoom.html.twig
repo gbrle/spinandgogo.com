@@ -243,28 +243,36 @@
                     <h4 style="color: white;">Statistiques</h4>
 
                     <div class="col-md-3 counter background-35-b">
-                        <div>Parties jouées</div>
-                        <div id="nbreGame" class="row heading background-10-light" style="font-size: 40px"></div><span class="caption">parties</span>
+                        <div>Partie(s) jouée(s)</div>
+                        <div class="row heading background-10-light"></div><span id="nbreGame" class="caption" style="font-size: 20px"></span>
                     </div>
                     <div class="col-md-3 counter background-35-h">
                         <div>Profit</div>
-                        <div id="totalEarning" class="player row heading background-10-light" style="font-size: 40px"></div><span class="caption">€</span>
+                        <div class="row heading background-10-light"></div><span id="totalEarning" class="caption" style="font-size: 20px"></span>
                     </div>
                     <div class="col-md-3 counter background-35-b">
                         <div>ROI</div>
-                        <div id="roi" class="player row heading background-10-light" style="font-size: 40px"></div><span class="caption">%</span>
+                        <div  class="row heading background-10-light"></div><span id="roi" class="caption" style="font-size: 20px"></span>
                     </div>
                     <div class="col-md-3 counter background-35-h">
-                        <div>Buy-in moyens</div>
-                        <div id="buyInMoyenDiv" class="player row heading background-10-light" style="font-size: 40px"></div><span class="caption">€</span>
+                        <div>Buy-in moyen</div>
+                        <div class="row heading background-10-light"></div><span id="buyInMoyenDiv" class="caption" style="font-size: 20px"></span>
                     </div>
                     <div class="col-md-6 counter background-35-b">
                         <div>ITM</div>
-                        <div id="itmDiv" class="player row heading background-10-light" style="font-size: 40px"></div><span>%</span>
+                        <div  class="row heading background-10-light"></div><span id="itmDiv" class="caption" style="font-size: 20px"></span>
                     </div>
                     <div class="col-md-6 counter background-35-h">
-                        <div>Buy-in moyens</div>
-                        <div class="player row heading background-10-light" style="font-size: 40px">7</div><span>€</span>
+                        <div>Mise total</div>
+                        <div class="row heading background-10-light"></div><span id="totalBetDiv" class="caption" style="font-size: 20px"></span>
+                    </div>
+                    <div class="col-md-6 counter background-35-h">
+                        <div>Max Série gagnante</div>
+                        <div class="row heading background-10-light"></div><span id="maxSerieWinDiv" class="caption" style="font-size: 20px"></span>
+                    </div>
+                    <div class="col-md-6 counter background-35-b">
+                        <div>Max série perdante</div>
+                        <div class="row heading background-10-light"></div><span id="maxSerieLoseDiv" class="caption" style="font-size: 20px"></span>
                     </div>
                 </div>
 
@@ -304,7 +312,7 @@
         type: "GET",
         url: "{{ path('user_get_games_by_room_for_chart', { 'id' : room.id }) }}",
         dataType: "json",
-        success: function([nbreGame, bankroll, roi, nbreGameEmptyForChart, buyInMoyen, itm]) {
+        success: function([nbreGame, bankroll, roi, nbreGameEmptyForChart, buyInMoyen, itm, totalBet, maxSerieWin, maxSerieLose]) {
 
             let realBR = JSON.parse(bankroll)
             let totalEarnings = realBR.slice(-1)[0]
@@ -314,18 +322,25 @@
             nbreGameDiv.textContent = nbreGames
 
             var totalEarningDiv = document.getElementById('totalEarning')
-            totalEarningDiv.textContent = totalEarnings
+            totalEarningDiv.textContent = totalEarnings + " €"
 
             var roiDiv = document.getElementById('roi')
-            roiDiv.textContent = roi
+            roiDiv.textContent = roi + " %"
 
             let buyInMoyenDiv = document.getElementById('buyInMoyenDiv');
-            buyInMoyenDiv.textContent = buyInMoyen
+            buyInMoyenDiv.textContent = buyInMoyen + " €"
 
             let itmDiv = document.getElementById('itmDiv');
-            itmDiv.textContent = itm
+            itmDiv.textContent = itm + " %"
 
+            let totalBetDiv = document.getElementById('totalBetDiv');
+            totalBetDiv.textContent = totalBet + " €"
 
+            let maxSerieWinDiv = document.getElementById('maxSerieWinDiv');
+            maxSerieWinDiv.textContent = maxSerieWin
+
+            let maxSerieLoseDiv = document.getElementById('maxSerieLoseDiv');
+            maxSerieLoseDiv.textContent = maxSerieLose
 
             var ctx = document.getElementById('myChart').getContext('2d');
             var myChart = new Chart(ctx, {

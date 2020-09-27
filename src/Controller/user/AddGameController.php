@@ -182,8 +182,45 @@ class AddGameController extends AbstractController
         }
         $itm = ($itmCount * 100) / count($nbreGame);
 
+        // Max Serie Win Algo
+        $maxSerieWin = 0;
+        $currentSerieWin = 0;
+
+        foreach ($games as $game){
+            if ($game->getPrice() > 0){
+                $currentSerieWin = $currentSerieWin + 1;
+                if ($maxSerieWin < $currentSerieWin){
+                    $maxSerieWin = $currentSerieWin;
+                }
+            }else if ($maxSerieWin < $currentSerieWin){
+                $maxSerieWin = $currentSerieWin;
+                $currentSerieWin = 0;
+            }else {
+                $currentSerieWin = 0;
+            }
+        }
+
+        // Max Serie Lose Algo
+        $maxSerieLose = 0;
+        $currentSerieLose = 0;
+
+        foreach ($games as $game){
+            if ($game->getPrice() <= 0){
+                $currentSerieLose = $currentSerieLose + 1;
+                if ($maxSerieLose < $currentSerieLose){
+                    $maxSerieLose = $currentSerieLose;
+                }
+            }else if ($maxSerieLose < $currentSerieLose){
+                $maxSerieLose = $currentSerieLose;
+                $currentSerieLose = 0;
+            }else {
+                $currentSerieLose = 0;
+            }
+        }
+
+
         if ($request->isXMLHttpRequest()) {
-            return new JsonResponse(([json_encode($nbreGame), json_encode($bankroll), round($roi, 1), json_encode($nbreGameEmptyForChart), round($buyInMoyen, 1), round($itm, 1)]));
+            return new JsonResponse(([json_encode($nbreGame), json_encode($bankroll), round($roi, 1), json_encode($nbreGameEmptyForChart), round($buyInMoyen, 1), round($itm, 1), round($totalBuy, 1), $maxSerieWin, $maxSerieLose]));
         }
 
 
@@ -238,8 +275,44 @@ class AddGameController extends AbstractController
         }
         $itm = ($itmCount * 100) / count($nbreGame);
 
+        // Max Serie Win Algo
+        $maxSerieWin = 0;
+        $currentSerieWin = 0;
+
+        foreach ($games as $game){
+            if ($game->getPrice() > 0){
+                $currentSerieWin = $currentSerieWin + 1;
+                if ($maxSerieWin < $currentSerieWin){
+                    $maxSerieWin = $currentSerieWin;
+                }
+            }else if ($maxSerieWin < $currentSerieWin){
+                $maxSerieWin = $currentSerieWin;
+                $currentSerieWin = 0;
+            }else {
+                $currentSerieWin = 0;
+            }
+        }
+
+        // Max Serie Lose Algo
+        $maxSerieLose = 0;
+        $currentSerieLose = 0;
+
+        foreach ($games as $game){
+            if ($game->getPrice() <= 0){
+                $currentSerieLose = $currentSerieLose + 1;
+                if ($maxSerieLose < $currentSerieLose){
+                    $maxSerieLose = $currentSerieLose;
+                }
+            }else if ($maxSerieLose < $currentSerieLose){
+                $maxSerieLose = $currentSerieLose;
+                $currentSerieLose = 0;
+            }else {
+                $currentSerieLose = 0;
+            }
+        }
+
         if ($request->isXMLHttpRequest()) {
-            return new JsonResponse(([json_encode($nbreGame), json_encode($bankroll), round($roi, 1), json_encode($nbreGameEmptyForChart), round($buyInMoyen), round($itm)]));
+            return new JsonResponse(([json_encode($nbreGame), json_encode($bankroll), round($roi, 1), json_encode($nbreGameEmptyForChart), round($buyInMoyen, 1), round($itm, 1), round($totalBuy, 1), $maxSerieWin, $maxSerieLose]));
         }
 
 
