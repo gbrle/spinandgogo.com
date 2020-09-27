@@ -199,7 +199,7 @@
         <div class="content contentUserPage home-suzi full-size colors-h background-3">
             <div class="container">
                 <div class="show-list slogan titleUserPage bg-warning">
-                    <div class="show-item">Statistiques globales</div>
+                    <div class="show-item">Statistiques {{ room.name }}</div>
                 </div>
                 <div class="row">
                     <div class="col-md-8">
@@ -302,7 +302,7 @@
 <script>
     $.ajax({
         type: "GET",
-        url: "/user/user_get_games_for_chart",
+        url: "{{ path('user_get_games_by_room_for_chart', { 'id' : room.id }) }}",
         dataType: "json",
         success: function([nbreGame, bankroll, roi, nbreGameEmptyForChart, buyInMoyen, itm]) {
 
@@ -324,6 +324,7 @@
 
             let itmDiv = document.getElementById('itmDiv');
             itmDiv.textContent = itm
+
 
 
             var ctx = document.getElementById('myChart').getContext('2d');
