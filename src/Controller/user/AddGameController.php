@@ -220,7 +220,17 @@ class AddGameController extends AbstractController
 
 
         if ($request->isXMLHttpRequest()) {
-            return new JsonResponse(([json_encode($nbreGame), json_encode($bankroll), round($roi, 1), json_encode($nbreGameEmptyForChart), round($buyInMoyen, 1), round($itm, 1), round($totalBuy, 1), $maxSerieWin, $maxSerieLose]));
+            return new JsonResponse(([
+                json_encode($nbreGame),
+                json_encode($bankroll),
+                round($roi, 1),
+                json_encode($nbreGameEmptyForChart),
+                round($buyInMoyen, 1),
+                round($itm, 1),
+                round($totalBuy, 1),
+                $maxSerieWin,
+                $maxSerieLose
+            ]));
         }
 
 
@@ -312,7 +322,17 @@ class AddGameController extends AbstractController
         }
 
         if ($request->isXMLHttpRequest()) {
-            return new JsonResponse(([json_encode($nbreGame), json_encode($bankroll), round($roi, 1), json_encode($nbreGameEmptyForChart), round($buyInMoyen, 1), round($itm, 1), round($totalBuy, 1), $maxSerieWin, $maxSerieLose]));
+            return new JsonResponse(([
+                json_encode($nbreGame),
+                json_encode($bankroll),
+                round($roi, 1),
+                json_encode($nbreGameEmptyForChart),
+                round($buyInMoyen, 1),
+                round($itm, 1),
+                round($totalBuy, 1),
+                $maxSerieWin,
+                $maxSerieLose
+            ]));
         }
 
 
