@@ -16,6 +16,10 @@
         <link rel="stylesheet" href="/assets/home/lib/linecons/style.css" />
         <link rel="stylesheet" href="/assets/home/styles/style.min.css" />
         <link rel="stylesheet" href="/assets/home/theme-custom.css" />
+        <link rel="stylesheet" type="text/css" href="/assets/user/user-table/vendor/select2/select2.min.css">
+        <link rel="stylesheet" type="text/css" href="/assets/user/user-table/vendor/perfect-scrollbar/perfect-scrollbar.css">
+        <link rel="stylesheet" type="text/css" href="/assets/user/user-table/css/util.css">
+        <link rel="stylesheet" type="text/css" href="/assets/user/user-table/css/main.css">
         <link rel="shortcut icon" href="/assets/home/favicon.ico" type="image/x-icon" />
         <link rel="apple-touch-icon" href="/assets/home/apple-touch-icon.png" />
         <link rel="apple-touch-icon" sizes="57x57" href="/assets/home/apple-touch-icon-57x57.png" />
@@ -221,7 +225,38 @@
                             <div class="show-item">Liste de toutes les parties (globale)</div>
                         </div>
                         <div class="row">
-
+                            <div class="limiter">
+                                <div class="container-table100">
+                                    <div class="wrap-table100">
+                                        <div class="table100">
+                                            <table>
+                                                <thead>
+                                                <tr class="table100-head">
+                                                    <th class="column1">Date</th>
+                                                    <th class="column2">Salle</th>
+                                                    <th class="column3">Buy-In</th>
+                                                    <th class="column4">Multiplicateur</th>
+                                                    <th class="column5">Place</th>
+                                                    <th class="column6">Gain</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for game in allGames | reverse %}
+                                                    <tr style="background: {% if game.price > 0 %}rgba(0,250,154, 0.2){% else %}rgba(250,128,114, 0.2){% endif %}">
+                                                        <td class="column1">{{ game.createdAt|date("d/m/Y h.m")  }}</td>
+                                                        <td class="column2">{{ game.room }}</td>
+                                                        <td class="column3">{{ game.buyIn }} €</td>
+                                                        <td class="column4">X {{ game.multiplicator }}</td>
+                                                        <td class="column5">{{ game.place }}</td>
+                                                        <td class="column6">{{ game.price - game.buyIn }} €</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -253,7 +288,9 @@
         <script src="/assets/home/bower_components/textillate/assets/jquery.fittext.js"></script>
         <script src="/assets/home/bower_components/textillate/jquery.textillate.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-        <script src="/assets/home/lib/prism/prism.js"></script>
+        <script src="/assets/user/user-table/vendor/select2/select2.min.js"></script>
+        <script src="/assets/user/user-table/js/main.js"></script>
+        <script src="js/main.js"></script>
         <script>
             (function()
             {
