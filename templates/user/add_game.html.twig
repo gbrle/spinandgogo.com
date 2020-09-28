@@ -38,7 +38,7 @@
                             <span class="side-title">Statistiques</span>
                         </div>
                     </a>
-                    <a href="#who-we-are" class="col-md-4 colors-g background-solid full-height border-bottom border-left border-lite">
+                    <a href="#" data-toggle="modal" data-target="#gamesModal" class="col-md-4 colors-g background-solid full-height border-bottom border-left border-lite">
                         <div class="text-center">
                             <span class="side-label"><i class="fa fa-list" aria-hidden="true"></i></span>
                             <span class="side-title">Mes parties</span>
@@ -83,7 +83,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#" data-toggle="modal" data-target="#statisticsRooms" class="hover-effect">Statistiques</a></li>
-                        <li><a href="#work" class="hover-effect">Mes parties</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#gamesModal" class="hover-effect">Mes parties</a></li>
                         <li><a href="#" data-toggle="modal" data-target="#myAccount" class="hover-effect"><i class="li_user"></i> Mon compte <span style="font-size: 10px; color: white">({{ app.user.firstname }} {{ app.user.lastname }})</span></a></li>
                         {#                      <li class="hidden-xs"><a class="menu-toggle ext-nav-toggle" data-target=".ext-nav" href="#"><span></span></a></li>#}
                     </ul>
@@ -109,6 +109,25 @@
             </div>
         </div>
         <!-- End Modal Statistics Rooms -->
+        <!-- Modal Games -->
+        <div class="modal fade" id="gamesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title heading-e text-center" id="exampleModalLabel">Parties pour quelle salle ?</h5>
+                    </div>
+                    <div class="modal-body">
+                        <a href="{{ path('user_all_games') }}" class="button background-h highlight-h" style="width: 100%">Toutes les salles (globale)</a>
+                        {% for room in rooms %}
+                            <a href="{{ path('user_stats_by_room', { 'id' : room.id }) }}" class="button background-h highlight-h" style="width: 100%">{{ room.name }}</a>
+                        {% endfor %}                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="button background-c highlight-c" data-dismiss="modal">Fermer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal Games -->
         <!-- Modal My Account -->
         <div class="modal fade" id="myAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -349,7 +368,6 @@
         <script src="/assets/home/lib/modernizr-edited.js"></script>
         <script src="/assets/home/lib/SmoothScroll-1.4.9/SmoothScroll.js"></script>
         <script src="/assets/home/bower_components/jquery-cookie/jquery.cookie.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
         <script src="/assets/home/bower_components/jqBootstrapValidation/dist/jqBootstrapValidation-1.3.7.min.js"></script>
         <script src="/assets/home/bower_components/minicolors/jquery.minicolors.min.js"></script>
         <script src="/assets/home/bower_components/slick.js/slick/slick.min.js"></script>

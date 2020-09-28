@@ -1,732 +1,454 @@
 <!DOCTYPE html>
 <html lang="fr" class="background-100-e">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Skrollex</title>
-    <meta name="description" content="Onepage Parallax Site" />
-    <meta name="keywords" content="onepage, parallax" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/assets/home/bower_components/fontawesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="/assets/home/bower_components/animate.css/animate.min.css" />
-    <link rel="stylesheet" href="/assets/home/bower_components/minicolors/jquery.minicolors.css" />
-    <link rel="stylesheet" href="/assets/home/bower_components/slick.js/slick/slick.css" />
-    <link rel="stylesheet" href="/assets/home/bower_components/slick.js/slick/slick-theme.css" />
-    <link rel="stylesheet" href="/assets/home/bootstrap/dist/css/bootstrap-custom.min.css" />
-    <link rel="stylesheet" href="/assets/home/lib/linecons/style.css" />
-    <link rel="stylesheet" href="/assets/home/styles/style.min.css" />
-    <link rel="stylesheet" href="/assets/home/theme-custom.css" />
-    <link rel="shortcut icon" href="/assets/home/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="/assets/home/apple-touch-icon.png" />
-    <link rel="apple-touch-icon" sizes="57x57" href="/assets/home/apple-touch-icon-57x57.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="/assets/home/apple-touch-icon-72x72.png" />
-    <link rel="apple-touch-icon" sizes="76x76" href="/assets/home/apple-touch-icon-76x76.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="/assets/home/apple-touch-icon-114x114.png" />
-    <link rel="apple-touch-icon" sizes="120x120" href="/assets/home/apple-touch-icon-120x120.png" />
-    <link rel="apple-touch-icon" sizes="144x144" href="/assets/home/apple-touch-icon-144x144.png" />
-    <link rel="apple-touch-icon" sizes="152x152" href="/assets/home/apple-touch-icon-152x152.png" />
-</head>
-<body class="state1 background-100-e">
-<div class="ext-nav background-95-h page-transition">
-    <div class="container-fluid  half-height">
-        <div class="row full-height">
-            <a href="#" data-toggle="modal" data-target="#statisticsRooms" class="col-md-4 colors-g background-solid full-height border-bottom border-lite">
-                <div class="text-center">
-                    <span class="side-label"><i class="fa fa-line-chart" aria-hidden="true"></i></span>
-                    <span class="side-title">Statistiques</span>
-                </div>
-            </a>
-            <a href="#who-we-are" class="col-md-4 colors-g background-solid full-height border-bottom border-left border-lite">
-                <div class="text-center">
-                    <span class="side-label"><i class="fa fa-list" aria-hidden="true"></i></span>
-                    <span class="side-title">Mes parties</span>
-                </div>
-            </a>
-            <a href="#" data-toggle="modal" data-target="#myAccount" class="col-md-6 colors-a background-95-a full-height">
-                <div class="text-center">
-                    <span class="side-label"><i class="fa fa-user" aria-hidden="true"></i></span>
-                    <span class="side-title">Mon compte</span>
-                </div>
-            </a>
-            <a href="{{path('app_logout')}}" class="col-md-4 colors-g background-solid full-height border-bottom border-left border-lite">
-                <div class="text-center">
-                    <span class="side-label"><i class="fa fa-list" aria-hidden="true"></i></span>
-                    <span class="side-title">Se déconnecter</span>
-                </div>
-            </a>
-        </div>
-    </div>
-</div>
-<div class="page-border bottom colors-e background-solid">
-
-</div>
-<div class="page-border left colors-e background-solid">
-
-</div>
-<!-- BEGIN: Top menu -->
-<div class="page-border right colors-e background-solid"></div>
-<nav class="navbar navbar-default navbar-fixed-top page-transition colors-e background-solid" role="navigation" id="top-nav">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="menu-toggle ext-nav-toggle visible-xs-block" data-target=".ext-nav" href="#"><span></span></a>
-            <a class="navbar-brand" href="{{ path('user_home') }}">SpinAnd<span class="highlight">GoGo</span> <i class="fa fa-trophy" aria-hidden="true"></i></a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" data-toggle="modal" data-target="#statisticsRooms" class="hover-effect">Statistiques</a></li>
-                <li><a href="#work" class="hover-effect">Mes parties</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#myAccount" class="hover-effect"><i class="li_user"></i> Mon compte <span style="font-size: 10px; color: white">({{ app.user.firstname }} {{ app.user.lastname }})</span></a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!-- Modal Statistics Rooms -->
-<div class="modal fade" id="statisticsRooms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title heading-e text-center" id="exampleModalLabel">Statistiques pour quelle salle ?</h5>
-            </div>
-            <div class="modal-body">
-                <a href="{{ path('user_home') }}" class="button background-h highlight-h" style="width: 100%">Toutes les salles (globale)</a>
-                {% for room in rooms %}
-                    <a href="{{ path('user_stats_by_room', { 'id' : room.id }) }}" class="button background-h highlight-h" style="width: 100%">{{ room.name }}</a>
-                {% endfor %}
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="button background-c highlight-c" data-dismiss="modal">Fermer</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Modal Statistics Rooms -->
-<!-- Modal My Account -->
-<div class="modal fade" id="myAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title heading-e text-center" id="exampleModalLabel">Gérer mon compte</h5>
-            </div>
-            <div class="modal-body">
-                <a href="#" class="button background-h highlight-h" style="width: 100%">Changer de mot de passe</a>
-                <a href="{{ path('app_logout') }}" class="button background-d highlight-d" style="width: 100%">Se déconnecter</a>
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="button background-c highlight-c" data-dismiss="modal">Fermer</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Modal My Account -->
-<!-- END: Top menu -->
-<ul id="dot-scroll" class="colors-e background-solid"></ul>
-<div class="overlay-window gallery-overlay colors-g background-95-g" data-overlay-zoom="#work .content">
-    <div class="overlay-control background-90-b">
-        <a class="previos" href="#"></a>
-        <a class="next" href="#"></a>
-        <a class="cross" href="#"></a>
-    </div>
-    <div class="overlay-view"></div>
-    <ul class="loader">
-        <li class="background-highlight-e"></li>
-        <li class="background-highlight-e"></li>
-        <li class="background-highlight-e"></li>
-    </ul>
-</div>
-<div class="overlay-window map-overlay colors-h background-75-h">
-    <div class="overlay-control background-90-g">
-        <a class="cross" href="#"></a>
-    </div>
-    <div class="overlay-view">
-        <div class="map-canvas" data-latitude="42.487606" data-longitude="-71.115661" data-zoom="14">
-            <div class="map-marker" data-latitude="42.487606" data-longitude="-71.115661" data-text="Our awesome location"></div>
-            <div class="map-marker" data-latitude="42.485100" data-longitude="-71.113256" data-text="Our sales office"></div>
-        </div>
-    </div>
-</div>
-<div class="overlay-window credits-overlay colors-g background-95-g">
-    <div class="overlay-control background-90-b">
-        <a class="cross" href="#"></a>
-    </div>
-    <div class="overlay-view">
-        <div class="content-container">
-            <h3>Credits</h3>
-            <ul>
-                <li>
-                    Photos by:
-                    <ul>
-                        <li><a target="_blank" href="https://www.flickr.com/photos/katya_alagich/">Katya Alagich</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
-                        <li><a target="_blank" href="https://www.flickr.com/photos/65047661@N00/">Jim Lukach</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
-                        <li><a target="_blank" href="https://www.flickr.com/photos/johanl/">Johan Larsson</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
-                        <li><a target="_blank" href="https://www.flickr.com/photos/johny/">John Kraus</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
-                        <li><a target="_blank" href="https://www.flickr.com/photos/geishaboy500/">THOR</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
-                        <li><a target="_blank" href="https://www.flickr.com/photos/stf-o/">stephane</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
-                        <li><a target="_blank" href="http://www.pexels.com/">Pexels</a>, <a target="_blank" href="http://www.pexels.com/photo-license/">CC0 License</a></li>
-                        <li><a target="_blank" href="https://stocksnap.io/">Stocksnap</a>, <a target="_blank" href="https://stocksnap.io/license">CC0 License</a></li>
-                        <li><a target="_blank" href="http://picjumbo.com/">Picjumbo</a>, <a target="_blank" href="http://picjumbo.com/about-author/">Picjumbo License</a></li>
-                    </ul>
-                </li>
-                <li>
-                    Video by:
-                    <ul>
-                        <li><a target="_blank" href="http://mazwai.com/">Mazwai</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0 License</a></li>
-                    </ul>
-                </li>
-                <li>
-                    Icons by:
-                    <ul>
-                        <li><a target="_blank" href="http://designmodo.com/">Designmodoh</a>, <a target="_blank" href="http://designmodo.com/linecons-free/">License</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="gate colors-e background-solid">
-    <div class="gate-bar background-heading-e"></div>
-    <ul class="loader">
-        <li class="background-heading-e"></li>
-        <li class="background-heading-e"></li>
-        <li class="background-heading-e"></li>
-    </ul>
-</div>
-<!-- BEGIN: Page content -->
-<section id="home">
-    <a href="{{ path('user_add_game') }}" class="buttonAddGame button background-b highlight-b">Ajouter une partie</a>
-    <div class="view">
-
-        <img alt class="bg" src="https://images4.alphacoders.com/418/41814.jpg" /><img alt class="bg" src="https://images.alphacoders.com/794/79423.jpg" /><img alt class="bg" src="https://images6.alphacoders.com/449/449381.jpg" />
-        <div class="content contentUserPage home-suzi full-size colors-h background-3">
-            <div class="container">
-                <div class="show-list slogan titleUserPage bg-warning">
-                    <div class="show-item">Statistiques globales</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-8">
-                        <h4 style="color: white">Courbe de progression</h4>
-                        <canvas id="myChart"></canvas>
-                    </div>
-                    <div class="col-md-4">
-                        <h4 style="color: white">Dernières parties</h4>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th class="text-left">Date</th>
-                                    <th class="text-center">Buy-in</th>
-                                    <th class="text-right">Gain</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {% for game in games |reverse | slice(0, 6) %}
-                                {% if game.price != 0 %}
-                                    <tr class="success">
-                                        <td class="text-left">{{ game.createdAt|date("d/m/Y") }}</td>
-                                        <td class="text-center">{{ game.buyIn }} €</td>
-                                        <td class="text-right">{{ game.price - game.buyIn }} € <i class="fa fa-check" aria-hidden="true"></i></td>
-                                    </tr>
-                                {% else %}
-                                    <tr class="danger">
-                                        <td class="text-left">{{ game.createdAt|date("d/m/Y") }}</td>
-                                        <td class="text-center">{{ game.buyIn }} €</td>
-                                        <td class="text-right">{{ game.price - game.buyIn }} € <i class="fa fa-times" aria-hidden="true"></i></td>
-                                    </tr>
-                                {% endif %}
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                        <div class="text-right">
-                            <a href="#" class="button background-g highlight-g">Voir tout</a>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Skrollex</title>
+        <meta name="description" content="Onepage Parallax Site" />
+        <meta name="keywords" content="onepage, parallax" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/assets/home/bower_components/fontawesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="/assets/home/bower_components/animate.css/animate.min.css" />
+        <link rel="stylesheet" href="/assets/home/bower_components/minicolors/jquery.minicolors.css" />
+        <link rel="stylesheet" href="/assets/home/bower_components/slick.js/slick/slick.css" />
+        <link rel="stylesheet" href="/assets/home/bower_components/slick.js/slick/slick-theme.css" />
+        <link rel="stylesheet" href="/assets/home/bootstrap/dist/css/bootstrap-custom.min.css" />
+        <link rel="stylesheet" href="/assets/home/lib/linecons/style.css" />
+        <link rel="stylesheet" href="/assets/home/styles/style.min.css" />
+        <link rel="stylesheet" href="/assets/home/theme-custom.css" />
+        <link rel="shortcut icon" href="/assets/home/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/assets/home/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="/assets/home/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/assets/home/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="/assets/home/apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/assets/home/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="/assets/home/apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="/assets/home/apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/assets/home/apple-touch-icon-152x152.png" />
+    </head>
+    <body class="state1 background-100-e">
+        <div class="ext-nav background-95-h page-transition">
+            <div class="container-fluid  half-height">
+                <div class="row full-height">
+                    <a href="#" data-toggle="modal" data-target="#statisticsRooms" class="col-md-4 colors-g background-solid full-height border-bottom border-lite">
+                        <div class="text-center">
+                            <span class="side-label"><i class="fa fa-line-chart" aria-hidden="true"></i></span>
+                            <span class="side-title">Statistiques</span>
                         </div>
-                    </div>
+                    </a>
+                    <a href="#" data-toggle="modal" data-target="#gamesModal" class="col-md-4 colors-g background-solid full-height border-bottom border-left border-lite">
+                        <div class="text-center">
+                            <span class="side-label"><i class="fa fa-list" aria-hidden="true"></i></span>
+                            <span class="side-title">Mes parties</span>
+                        </div>
+                    </a>
+                    <a href="#" data-toggle="modal" data-target="#myAccount" class="col-md-6 colors-a background-95-a full-height">
+                        <div class="text-center">
+                            <span class="side-label"><i class="fa fa-user" aria-hidden="true"></i></span>
+                            <span class="side-title">Mon compte</span>
+                        </div>
+                    </a>
+                    <a href="{{path('app_logout')}}" class="col-md-4 colors-g background-solid full-height border-bottom border-left border-lite">
+                        <div class="text-center">
+                            <span class="side-label"><i class="fa fa-list" aria-hidden="true"></i></span>
+                            <span class="side-title">Se déconnecter</span>
+                        </div>
+                    </a>
                 </div>
-                <div class="row counters" style="margin-bottom: 80px; margin-right: 15px; margin-left: 15px">
-                    <h4 style="color: white;">Statistiques</h4>
-
-                    <div class="col-md-3 counter background-35-b">
-                        <div>Partie(s) jouée(s)</div>
-                        <div class="row heading background-10-light"></div><span id="nbreGame" class="caption" style="font-size: 20px"></span>
-                    </div>
-                    <div class="col-md-3 counter background-35-h">
-                        <div>Profit</div>
-                        <div class="row heading background-10-light"></div><span id="totalEarning" class="caption" style="font-size: 20px"></span>
-                    </div>
-                    <div class="col-md-3 counter background-35-b">
-                        <div>ROI</div>
-                        <div  class="row heading background-10-light"></div><span id="roi" class="caption" style="font-size: 20px"></span>
-                    </div>
-                    <div class="col-md-3 counter background-35-h">
-                        <div>Buy-in moyen</div>
-                        <div class="row heading background-10-light"></div><span id="buyInMoyenDiv" class="caption" style="font-size: 20px"></span>
-                    </div>
-                    <div class="col-md-6 counter background-35-b">
-                        <div>ITM</div>
-                        <div  class="row heading background-10-light"></div><span id="itmDiv" class="caption" style="font-size: 20px"></span>
-                    </div>
-                    <div class="col-md-6 counter background-35-h">
-                        <div>Mise total</div>
-                        <div class="row heading background-10-light"></div><span id="totalBetDiv" class="caption" style="font-size: 20px"></span>
-                    </div>
-                    <div class="col-md-6 counter background-35-h">
-                        <div>Max Série gagnante</div>
-                        <div class="row heading background-10-light"></div><span id="maxSerieWinDiv" class="caption" style="font-size: 20px"></span>
-                    </div>
-                    <div class="col-md-6 counter background-35-b">
-                        <div>Max série perdante</div>
-                        <div class="row heading background-10-light"></div><span id="maxSerieLoseDiv" class="caption" style="font-size: 20px"></span>
-                    </div>
-                </div>
-
             </div>
         </div>
-    </div>
-</section>
-<script>
-    if (typeof(atob) == "undefined")
-    {
-        document.write('<script src="/assets/home/lib/stringencoders-v3.10.3/javascript/base64.js"><\/script>');
-        var atob = function(x)
-        {
-            return base64.decode(x);
-        }
-    }
-</script>
-<script src="/assets/home/bower_components/less.js/dist/less.min.js"></script>
-<script src="/assets/home/bower_components/jquery/dist/jquery.min.js"></script>
-<script src="/assets/home/lib/tween/tween.min.js"></script>
-<script src="/assets/home/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/assets/home/lib/modernizr-edited.js"></script>
-<script src="/assets/home/lib/SmoothScroll-1.4.9/SmoothScroll.js"></script>
-<script src="/assets/home/bower_components/jquery-cookie/jquery.cookie.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script src="/assets/home/bower_components/jqBootstrapValidation/dist/jqBootstrapValidation-1.3.7.min.js"></script>
-<script src="/assets/home/bower_components/minicolors/jquery.minicolors.min.js"></script>
-<script src="/assets/home/bower_components/slick.js/slick/slick.min.js"></script>
-<script src="/assets/home/bower_components/shufflejs/dist/jquery.shuffle.min.js"></script>
-<script src="/assets/home/bower_components/textillate/assets/jquery.lettering.js"></script>
-<script src="/assets/home/bower_components/textillate/assets/jquery.fittext.js"></script>
-<script src="/assets/home/bower_components/textillate/jquery.textillate.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-<script src="/assets/home/lib/prism/prism.js"></script>
-<script>
-    $.ajax({
-        type: "GET",
-        url: "/user/user_get_games_for_chart",
-        dataType: "json",
-        success: function([nbreGame, bankroll, roi, nbreGameEmptyForChart, buyInMoyen, itm, totalBet, maxSerieWin, maxSerieLose]) {
+        <div class="page-border bottom colors-e background-solid">
 
-            let realBR = JSON.parse(bankroll)
-            let totalEarnings = realBR.slice(-1)[0]
-            let nbreGames = JSON.parse(nbreGame).slice(-1)[0]
+        </div>
+        <div class="page-border left colors-e background-solid">
 
-            var nbreGameDiv = document.getElementById('nbreGame')
-            nbreGameDiv.textContent = nbreGames
+        </div>
+        <!-- BEGIN: Top menu -->
+        <div class="page-border right colors-e background-solid"></div>
+        <nav class="navbar navbar-default navbar-fixed-top page-transition colors-e background-solid" role="navigation" id="top-nav">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="menu-toggle ext-nav-toggle visible-xs-block" data-target=".ext-nav" href="#"><span></span></a>
+                    <a class="navbar-brand" href="{{ path('user_home') }}">SpinAnd<span class="highlight">GoGo</span> <i class="fa fa-trophy" aria-hidden="true"></i></a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#" data-toggle="modal" data-target="#statisticsRooms" class="hover-effect">Statistiques</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#gamesModal" class="hover-effect">Mes parties</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#myAccount" class="hover-effect"><i class="li_user"></i> Mon compte <span style="font-size: 10px; color: white">({{ app.user.firstname }} {{ app.user.lastname }})</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Modal Statistics Rooms -->
+        <div class="modal fade" id="statisticsRooms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title heading-e text-center" id="exampleModalLabel">Statistiques pour quelle salle ?</h5>
+                    </div>
+                    <div class="modal-body">
+                        <a href="{{ path('user_home') }}" class="button background-h highlight-h" style="width: 100%">Toutes les salles (globale)</a>
+                        {% for room in rooms %}
+                            <a href="{{ path('user_stats_by_room', { 'id' : room.id }) }}" class="button background-h highlight-h" style="width: 100%">{{ room.name }}</a>
+                        {% endfor %}
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="button background-c highlight-c" data-dismiss="modal">Fermer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal Statistics Rooms -->
+        <!-- Modal Games -->
+        <div class="modal fade" id="gamesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title heading-e text-center" id="exampleModalLabel">Parties pour quelle salle ?</h5>
+                    </div>
+                    <div class="modal-body">
+                        <a href="{{ path('user_all_games') }}" class="button background-h highlight-h" style="width: 100%">Toutes les salles (globale)</a>
+                        {% for room in rooms %}
+                            <a href="{{ path('user_stats_by_room', { 'id' : room.id }) }}" class="button background-h highlight-h" style="width: 100%">{{ room.name }}</a>
+                        {% endfor %}                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="button background-c highlight-c" data-dismiss="modal">Fermer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal Games -->
+        <!-- Modal My Account -->
+        <div class="modal fade" id="myAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title heading-e text-center" id="exampleModalLabel">Gérer mon compte</h5>
+                    </div>
+                    <div class="modal-body">
+                        <a href="#" class="button background-h highlight-h" style="width: 100%">Changer de mot de passe</a>
+                        <a href="{{ path('app_logout') }}" class="button background-d highlight-d" style="width: 100%">Se déconnecter</a>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="button background-c highlight-c" data-dismiss="modal">Fermer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal My Account -->
+        <!-- END: Top menu -->
+        <ul id="dot-scroll" class="colors-e background-solid"></ul>
+        <div class="overlay-window gallery-overlay colors-g background-95-g" data-overlay-zoom="#work .content">
+            <div class="overlay-control background-90-b">
+                <a class="previos" href="#"></a>
+                <a class="next" href="#"></a>
+                <a class="cross" href="#"></a>
+            </div>
+            <div class="overlay-view"></div>
+            <ul class="loader">
+                <li class="background-highlight-e"></li>
+                <li class="background-highlight-e"></li>
+                <li class="background-highlight-e"></li>
+            </ul>
+        </div>
+        <div class="overlay-window map-overlay colors-h background-75-h">
+            <div class="overlay-control background-90-g">
+                <a class="cross" href="#"></a>
+            </div>
+            <div class="overlay-view">
+                <div class="map-canvas" data-latitude="42.487606" data-longitude="-71.115661" data-zoom="14">
+                    <div class="map-marker" data-latitude="42.487606" data-longitude="-71.115661" data-text="Our awesome location"></div>
+                    <div class="map-marker" data-latitude="42.485100" data-longitude="-71.113256" data-text="Our sales office"></div>
+                </div>
+            </div>
+        </div>
+        <div class="overlay-window credits-overlay colors-g background-95-g">
+            <div class="overlay-control background-90-b">
+                <a class="cross" href="#"></a>
+            </div>
+            <div class="overlay-view">
+                <div class="content-container">
+                    <h3>Credits</h3>
+                    <ul>
+                        <li>
+                            Photos by:
+                            <ul>
+                                <li><a target="_blank" href="https://www.flickr.com/photos/katya_alagich/">Katya Alagich</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
+                                <li><a target="_blank" href="https://www.flickr.com/photos/65047661@N00/">Jim Lukach</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
+                                <li><a target="_blank" href="https://www.flickr.com/photos/johanl/">Johan Larsson</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
+                                <li><a target="_blank" href="https://www.flickr.com/photos/johny/">John Kraus</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
+                                <li><a target="_blank" href="https://www.flickr.com/photos/geishaboy500/">THOR</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
+                                <li><a target="_blank" href="https://www.flickr.com/photos/stf-o/">stephane</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
+                                <li><a target="_blank" href="http://www.pexels.com/">Pexels</a>, <a target="_blank" href="http://www.pexels.com/photo-license/">CC0 License</a></li>
+                                <li><a target="_blank" href="https://stocksnap.io/">Stocksnap</a>, <a target="_blank" href="https://stocksnap.io/license">CC0 License</a></li>
+                                <li><a target="_blank" href="http://picjumbo.com/">Picjumbo</a>, <a target="_blank" href="http://picjumbo.com/about-author/">Picjumbo License</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            Video by:
+                            <ul>
+                                <li><a target="_blank" href="http://mazwai.com/">Mazwai</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0 License</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            Icons by:
+                            <ul>
+                                <li><a target="_blank" href="http://designmodo.com/">Designmodoh</a>, <a target="_blank" href="http://designmodo.com/linecons-free/">License</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="gate colors-e background-solid">
+            <div class="gate-bar background-heading-e"></div>
+            <ul class="loader">
+                <li class="background-heading-e"></li>
+                <li class="background-heading-e"></li>
+                <li class="background-heading-e"></li>
+            </ul>
+        </div>
+        <!-- BEGIN: Page content -->
+        <section id="home">
+            <a href="{{ path('user_add_game') }}" class="buttonAddGame button background-b highlight-b">Ajouter une partie</a>
+            <div class="view">
 
-            var totalEarningDiv = document.getElementById('totalEarning')
-            totalEarningDiv.textContent = totalEarnings + " €"
+                <img alt class="bg" src="https://images4.alphacoders.com/418/41814.jpg" /><img alt class="bg" src="https://images.alphacoders.com/794/79423.jpg" /><img alt class="bg" src="https://images6.alphacoders.com/449/449381.jpg" />
+                <div class="content contentUserPage home-suzi full-size colors-h background-3">
+                    <div class="container">
+                        <div class="show-list slogan titleUserPage bg-warning">
+                            <div class="show-item">Statistiques globales</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4 style="color: white">Courbe de progression</h4>
+                                <canvas id="myChart"></canvas>
+                            </div>
+                            <div class="col-md-4">
+                                <h4 style="color: white">Dernières parties</h4>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-left">Date</th>
+                                            <th class="text-center">Buy-in</th>
+                                            <th class="text-right">Gain</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for game in games |reverse | slice(0, 6) %}
+                                        {% if game.price != 0 %}
+                                            <tr class="success">
+                                                <td class="text-left">{{ game.createdAt|date("d/m/Y") }}</td>
+                                                <td class="text-center">{{ game.buyIn }} €</td>
+                                                <td class="text-right">{{ game.price - game.buyIn }} € <i class="fa fa-check" aria-hidden="true"></i></td>
+                                            </tr>
+                                        {% else %}
+                                            <tr class="danger">
+                                                <td class="text-left">{{ game.createdAt|date("d/m/Y") }}</td>
+                                                <td class="text-center">{{ game.buyIn }} €</td>
+                                                <td class="text-right">{{ game.price - game.buyIn }} € <i class="fa fa-times" aria-hidden="true"></i></td>
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div class="text-right">
+                                    <a href="#" class="button background-g highlight-g">Voir tout</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row counters" style="margin-bottom: 80px; margin-right: 15px; margin-left: 15px">
+                            <h4 style="color: white;">Statistiques</h4>
 
-            var roiDiv = document.getElementById('roi')
-            roiDiv.textContent = roi + " %"
+                            <div class="col-md-3 counter background-35-b">
+                                <div>Partie(s) jouée(s)</div>
+                                <div class="row heading background-10-light"></div><span id="nbreGame" class="caption" style="font-size: 20px"></span>
+                            </div>
+                            <div class="col-md-3 counter background-35-h">
+                                <div>Profit</div>
+                                <div class="row heading background-10-light"></div><span id="totalEarning" class="caption" style="font-size: 20px"></span>
+                            </div>
+                            <div class="col-md-3 counter background-35-b">
+                                <div>ROI</div>
+                                <div  class="row heading background-10-light"></div><span id="roi" class="caption" style="font-size: 20px"></span>
+                            </div>
+                            <div class="col-md-3 counter background-35-h">
+                                <div>Buy-in moyen</div>
+                                <div class="row heading background-10-light"></div><span id="buyInMoyenDiv" class="caption" style="font-size: 20px"></span>
+                            </div>
+                            <div class="col-md-6 counter background-35-b">
+                                <div>ITM</div>
+                                <div  class="row heading background-10-light"></div><span id="itmDiv" class="caption" style="font-size: 20px"></span>
+                            </div>
+                            <div class="col-md-6 counter background-35-h">
+                                <div>Mise total</div>
+                                <div class="row heading background-10-light"></div><span id="totalBetDiv" class="caption" style="font-size: 20px"></span>
+                            </div>
+                            <div class="col-md-6 counter background-35-h">
+                                <div>Max Série gagnante</div>
+                                <div class="row heading background-10-light"></div><span id="maxSerieWinDiv" class="caption" style="font-size: 20px"></span>
+                            </div>
+                            <div class="col-md-6 counter background-35-b">
+                                <div>Max série perdante</div>
+                                <div class="row heading background-10-light"></div><span id="maxSerieLoseDiv" class="caption" style="font-size: 20px"></span>
+                            </div>
+                        </div>
 
-            let buyInMoyenDiv = document.getElementById('buyInMoyenDiv');
-            buyInMoyenDiv.textContent = buyInMoyen + " €"
-
-            let itmDiv = document.getElementById('itmDiv');
-            itmDiv.textContent = itm + " %"
-
-            let totalBetDiv = document.getElementById('totalBetDiv');
-            totalBetDiv.textContent = totalBet + " €"
-
-            let maxSerieWinDiv = document.getElementById('maxSerieWinDiv');
-            maxSerieWinDiv.textContent = maxSerieWin
-
-            let maxSerieLoseDiv = document.getElementById('maxSerieLoseDiv');
-            maxSerieLoseDiv.textContent = maxSerieLose
-
-
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'line',
-                cubicInterpolationMode: 'monotone',
-                tooltips : false,
-                data: {
-                    labels: JSON.parse(nbreGameEmptyForChart),
-                    datasets: [{
-                        label: '€',
-                        data: JSON.parse(bankroll),
-                        backgroundColor: [
-                            'rgba(204, 176, 138, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(0, 153, 51, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    tooltips: {
-                        // Disable the on-canvas tooltip
-                        enabled: false,
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    }
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            if (typeof(atob) == "undefined")
+            {
+                document.write('<script src="/assets/home/lib/stringencoders-v3.10.3/javascript/base64.js"><\/script>');
+                var atob = function(x)
+                {
+                    return base64.decode(x);
                 }
-            }});
-        }
-    });
-</script>
-<script>
-    (function()
-    {
-        var disableMobileAnimations = true;
-        var isWin = navigator.appVersion.indexOf("Win") !== -1;
-        if (isWin) $('html').addClass('win');
-        var ua = navigator.userAgent.toLowerCase();
-        var isChrome = ua.indexOf('chrome') > -1;
-        if (isChrome) $('html').addClass('chrome');
-        var isAndroidBrowser4_3minus = ((ua.indexOf('mozilla/5.0') > -1 && ua.indexOf('android ') > -1 && ua.indexOf('applewebkit') > -1) && !(ua.indexOf('chrome') > -1));
-        if (isAndroidBrowser4_3minus) $('html').addClass('android-browser-4_3minus');
-        var isSafari = !isChrome && ua.indexOf('safari') !== -1;
-        if (isSafari) $('html').addClass('safari');
-        var isMobile = false; //Change false to Modernizr.touch if you want to disable animations on touchscreen devices;
-        if (isMobile)
-        {
-            $('html').addClass('mobile');
-            if (disableMobileAnimations) $('html').addClass('poor-browser');
-        }
-        else
-        {
-            $('html').addClass('non-mobile');
-        }
-        if (isWin && isSafari)
-        {
-            $('html').addClass('flat-animation');
-        }
-    })();
-</script>
-<script src="/assets/home/scripts/script-bundle.js"></script>
-<script>
-    if (Function('/*@cc_on return document.documentMode===9@*/')())
-    {
-        $('html').addClass('ie9');
-    }
-    if (Function('/*@cc_on return document.documentMode===10@*/')())
-    {
-        $('html').addClass('ie10');
-    }
-    if (!!navigator.userAgent.match(/Trident.*rv\:11\./))
-    {
-        $('html').addClass('ie11');
-    }
-</script>
-</body>
+            }
+        </script>
+        <script src="/assets/home/bower_components/less.js/dist/less.min.js"></script>
+        <script src="/assets/home/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="/assets/home/lib/tween/tween.min.js"></script>
+        <script src="/assets/home/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/assets/home/lib/modernizr-edited.js"></script>
+        <script src="/assets/home/lib/SmoothScroll-1.4.9/SmoothScroll.js"></script>
+        <script src="/assets/home/bower_components/jquery-cookie/jquery.cookie.js"></script>
+        <script src="/assets/home/bower_components/jqBootstrapValidation/dist/jqBootstrapValidation-1.3.7.min.js"></script>
+        <script src="/assets/home/bower_components/minicolors/jquery.minicolors.min.js"></script>
+        <script src="/assets/home/bower_components/slick.js/slick/slick.min.js"></script>
+        <script src="/assets/home/bower_components/shufflejs/dist/jquery.shuffle.min.js"></script>
+        <script src="/assets/home/bower_components/textillate/assets/jquery.lettering.js"></script>
+        <script src="/assets/home/bower_components/textillate/assets/jquery.fittext.js"></script>
+        <script src="/assets/home/bower_components/textillate/jquery.textillate.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+        <script src="/assets/home/lib/prism/prism.js"></script>
+        <script>
+            $.ajax({
+                type: "GET",
+                url: "/user/user_get_games_for_chart",
+                dataType: "json",
+                success: function([nbreGame, bankroll, roi, nbreGameEmptyForChart, buyInMoyen, itm, totalBet, maxSerieWin, maxSerieLose]) {
+
+                    let realBR = JSON.parse(bankroll)
+                    let totalEarnings = realBR.slice(-1)[0]
+                    let nbreGames = JSON.parse(nbreGame).slice(-1)[0]
+
+                    var nbreGameDiv = document.getElementById('nbreGame')
+                    nbreGameDiv.textContent = nbreGames
+
+                    var totalEarningDiv = document.getElementById('totalEarning')
+                    totalEarningDiv.textContent = totalEarnings + " €"
+
+                    var roiDiv = document.getElementById('roi')
+                    roiDiv.textContent = roi + " %"
+
+                    let buyInMoyenDiv = document.getElementById('buyInMoyenDiv');
+                    buyInMoyenDiv.textContent = buyInMoyen + " €"
+
+                    let itmDiv = document.getElementById('itmDiv');
+                    itmDiv.textContent = itm + " %"
+
+                    let totalBetDiv = document.getElementById('totalBetDiv');
+                    totalBetDiv.textContent = totalBet + " €"
+
+                    let maxSerieWinDiv = document.getElementById('maxSerieWinDiv');
+                    maxSerieWinDiv.textContent = maxSerieWin
+
+                    let maxSerieLoseDiv = document.getElementById('maxSerieLoseDiv');
+                    maxSerieLoseDiv.textContent = maxSerieLose
+
+
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'line',
+                        cubicInterpolationMode: 'monotone',
+                        tooltips : false,
+                        data: {
+                            labels: JSON.parse(nbreGameEmptyForChart),
+                            datasets: [{
+                                label: '€',
+                                data: JSON.parse(bankroll),
+                                backgroundColor: [
+                                    'rgba(204, 176, 138, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(0, 153, 51, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            tooltips: {
+                                // Disable the on-canvas tooltip
+                                enabled: false,
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    }});
+                }
+            });
+        </script>
+        <script>
+            (function()
+            {
+                var disableMobileAnimations = true;
+                var isWin = navigator.appVersion.indexOf("Win") !== -1;
+                if (isWin) $('html').addClass('win');
+                var ua = navigator.userAgent.toLowerCase();
+                var isChrome = ua.indexOf('chrome') > -1;
+                if (isChrome) $('html').addClass('chrome');
+                var isAndroidBrowser4_3minus = ((ua.indexOf('mozilla/5.0') > -1 && ua.indexOf('android ') > -1 && ua.indexOf('applewebkit') > -1) && !(ua.indexOf('chrome') > -1));
+                if (isAndroidBrowser4_3minus) $('html').addClass('android-browser-4_3minus');
+                var isSafari = !isChrome && ua.indexOf('safari') !== -1;
+                if (isSafari) $('html').addClass('safari');
+                var isMobile = false; //Change false to Modernizr.touch if you want to disable animations on touchscreen devices;
+                if (isMobile)
+                {
+                    $('html').addClass('mobile');
+                    if (disableMobileAnimations) $('html').addClass('poor-browser');
+                }
+                else
+                {
+                    $('html').addClass('non-mobile');
+                }
+                if (isWin && isSafari)
+                {
+                    $('html').addClass('flat-animation');
+                }
+            })();
+        </script>
+        <script src="/assets/home/scripts/script-bundle.js"></script>
+        <script>
+            if (Function('/*@cc_on return document.documentMode===9@*/')())
+            {
+                $('html').addClass('ie9');
+            }
+            if (Function('/*@cc_on return document.documentMode===10@*/')())
+            {
+                $('html').addClass('ie10');
+            }
+            if (!!navigator.userAgent.match(/Trident.*rv\:11\./))
+            {
+                $('html').addClass('ie11');
+            }
+        </script>
+    </body>
 </html>
-
-
-
-
-
-
-
-
-{#<!DOCTYPE html>#}
-{#<!--#}
-{#Template Name: Midone - HTML Admin Dashboard Template#}
-{#Author: Left4code#}
-{#Website: http://www.left4code.com/#}
-{#Contact: muhammadrizki@left4code.com#}
-{#Purchase: https://themeforest.net/user/left4code/portfolio#}
-{#Renew Support: https://themeforest.net/user/left4code/portfolio#}
-{#License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.#}
-{#-->#}
-{#<html lang="en">#}
-{#<!-- BEGIN: Head -->#}
-{#<head>#}
-{#    <meta charset="utf-8">#}
-{#    <link href="/assets/user/images/logo.svg" rel="shortcut icon">#}
-{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
-{#    <meta name="description" content="Midone admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">#}
-{#    <meta name="keywords" content="admin template, Midone admin template, dashboard template, flat admin template, responsive admin template, web app">#}
-{#    <meta name="author" content="LEFT4CODE">#}
-{#    <title>Dashboard - Midone - Tailwind HTML Admin Template</title>#}
-{#    <!-- BEGIN: CSS Assets-->#}
-{#    <link rel="stylesheet" href="/assets/user/css/app.css" />#}
-{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />#}
-{#    <!-- END: CSS Assets-->#}
-{#</head>#}
-{#<!-- END: Head -->#}
-{#<body class="app">#}
-{#<!-- BEGIN: Mobile Menu -->#}
-{#<div class="mobile-menu md:hidden">#}
-{#    <div class="mobile-menu-bar">#}
-{#        <a href="" class="flex mr-auto">#}
-{#            <img alt="Midone Tailwind HTML Admin Template" class="w-6" src="/assets/user/images/logo.svg">#}
-{#        </a>#}
-{#        <a href="javascript:;" id="mobile-menu-toggler"> <i data-feather="bar-chart-2" class="w-8 h-8 text-white transform -rotate-90"></i> </a>#}
-{#    </div>#}
-{#    <ul class="border-t border-theme-24 py-5 hidden">#}
-{#        <li>#}
-{#            <a href="{{ path('user_home') }}" class="menu menu--active">#}
-{#                <div class="menu__icon"> <i data-feather="home"></i> </div>#}
-{#                <div class="menu__title"> Acceuil </div>#}
-{#            </a>#}
-{#        </li>#}
-{#        <li>#}
-{#            <a href="{{ path('user_add_game') }}" class="menu">#}
-{#                <div class="menu__icon"> <i data-feather="home"></i> </div>#}
-{#                <div class="menu__title"> Ajouter une partie </div>#}
-{#            </a>#}
-{#        </li>#}
-{#        <li>#}
-{#            <a href="javascript:;" class="menu">#}
-{#                <div class="menu__icon"> <i data-feather="box"></i> </div>#}
-{#                <div class="menu__title"> Mes parties <i data-feather="chevron-down" class="menu__sub-icon"></i> </div>#}
-{#            </a>#}
-{#            <ul class="">#}
-{#                <li>#}
-{#                    <a href="{{ path('user_all_games') }}" class="menu">#}
-{#                        <div class="menu__icon"> <i data-feather="activity"></i> </div>#}
-{#                        <div class="menu__title"> Toutes les salles </div>#}
-{#                    </a>#}
-{#                </li>#}
-{#                {% for room in rooms %}#}
-{#                    <li>#}
-{#                        <a href="simple-menu-dashboard.html" class="menu">#}
-{#                            <div class="menu__icon"> <i data-feather="activity"></i> </div>#}
-{#                            <div class="menu__title"> {{ room.name }} </div>#}
-{#                        </a>#}
-{#                    </li>#}
-{#                {% endfor %}#}
-{#            </ul>#}
-{#        </li>#}
-{#    </ul>#}
-{#</div>#}
-{#<!-- END: Mobile Menu -->#}
-{#<!-- BEGIN: Top Bar -->#}
-{#<div class="border-b border-theme-24 -mt-10 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 pt-3 md:pt-0 mb-10">#}
-{#    <div class="top-bar-boxed flex items-center">#}
-{#        <!-- BEGIN: Logo -->#}
-{#        <a href="{{ path('home') }}" class="-intro-x hidden md:flex">#}
-{#            <img alt="Midone Tailwind HTML Admin Template" class="w-6" src="/assets/user/images/logo.svg">#}
-{#            <span class="text-white text-lg ml-3"> SpinAnd<span class="font-medium">GoGo</span>.fr </span>#}
-{#        </a>#}
-{#        <!-- END: Logo -->#}
-{#        <!-- BEGIN: Breadcrumb -->#}
-{#        <div class="-intro-x breadcrumb breadcrumb--light mr-auto">#}
-{#            <span class="text-white text-lg ml-3"> Bienvenue <span class="font-medium">{{ app.user.firstname }}</span> </span>#}
-{#        </div>#}
-{#        <!-- END: Breadcrumb -->#}
-
-{#        <!-- BEGIN: Account Menu -->#}
-{#        <div class="intro-x dropdown w-8 h-8 relative">#}
-{#            <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in scale-110">#}
-{#                <i data-feather="user" style="color: white"></i>#}
-{#            </div>#}
-{#            <div class="dropdown-box mt-10 absolute w-56 top-0 right-0 z-20">#}
-{#                <div class="dropdown-box__content box bg-theme-38 dark:bg-dark-6 text-white">#}
-{#                    <div class="p-4 border-b border-theme-40 dark:border-dark-3">#}
-{#                        <div class="font-medium">{{ app.user.lastname }} {{ app.user.firstname }}</div>#}
-{#                        <div class="text-xs text-theme-41 dark:text-gray-600">Statut : Utilisateur</div>#}
-{#                    </div>#}
-{#                    <div class="p-2">#}
-{#                        <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="user" class="w-4 h-4 mr-2"></i> Mon compte </a>#}
-{#                        <a href="/logout" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Déconnexion </a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#        <!-- END: Account Menu -->#}
-{#    </div>#}
-{#</div>#}
-{#<!-- END: Top Bar -->#}
-{#<!-- BEGIN: Top Menu -->#}
-{#<nav class="top-nav">#}
-{#    <ul>#}
-{#        <li>#}
-{#            <a href="{{ path('user_home') }}" class="top-menu top-menu--active">#}
-{#                <div class="top-menu__icon"> <i data-feather="home"></i> </div>#}
-{#                <div class="top-menu__title"> Acceuil </div>#}
-{#            </a>#}
-{#        </li>#}
-{#        <li>#}
-{#            <a href="{{ path('user_add_game') }}" class="top-menu">#}
-{#                <div class="top-menu__icon"> <i data-feather="home"></i> </div>#}
-{#                <div class="top-menu__title"> Ajouter une partie </div>#}
-{#            </a>#}
-{#        </li>#}
-{#        <li>#}
-{#            <a href="javascript:;" class="top-menu">#}
-{#                <div class="top-menu__icon"> <i data-feather="hard-drive"></i> </div>#}
-{#                <div class="top-menu__title"> Mes parties <i data-feather="chevron-down" class="top-menu__sub-icon"></i> </div>#}
-{#            </a>#}
-{#            <ul class="">#}
-{#                <li>#}
-{#                    <a href="{{ path('user_all_games') }}" class="top-menu">#}
-{#                        <div class="top-menu__icon"> <i data-feather="activity"></i> </div>#}
-{#                        <div class="top-menu__title"> Toutes les salles </div>#}
-{#                    </a>#}
-{#                </li>#}
-{#                {% for room in rooms %}#}
-{#                    <li>#}
-{#                        <a href="top-menu-chart.html" class="top-menu">#}
-{#                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>#}
-{#                            <div class="top-menu__title"> {{ room.name }} </div>#}
-{#                        </a>#}
-{#                    </li>#}
-{#                {% endfor %}#}
-{#            </ul>#}
-{#        </li>#}
-{#    </ul>#}
-{#</nav>#}
-{#<!-- END: Top Menu -->#}
-{#<!-- BEGIN: Content -->#}
-{#<div class="content">#}
-{#    <div class="grid grid-cols-12 gap-6">#}
-{#        <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">#}
-{#            <!-- BEGIN: Sales Report -->#}
-{#            <div class="col-span-12 lg:col-span-1 mt-8"></div>#}
-
-{#            <div class="col-span-12 lg:col-span-6 mt-8">#}
-{#                <div class="intro-y block sm:flex items-center h-10">#}
-{#                    <h2 class="text-lg font-medium truncate mr-5">#}
-{#                        Courbe Globale#}
-{#                    </h2>#}
-{#                </div>#}
-{#                <div class="intro-y box p-5 sm:mt-5">#}
-{#                    <div class="flex flex-col xl:flex-row xl:items-center">#}
-{#                        <div class="flex">#}
-{#                            <div>#}
-{#                                <div id="totalEarning" class="float-left text-theme-20 dark:text-gray-300 text-lg xl:text-xl font-bold"></div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <div class="dropdown relative xl:ml-auto mt-5 xl:mt-0">#}
-{#                            <div class="dropdown-box mt-10 absolute w-40 top-0 xl:right-0 z-20">#}
-{#                                <div class="dropdown-box__content box dark:bg-dark-1 p-2 overflow-y-auto h-32"> <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">PC & Laptop</a> <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">Smartphone</a> <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">Electronic</a> <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">Photography</a> <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">Sport</a> </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="report-chart">#}
-{#                        <canvas id="report-line-chart" height="160" class="mt-6"></canvas>#}
-{#                    </div>#}
-{#                    <div>#}
-{#                        <div id="roi" class="mt-3 float-left text-theme-20 dark:text-gray-300 text-lg xl:text-xl font-bold">ROI : 12%</div>#}
-{#                        <div class="mt-3 float-right text-theme-20 dark:text-gray-300 text-lg xl:text-xl font-bold">Nb de parties : {{ games|length }}</div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <!-- END: Sales Report -->#}
-{#            <!-- BEGIN: Weekly Top Seller -->#}
-{#            <div class="col-span-12 sm:col-span-12 lg:col-span-4 mt-8">#}
-{#                <div class="intro-y flex items-center h-10">#}
-{#                    <h2 class="text-lg font-medium truncate mr-5">#}
-{#                        Ratios#}
-{#                    </h2>#}
-{#                </div>#}
-{#                <div class="intro-y box p-5 mt-5 col-span-12 lg:col-span-5">#}
-{#                    <canvas class="mt-3" id="report-pie-chart" height="280"></canvas>#}
-{#                    <div class="mt-8">#}
-{#                        <div class="flex items-center">#}
-{#                            <div class="w-2 h-2 bg-theme-11 rounded-full mr-3"></div>#}
-{#                            <span class="truncate">Première place</span>#}
-{#                            <div class="h-px flex-1 border border-r border-dashed border-gray-300 mx-3 xl:hidden"></div>#}
-{#                            <span class="font-medium xl:ml-auto">62%</span>#}
-{#                        </div>#}
-{#                        <div class="flex items-center mt-4">#}
-{#                            <div class="w-2 h-2 bg-theme-1 rounded-full mr-3"></div>#}
-{#                            <span class="truncate">Deuxième place</span>#}
-{#                            <div class="h-px flex-1 border border-r border-dashed border-gray-300 mx-3 xl:hidden"></div>#}
-{#                            <span class="font-medium xl:ml-auto">33%</span>#}
-{#                        </div>#}
-{#                        <div class="flex items-center mt-4">#}
-{#                            <div class="w-2 h-2 bg-theme-12 rounded-full mr-3"></div>#}
-{#                            <span class="truncate">Troixième place</span>#}
-{#                            <div class="h-px flex-1 border border-r border-dashed border-gray-300 mx-3 xl:hidden"></div>#}
-{#                            <span class="font-medium xl:ml-auto">10%</span>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-
-{#            <div class="col-span-12 lg:col-span-1 mt-8"></div>#}
-
-{#            <!-- END: Weekly Top Seller -->#}
-
-{#            <!-- BEGIN: Weekly Top Products -->#}
-{#            <div class="col-span-12 mt-6">#}
-{#                <div class="intro-y block sm:flex items-center h-10">#}
-{#                    <h2 class="text-lg font-medium truncate mr-5">#}
-{#                        Dernières partie#}
-{#                    </h2>#}
-{#                </div>#}
-{#                <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">#}
-{#                    <table class="table table-report sm:mt-2">#}
-{#                        <thead>#}
-{#                        <tr>#}
-{#                            <th class="whitespace-no-wrap">PRODUCT NAME</th>#}
-{#                            <th class="text-center whitespace-no-wrap">STOCK</th>#}
-{#                            <th class="text-center whitespace-no-wrap">STATUS</th>#}
-{#                            <th class="text-center whitespace-no-wrap">ACTIONS</th>#}
-{#                        </tr>#}
-{#                        </thead>#}
-{#                        <tbody>#}
-{#                        <tr class="intro-x">#}
-{#                            <td>#}
-{#                                <a href="" class="font-medium whitespace-no-wrap">Nike Tanjun</a>#}
-{#                                <div class="text-gray-600 text-xs whitespace-no-wrap">Sport &amp; Outdoor</div>#}
-{#                            </td>#}
-{#                            <td class="text-center">62</td>#}
-{#                            <td class="w-40">#}
-{#                                <div class="flex items-center justify-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> Active </div>#}
-{#                            </td>#}
-{#                            <td class="table-report__action w-56">#}
-{#                                <div class="flex justify-center items-center">#}
-{#                                    <a class="flex items-center mr-3" href=""> <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </a>#}
-{#                                    <a class="flex items-center text-theme-6" href=""> <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>#}
-{#                                </div>#}
-{#                            </td>#}
-{#                        </tr>#}
-{#                        <tr class="intro-x">#}
-{#                            <td>#}
-{#                                <a href="" class="font-medium whitespace-no-wrap">Nikon Z6</a>#}
-{#                                <div class="text-gray-600 text-xs whitespace-no-wrap">Photography</div>#}
-{#                            </td>#}
-{#                            <td class="text-center">180</td>#}
-{#                            <td class="w-40">#}
-{#                                <div class="flex items-center justify-center text-theme-6"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> Inactive </div>#}
-{#                            </td>#}
-{#                            <td class="table-report__action w-56">#}
-{#                                <div class="flex justify-center items-center">#}
-{#                                    <a class="flex items-center mr-3" href=""> <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </a>#}
-{#                                    <a class="flex items-center text-theme-6" href=""> <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>#}
-{#                                </div>#}
-{#                            </td>#}
-{#                        </tr>#}
-{#                        </tbody>#}
-{#                    </table>#}
-{#                </div>#}
-{#                <button class="button w-24 mr-1 mb-2 border text-gray-700 dark:bg-dark-5 dark:text-gray-300 float-right">Voir tout</button>#}
-{#            </div>#}
-{#            <!-- END: Weekly Top Products -->#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
-{#<!-- END: Content -->#}
-{#<!-- BEGIN: JS Assets-->#}
-{#<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>#}
-{#<script src="/assets/user/js/app.js"></script>#}
-{#<!-- END: JS Assets-->#}
-{#</body>#}
-{#</html>#}
