@@ -241,7 +241,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                {% for game in allGames | reverse %}
+                                                {% for game in allGames %}
                                                     <tr style="background: {% if game.price > 0 %}rgba(0,250,154, 0.2){% else %}rgba(250,128,114, 0.2){% endif %}">
                                                         <td class="column1">{{ game.createdAt|date("d/m/Y h.m")  }}</td>
                                                         <td class="column2">{{ game.room }}</td>
@@ -255,7 +255,10 @@
                                                 {% endfor %}
                                                 </tbody>
                                             </table>
-                                        </div>
+                                            <div class="text-center" style="margin-top: 40px">
+                                                {{ knp_pagination_render(allGames, '@KnpPaginator/Pagination/foundation_v5_pagination.html.twig') }}
+                                            </div>
+                                            </div>
                                     </div>
                                 </div>
                             </div>
