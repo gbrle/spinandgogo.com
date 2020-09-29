@@ -4531,15 +4531,10 @@ html {
 }
 
 .titleHomePage{
-    transition-duration: 1s;
-    border-top: 1px beige dashed;
-    border-bottom: 1px beige dashed;
+
 }
 
 .titleHomePage:hover{
-
-        border-top: 1px white dashed;
-        border-bottom: 1px white dashed;
 
 }
 .roomCard{

@@ -248,7 +248,9 @@
                                                         <td class="column3">{{ game.buyIn }} €</td>
                                                         <td class="column4">X {{ game.multiplicator }}</td>
                                                         <td class="column5">{{ game.place }}</td>
-                                                        <td class="column6">{{ game.price - game.buyIn }} €</td>
+                                                        <td class="column6">{{ game.price - game.buyIn }} € {% if game.price > 0 %}<i class="fa fa-check" aria-hidden="true"></i>{% else %}<i class="fa fa-times" aria-hidden="true"></i>
+                                                            {% endif %}
+                                                        </td>
                                                     </tr>
                                                 {% endfor %}
                                                 </tbody>
