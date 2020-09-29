@@ -243,7 +243,7 @@
                                                 </thead>
                                                 <tbody>
                                                 {% for game in allGames %}
-                                                    <tr style="background: {% if game.price > 0 %}rgba(0,250,154, 0.2){% else %}rgba(250,128,114, 0.2){% endif %}">
+                                                    <tr style="background: {% if game.price > 0 %}rgba(0,250,154, 0.3){% else %}rgba(250,128,114, 0.3){% endif %}">
                                                         <td class="column1">{{ game.createdAt|date("d/m/Y h.m")  }}</td>
                                                         <td class="column2">{{ game.room }}</td>
                                                         <td class="column3">{{ game.buyIn }} €</td>
