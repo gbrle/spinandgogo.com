@@ -2,6 +2,7 @@
 
 namespace App\Controller\user;
 
+use App\Entity\Room;
 use App\Repository\GameRepository;
 use App\Repository\RoomRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -29,12 +30,34 @@ class GameController extends AbstractController
             10 // Nombre de résultats par page
         );
 
-
-
-
         return $this->render('user/all_games.html.twig', [
             'rooms' => $rooms,
             'allGames' => $allGames,
+        ]);
+    }
+
+    /**
+     * @Route("/user/games_by_room/{id}", name="user_games_by_room")
+     */
+    public function games_by_room(Room $room, Request $request, RoomRepository $roomRepository, GameRepository $gameRepository, PaginatorInterface $paginator)
+    {
+        $rooms = $roomRepository->findAll();
+
+        $datas = $gameRepository->findBy(
+            ['user' => $this->getUser(),'room' => $room->getName()],
+            ['id' => 'DESC']
+        );
+
+        $allGames = $paginator->paginate(
+            $datas, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            10 // Nombre de résultats par page
+        );
+
+        return $this->render('user/games_by_room.html.twig', [
+            'rooms' => $rooms,
+            'allGames' => $allGames,
+            'room' => $room
         ]);
     }
 }

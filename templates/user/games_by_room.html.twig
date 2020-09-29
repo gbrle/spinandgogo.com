@@ -16,6 +16,10 @@
         <link rel="stylesheet" href="/assets/home/lib/linecons/style.css" />
         <link rel="stylesheet" href="/assets/home/styles/style.min.css" />
         <link rel="stylesheet" href="/assets/home/theme-custom.css" />
+        <link rel="stylesheet" type="text/css" href="/assets/user/user-table/vendor/select2/select2.min.css">
+        <link rel="stylesheet" type="text/css" href="/assets/user/user-table/vendor/perfect-scrollbar/perfect-scrollbar.css">
+        <link rel="stylesheet" type="text/css" href="/assets/user/user-table/css/util.css">
+        <link rel="stylesheet" type="text/css" href="/assets/user/user-table/css/main.css">
         <link rel="shortcut icon" href="/assets/home/favicon.ico" type="image/x-icon" />
         <link rel="apple-touch-icon" href="/assets/home/apple-touch-icon.png" />
         <link rel="apple-touch-icon" sizes="57x57" href="/assets/home/apple-touch-icon-57x57.png" />
@@ -219,80 +223,45 @@
                 <div class="content contentUserPage home-suzi full-size colors-h background-3">
                     <div class="container">
                         <div class="show-list slogan titleUserPage bg-warning">
-                            <div class="show-item">Statistiques globales</div>
+                            <div class="show-item">Liste des parties {{ room }}</div>
                         </div>
                         <div class="row">
-                            <div class="col-md-8">
-                                <h4 style="color: white">Courbe de progression</h4>
-                                <canvas id="myChart"></canvas>
-                            </div>
-                            <div class="col-md-4">
-                                <h4 style="color: white">Dernières parties</h4>
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-left">Date</th>
-                                            <th class="text-center">Buy-in</th>
-                                            <th class="text-right">Gain</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for game in games |reverse | slice(0, 6) %}
-                                        {% if game.price != 0 %}
-                                            <tr class="success">
-                                                <td class="text-left">{{ game.createdAt|date("d/m/Y") }}</td>
-                                                <td class="text-center">{{ game.buyIn }} €</td>
-                                                <td class="text-right">{{ game.price - game.buyIn }} € <i class="fa fa-check" aria-hidden="true"></i></td>
-                                            </tr>
-                                        {% else %}
-                                            <tr class="danger">
-                                                <td class="text-left">{{ game.createdAt|date("d/m/Y") }}</td>
-                                                <td class="text-center">{{ game.buyIn }} €</td>
-                                                <td class="text-right">{{ game.price - game.buyIn }} € <i class="fa fa-times" aria-hidden="true"></i></td>
-                                            </tr>
-                                        {% endif %}
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                                <div class="text-right">
-                                    <a href="{{ path('user_all_games') }}" class="button background-g highlight-g">Voir tout</a>
+                            <div class="limiter">
+                                <div class="container-table100">
+                                    <div class="wrap-table100">
+                                        <div class="table100">
+                                            <table>
+                                                <thead>
+                                                <tr class="table100-head">
+                                                    <th class="column1">Date</th>
+                                                    <th class="column2">Salle</th>
+                                                    <th class="column3">Buy-In</th>
+                                                    <th class="column4">Multiplicateur</th>
+                                                    <th class="column5">Place</th>
+                                                    <th class="column6">Gain</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for game in allGames %}
+                                                    <tr style="background: {% if game.price > 0 %}rgba(0,250,154, 0.2){% else %}rgba(250,128,114, 0.2){% endif %}">
+                                                        <td class="column1">{{ game.createdAt|date("d/m/Y h.m")  }}</td>
+                                                        <td class="column2">{{ game.room }}</td>
+                                                        <td class="column3">{{ game.buyIn }} €</td>
+                                                        <td class="column4">X {{ game.multiplicator }}</td>
+                                                        <td class="column5">{{ game.place }}</td>
+                                                        <td class="column6">{{ game.price - game.buyIn }} € {% if game.price > 0 %}<i class="fa fa-check" aria-hidden="true"></i>{% else %}<i class="fa fa-times" aria-hidden="true"></i>
+                                                            {% endif %}
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                            <div class="text-center" style="margin-top: 40px">
+                                                {{ knp_pagination_render(allGames, '@KnpPaginator/Pagination/foundation_v5_pagination.html.twig') }}
+                                            </div>
+                                            </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row counters" style="margin-bottom: 80px; margin-right: 15px; margin-left: 15px">
-                            <h4 style="color: white;">Statistiques</h4>
-
-                            <div class="col-md-3 counter background-35-b">
-                                <div>Partie(s) jouée(s)</div>
-                                <div class="row heading background-10-light"></div><span id="nbreGame" class="caption" style="font-size: 20px"></span>
-                            </div>
-                            <div class="col-md-3 counter background-35-h">
-                                <div>Profit</div>
-                                <div class="row heading background-10-light"></div><span id="totalEarning" class="caption" style="font-size: 20px"></span>
-                            </div>
-                            <div class="col-md-3 counter background-35-b">
-                                <div>ROI</div>
-                                <div  class="row heading background-10-light"></div><span id="roi" class="caption" style="font-size: 20px"></span>
-                            </div>
-                            <div class="col-md-3 counter background-35-h">
-                                <div>Buy-in moyen</div>
-                                <div class="row heading background-10-light"></div><span id="buyInMoyenDiv" class="caption" style="font-size: 20px"></span>
-                            </div>
-                            <div class="col-md-6 counter background-35-b">
-                                <div>ITM</div>
-                                <div  class="row heading background-10-light"></div><span id="itmDiv" class="caption" style="font-size: 20px"></span>
-                            </div>
-                            <div class="col-md-6 counter background-35-h">
-                                <div>Mise total</div>
-                                <div class="row heading background-10-light"></div><span id="totalBetDiv" class="caption" style="font-size: 20px"></span>
-                            </div>
-                            <div class="col-md-6 counter background-35-h">
-                                <div>Max Série gagnante</div>
-                                <div class="row heading background-10-light"></div><span id="maxSerieWinDiv" class="caption" style="font-size: 20px"></span>
-                            </div>
-                            <div class="col-md-6 counter background-35-b">
-                                <div>Max série perdante</div>
-                                <div class="row heading background-10-light"></div><span id="maxSerieLoseDiv" class="caption" style="font-size: 20px"></span>
                             </div>
                         </div>
 
@@ -325,88 +294,9 @@
         <script src="/assets/home/bower_components/textillate/assets/jquery.fittext.js"></script>
         <script src="/assets/home/bower_components/textillate/jquery.textillate.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-        <script src="/assets/home/lib/prism/prism.js"></script>
-        <script>
-            $.ajax({
-                type: "GET",
-                url: "/user/user_get_games_for_chart",
-                dataType: "json",
-                success: function([nbreGame, bankroll, roi, nbreGameEmptyForChart, buyInMoyen, itm, totalBet, maxSerieWin, maxSerieLose]) {
-
-                    let realBR = JSON.parse(bankroll)
-                    let totalEarnings = realBR.slice(-1)[0]
-                    let nbreGames = JSON.parse(nbreGame).slice(-1)[0]
-
-                    var nbreGameDiv = document.getElementById('nbreGame')
-                    nbreGameDiv.textContent = nbreGames
-
-                    var totalEarningDiv = document.getElementById('totalEarning')
-                    totalEarningDiv.textContent = totalEarnings + " €"
-
-                    var roiDiv = document.getElementById('roi')
-                    roiDiv.textContent = roi + " %"
-
-                    let buyInMoyenDiv = document.getElementById('buyInMoyenDiv');
-                    buyInMoyenDiv.textContent = buyInMoyen + " €"
-
-                    let itmDiv = document.getElementById('itmDiv');
-                    itmDiv.textContent = itm + " %"
-
-                    let totalBetDiv = document.getElementById('totalBetDiv');
-                    totalBetDiv.textContent = totalBet + " €"
-
-                    let maxSerieWinDiv = document.getElementById('maxSerieWinDiv');
-                    maxSerieWinDiv.textContent = maxSerieWin
-
-                    let maxSerieLoseDiv = document.getElementById('maxSerieLoseDiv');
-                    maxSerieLoseDiv.textContent = maxSerieLose
-
-
-                    var ctx = document.getElementById('myChart').getContext('2d');
-                    var myChart = new Chart(ctx, {
-                        type: 'line',
-                        cubicInterpolationMode: 'monotone',
-                        tooltips : false,
-                        data: {
-                            labels: JSON.parse(nbreGameEmptyForChart),
-                            datasets: [{
-                                label: '€',
-                                data: JSON.parse(bankroll),
-                                backgroundColor: [
-                                    'rgba(204, 176, 138, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(255, 206, 86, 0.2)',
-                                    'rgba(75, 192, 192, 0.2)',
-                                    'rgba(153, 102, 255, 0.2)',
-                                    'rgba(255, 159, 64, 0.2)'
-                                ],
-                                borderColor: [
-                                    'rgba(0, 153, 51, 1)',
-                                    'rgba(54, 162, 235, 1)',
-                                    'rgba(255, 206, 86, 1)',
-                                    'rgba(75, 192, 192, 1)',
-                                    'rgba(153, 102, 255, 1)',
-                                    'rgba(255, 159, 64, 1)'
-                                ],
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            tooltips: {
-                                // Disable the on-canvas tooltip
-                                enabled: false,
-                            scales: {
-                                yAxes: [{
-                                    ticks: {
-                                        beginAtZero: true
-                                    }
-                                }]
-                            }
-                        }
-                    }});
-                }
-            });
-        </script>
+        <script src="/assets/user/user-table/vendor/select2/select2.min.js"></script>
+        <script src="/assets/user/user-table/js/main.js"></script>
+        <script src="js/main.js"></script>
         <script>
             (function()
             {

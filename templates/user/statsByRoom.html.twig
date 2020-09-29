@@ -110,8 +110,9 @@
                     <div class="modal-body">
                         <a href="{{ path('user_all_games') }}" class="button background-h highlight-h" style="width: 100%">Toutes les salles (globale)</a>
                         {% for room in rooms %}
-                            <a href="{{ path('user_stats_by_room', { 'id' : room.id }) }}" class="button background-h highlight-h" style="width: 100%">{{ room.name }}</a>
-                        {% endfor %}                    </div>
+                            <a href="{{ path('user_games_by_room', { 'id' : room.id }) }}" class="button background-h highlight-h" style="width: 100%">{{ room.name }}</a>
+                        {% endfor %}
+                    </div>
                     <div class="modal-footer">
                         <a href="#" class="button background-c highlight-c" data-dismiss="modal">Fermer</a>
                     </div>
@@ -254,7 +255,7 @@
                                     </tbody>
                                 </table>
                                 <div class="text-right">
-                                    <a href="{{ path('user_all_games') }}" class="button background-g highlight-g">Voir tout</a>
+                                    <a href="{{ path('user_games_by_room', { 'id' : room.id }) }}" class="button background-g highlight-g">Voir tout</a>
                                 </div>
                             </div>
                         </div>
