@@ -240,13 +240,13 @@
                                     {% for game in games |reverse | slice(0, 6) %}
                                         {% if game.price != 0 %}
                                             <tr class="success">
-                                                <td class="text-left">{{ game.createdAt|date("d/m/Y") }}</td>
+                                                <td class="text-left">{{ game.createdAt|date("d/m/Y H:m:s") }}</td>
                                                 <td class="text-center">{{ game.buyIn }} €</td>
                                                 <td class="text-right">{{ game.price - game.buyIn }} € <i class="fa fa-check" aria-hidden="true"></i></td>
                                             </tr>
                                         {% else %}
                                             <tr class="danger">
-                                                <td class="text-left">{{ game.createdAt|date("d/m/Y") }}</td>
+                                                <td class="text-left">{{ game.createdAt|date("d/m/Y H:m:s") }}</td>
                                                 <td class="text-center">{{ game.buyIn }} €</td>
                                                 <td class="text-right">{{ game.price - game.buyIn }} € <i class="fa fa-times" aria-hidden="true"></i></td>
                                             </tr>

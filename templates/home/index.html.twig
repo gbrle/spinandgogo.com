@@ -108,8 +108,8 @@
                     <ul class="nav navbar-nav navbar-right">
 {#                      <li><a href="#home" class="hover-effect">Acceuil</a></li>#}
                         <li><a href="#about" class="hover-effect">C'est quoi ?</a></li>
+                        <li><a href="#formation" class="hover-effect">Formation</a></li>
                         <li><a href="#pokerRoom" class="hover-effect">Salles de poker</a></li>
-                        <li><a href="#services" class="hover-effect">Services</a></li>
                         <li><a href="#work" class="hover-effect">Work</a></li>
                         {% if app.user %}
                             <li><a href="{{ path('user_home') }}" class="hover-effect">Mon compte <i class="li_user"></i></a></li>
@@ -301,6 +301,51 @@
                 </div>
             </div>
         </section>
+    <section id="formation" class="view titleHomePage">
+        <a href="#formationContent" class="content colors-e background-solid" style="padding-bottom: 0!important; padding-top: 0!important;">
+            <div class="container">
+                <h2>Formation <span class="highlight">spin & </span> go</h2>
+                <h4 class="text-center highlight" style="margin-bottom: 30px">Gamifis ton apprentissage !
+                </h4>
+                <h4 class="text-center chevron"><i class="fa fa-chevron-down fa-2x" aria-hidden="true"></i></h4>
+            </div>
+        </a>
+    </section>
+    <section class="view" id="formationContent">
+        <div class="content pane">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 stretch-height pane">
+                        <div class="view fluid-height">
+                            <div class="content incut colors-h background-solid">
+                                <div class="position-middle-center" style="text-align: center">
+                                    <h3><span class="highlight">Travaille</span> ton poker</h3>
+                                    <p class=" highlight">
+                                        <strong>
+                                            Découvre notre façon d'apprendre le Spin & Go par le billet d'un
+                                            système gamifier <i class="fa fa-gamepad" aria-hidden="true"></i>.
+                                        </strong>
+                                    </p>
+                                    <p>Connecte toi à ton compte, tu auras accès</p>
+                                    <p>Aenean nisi neque, aliquam ut nibh sit amet, finibus sagittis tortor aenean consectetur.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 stretch-height pane">
+                        <div class="view fluid-height">
+                            <img alt class="bg" src="https://ak.picdn.net/shutterstock/videos/1021084219/thumb/9.jpg?ip=x480" />
+                            <div class="content incut colors-d background-transparent">
+                                <div class="position-middle-center text-center">
+                                    <a class="button background-lite-c heading-c" href="#">Bientôt disponible</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
         <section id="pokerRoom">
             <div class="view titleHomePage">
                 <a href="#pokerRoomContent" class="content colors-e background-solid" style="padding-bottom: 0!important; padding-top: 0!important;">
@@ -355,38 +400,8 @@
                     </div>
                 </div>
             </div>
-            <div class="view" id="who-we-are">
-                <div class="content pane">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6 stretch-height pane">
-                                <div class="view fluid-height">
-                                    <img alt class="bg" src="/assets/home/images/placeholders/1920x1200-2.jpg" />
-                                    <div class="content incut colors-d background-transparent">
-                                        <div class="position-middle-center text-center">
-                                            <a class="button background-lite-c heading-c" href="#work">View Our Work</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6  stretch-height pane">
-                                <div class="view fluid-height">
-                                    <div class="content incut colors-h background-solid">
-                                        <div class="position-middle-center">
-                                            <h3 class="text-left"><span class="highlight">Who</span> We Are</h3>
-                                            <p class="subtitle highlight"><strong>Quisque dolor lacus, commodo id hendrerit viverra, euismod in odio.</strong></p>
-                                            <p>Aliquam fermentum massa ac est sollicitudin, at ultricies ligula tristique. Cras finibus, nulla ac convallis feugiat, nisl nisl lobortis est, eget auctor velit magna vel nunc. Donec nec eros rhoncus.</p>
-                                            <p>Aenean nisi neque, aliquam ut nibh sit amet, finibus sagittis tortor aenean consectetur.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
-        <section id="services">
+        <section id="">
             <div class="view">
                 <div class="content colors-e background-solid">
                     <div class="container">
