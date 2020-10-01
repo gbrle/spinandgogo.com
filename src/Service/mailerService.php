@@ -5,6 +5,7 @@ namespace App\Service;
 
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 
 class mailerService
@@ -20,7 +21,7 @@ class mailerService
     public function sendTokenConfirmationInscription($to, $subject, $contentMail, $template)
     {
         $email = (new TemplatedEmail())
-            ->from("david@dg-web.fr")
+            ->from(new Address("support@spinandgogo.com", "SpinAndGoGo"))
             ->to($to)
             ->subject($subject)
             ->htmlTemplate($template)
@@ -32,7 +33,7 @@ class mailerService
     public function sendForgottenPasswordLink($to, $subject, $contentMail, $template, $user)
     {
         $email = (new TemplatedEmail())
-            ->from("david@dg-web.fr")
+            ->from(new Address("support@spinandgogo.com", "SpinAndGoGo"))
             ->to($to)
             ->subject($subject)
             ->htmlTemplate($template)
