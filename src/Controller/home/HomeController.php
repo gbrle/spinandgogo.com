@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/site", name="homeSite")
+     * @Route("/", name="home")
      */
     public function index(RoomRepository $roomRepository)
     {
@@ -20,14 +20,14 @@ class HomeController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/", name="home")
-     */
-    public function startSAGG()
-    {
-
-        return $this->render('home/homeStart.html.twig', [
-
-        ]);
-    }
+//    /**
+//     * @Route("/", name="home")
+//     */
+//    public function startSAGG()
+//    {
+//
+//        return $this->render('home/homeStart.html.twig', [
+//
+//        ]);
+//    }
 }

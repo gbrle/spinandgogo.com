@@ -39,40 +39,40 @@
                                     <span class="side-title">Se connecter</span>
                                 </div>
                             </a>
-                            <a href="#" class="col-md-6 colors-f background-95-f full-height">
-                                <div class="text-center">
-                                    <span class="side-label"><i class="fa fa-outdent fa-3x" aria-hidden="true"></i></span>
-                                    <span class="side-title">Blog</span>
-                                </div>
-                            </a>
+                            {#                            <a href="#" class="col-md-6 colors-f background-95-f full-height">#}
+                            {#                                <div class="text-center">#}
+                            {#                                    <span class="side-label"><i class="fa fa-outdent fa-3x" aria-hidden="true"></i></span>#}
+                            {#                                    <span class="side-title">Blog</span>#}
+                            {#                                </div>#}
+                            {#                            </a>#}
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="container-fluid  half-height">
-                <div class="row full-height">
-                    <a href="#how-we-work" class="col-md-4 colors-g background-solid full-height border-bottom border-lite">
-                        <div>
-                            <span class="side-label">Awesome</span>
-                            <span class="side-title">How We Work</span>
-                        </div>
-                    </a>
-                    <a href="#who-we-are" class="col-md-4 colors-g background-solid full-height border-bottom border-left border-lite">
-                        <div>
-                            <span class="side-label">We Are Designers</span>
-                            <span class="side-title">Who We Are</span>
-                        </div>
-                    </a>
-                    <a href="#numbers" class="col-md-4 colors-g background-solid full-height border-bottom border-left border-lite">
-                        <div>
-                            <span class="side-label">Some Facts</span>
-                            <span class="side-title">Our Numbers</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            {#            <div class="container-fluid  half-height">#}
+            {#                <div class="row full-height">#}
+            {#                    <a href="#how-we-work" class="col-md-4 colors-g background-solid full-height border-bottom border-lite">#}
+            {#                        <div>#}
+            {#                            <span class="side-label">Awesome</span>#}
+            {#                            <span class="side-title">How We Work</span>#}
+            {#                        </div>#}
+            {#                    </a>#}
+            {#                    <a href="#who-we-are" class="col-md-4 colors-g background-solid full-height border-bottom border-left border-lite">#}
+            {#                        <div>#}
+            {#                            <span class="side-label">We Are Designers</span>#}
+            {#                            <span class="side-title">Who We Are</span>#}
+            {#                        </div>#}
+            {#                    </a>#}
+            {#                    <a href="#numbers" class="col-md-4 colors-g background-solid full-height border-bottom border-left border-lite">#}
+            {#                        <div>#}
+            {#                            <span class="side-label">Some Facts</span>#}
+            {#                            <span class="side-title">Our Numbers</span>#}
+            {#                        </div>#}
+            {#                    </a>#}
+            {#                </div>#}
+            {#            </div>#}
         </div>
-        <div class="page-border bottom colors-e background-solid"><a href="#top" class="hover-effect">To <span class="highlight">Top</span></a></div>
+        <div class="page-border bottom colors-e background-solid"></div>
         <div class="page-border left colors-e background-solid">
         {#    <ul>#}
         {#        <li><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>#}
@@ -88,88 +88,28 @@
             <div class="container">
                 <div class="navbar-header">
                     <a class="menu-toggle ext-nav-toggle visible-xs-block" data-target=".ext-nav" href="#"><span></span></a>
-{#                    <a class="menu-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" href="#"><span></span></a>#}
+                    {#                    <a class="menu-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" href="#"><span></span></a>#}
                     <a class="navbar-brand" href="/">SpinAnd<span class="highlight">GoGo</span> <i class="fa fa-trophy" aria-hidden="true"></i></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#home" class="hover-effect">Home</a></li>
-                        <li><a href="#about" class="hover-effect">About</a></li>
-                        <li><a href="#team" class="hover-effect">Team</a></li>
-                        <li><a href="#services" class="hover-effect">Services</a></li>
-                        <li><a href="#work" class="hover-effect">Work</a></li>
-                        <li><a href="#process" class="hover-effect">Process</a></li>
-                        <li><a href="#skills" class="hover-effect">Skills</a></li>
-                        <li><a href="#contact" class="hover-effect">Contact</a></li>
-{#                        <li class="hidden-xs"><a class="menu-toggle ext-nav-toggle" data-target=".ext-nav" href="#"><span></span></a></li>#}
+                        {#                      <li><a href="#home" class="hover-effect">Acceuil</a></li>#}
+                        {#                        <li><a href="#about" class="hover-effect">C'est quoi ?</a></li>#}
+                        {#                        <li><a href="#formation" class="hover-effect">Formation</a></li>#}
+                        {#                        <li><a href="#pokerRoom" class="hover-effect">Salles de poker</a></li>#}
+                        {#                        <li><a href="#work" class="hover-effect">Work</a></li>#}
+                        {% if app.user %}
+                            <li><a href="{{ path('user_home') }}" class="hover-effect">Mon compte <i class="li_user"></i></a></li>
+                        {% else %}
+                            <li><a href="{{ path('app_login') }}" class="hover-effect" style="color: white">Se connecter <i class="li_user"></i></a></li>
+                        {% endif %}
+                        {#                      <li class="hidden-xs"><a class="menu-toggle ext-nav-toggle" data-target=".ext-nav" href="#"><span></span></a></li>#}
                     </ul>
                 </div>
             </div>
         </nav>
         <!-- END: Top menu -->
         <ul id="dot-scroll" class="colors-e background-solid"></ul>
-        <div class="overlay-window gallery-overlay colors-g background-95-g" data-overlay-zoom="#work .content">
-            <div class="overlay-control background-90-b">
-                <a class="previos" href="#"></a>
-                <a class="next" href="#"></a>
-                <a class="cross" href="#"></a>
-            </div>
-            <div class="overlay-view"></div>
-            <ul class="loader">
-                <li class="background-highlight-e"></li>
-                <li class="background-highlight-e"></li>
-                <li class="background-highlight-e"></li>
-            </ul>
-        </div>
-        <div class="overlay-window map-overlay colors-h background-75-h">
-            <div class="overlay-control background-90-g">
-                <a class="cross" href="#"></a>
-            </div>
-            <div class="overlay-view">
-                <div class="map-canvas" data-latitude="42.487606" data-longitude="-71.115661" data-zoom="14">
-                    <div class="map-marker" data-latitude="42.487606" data-longitude="-71.115661" data-text="Our awesome location"></div>
-                    <div class="map-marker" data-latitude="42.485100" data-longitude="-71.113256" data-text="Our sales office"></div>
-                </div>
-            </div>
-        </div>
-        <div class="overlay-window credits-overlay colors-g background-95-g">
-            <div class="overlay-control background-90-b">
-                <a class="cross" href="#"></a>
-            </div>
-            <div class="overlay-view">
-                <div class="content-container">
-                    <h3>Credits</h3>
-                    <ul>
-                        <li>
-                            Photos by:
-                            <ul>
-                                <li><a target="_blank" href="https://www.flickr.com/photos/katya_alagich/">Katya Alagich</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
-                                <li><a target="_blank" href="https://www.flickr.com/photos/65047661@N00/">Jim Lukach</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
-                                <li><a target="_blank" href="https://www.flickr.com/photos/johanl/">Johan Larsson</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
-                                <li><a target="_blank" href="https://www.flickr.com/photos/johny/">John Kraus</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
-                                <li><a target="_blank" href="https://www.flickr.com/photos/geishaboy500/">THOR</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
-                                <li><a target="_blank" href="https://www.flickr.com/photos/stf-o/">stephane</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 License</a></li>
-                                <li><a target="_blank" href="http://www.pexels.com/">Pexels</a>, <a target="_blank" href="http://www.pexels.com/photo-license/">CC0 License</a></li>
-                                <li><a target="_blank" href="https://stocksnap.io/">Stocksnap</a>, <a target="_blank" href="https://stocksnap.io/license">CC0 License</a></li>
-                                <li><a target="_blank" href="http://picjumbo.com/">Picjumbo</a>, <a target="_blank" href="http://picjumbo.com/about-author/">Picjumbo License</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            Video by:
-                            <ul>
-                                <li><a target="_blank" href="http://mazwai.com/">Mazwai</a>, <a target="_blank" href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0 License</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            Icons by:
-                            <ul>
-                                <li><a target="_blank" href="http://designmodo.com/">Designmodoh</a>, <a target="_blank" href="http://designmodo.com/linecons-free/">License</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
         <div class="gate colors-e background-solid">
             <div class="gate-bar background-heading-e"></div>
             <ul class="loader">
