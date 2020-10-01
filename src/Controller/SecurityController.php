@@ -79,7 +79,7 @@ class SecurityController extends AbstractController
             $mailer->sendTokenConfirmationInscription(
                 $user->getEmail(),
                 "Confirmation compte",
-                "http://localhost:8000/account/confirm/".$token."/".$user->getEmail() ,
+                "https://spinandgogo.com/account/confirm/".$token."/".$user->getEmail() ,
                 "mailsTemplates/sendConfirmationToken.html.twig"
             );
 
@@ -104,7 +104,7 @@ class SecurityController extends AbstractController
         $mailer->sendTokenConfirmationInscription(
             $user->getEmail(),
             "Confirmation compte",
-            "http://localhost:8000/account/confirm/".$token."/".$user->getEmail() ,
+            "https://spinandgogo.com/account/confirm/".$token."/".$user->getEmail() ,
             "mailsTemplates/sendConfirmationToken.html.twig"
         );
         $this->addFlash("success", "Un liens de confirmation de compte vous a été envoyé, vérifiez votre boite mail. (Vérifier courriers indésirables)");
@@ -158,7 +158,7 @@ class SecurityController extends AbstractController
                 $mailerService->sendForgottenPasswordLink(
                     $user->getEmail(),
                     "Réinitialisation mot de passe",
-                    "http://localhost:8000/resetPassword/".$user->getResetPasswordToken() ,
+                    "https://spinandgogo.com/resetPassword/".$user->getResetPasswordToken() ,
                     "mailsTemplates/forgottenPassword.html.twig" ,
                     $user->getFirstname().' '. $user->getLastname());
 
