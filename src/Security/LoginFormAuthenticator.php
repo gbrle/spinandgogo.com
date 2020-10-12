@@ -77,7 +77,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
             $session->set('email', $user->getEmail());
 
             throw new CustomUserMessageAuthenticationException(
-                "Votre compte n'a pas été activé ! Vérifiez votre boite mail. <a class='text-dark' href='http://localhost:8000/sendTokenActivation'/>[ Renvoyer le mail ]</a>"
+                "Votre compte n'a pas été activé ! Vérifiez votre boite mail. <a class='text-dark' href='https://spinandgogo.com/sendTokenActivation'/>[ Renvoyer le mail ]</a>"
             );
         }
 
