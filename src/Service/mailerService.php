@@ -21,7 +21,7 @@ class mailerService
     public function sendTokenConfirmationInscription($to, $subject, $contentMail, $template)
     {
         $email = (new TemplatedEmail())
-            ->from(new Address("support@spinandgogo.com", "SpinAndGoGo"))
+            ->from(new Address("david.gabriele@outlook.fr", "SpinAndGoGo"))
             ->to($to)
             ->subject($subject)
             ->htmlTemplate($template)
@@ -33,7 +33,7 @@ class mailerService
     public function sendForgottenPasswordLink($to, $subject, $contentMail, $template, $user)
     {
         $email = (new TemplatedEmail())
-            ->from(new Address("support@spinandgogo.com", "SpinAndGoGo"))
+            ->from(new Address("david.gabriele@outlook.fr", "SpinAndGoGo"))
             ->to($to)
             ->subject($subject)
             ->htmlTemplate($template)
